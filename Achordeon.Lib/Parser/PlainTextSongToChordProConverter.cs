@@ -89,8 +89,12 @@ namespace Achordeon.Lib.Parser
 
         private bool IsChordLine(string ATextLine)
         {
+            if (string.IsNullOrWhiteSpace(ATextLine))
+                return false;
             var Parts = m_BlankTokenizerRex.Split(ATextLine);
-            return Parts.All(a => string.IsNullOrWhiteSpace(a) ||  m_ChordRex.IsMatch(a.ToUpper()));
+            //At least one not empty element in the line, that has a chord symbol inside
+            return Parts.Any(a => !string.IsNullOrWhiteSpace(a)) && 
+                Parts.All(a => string.IsNullOrWhiteSpace(a) || m_ChordRex.IsMatch(a.ToUpper()));
         }
     }
 }
