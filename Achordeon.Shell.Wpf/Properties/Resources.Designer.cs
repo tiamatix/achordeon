@@ -220,6 +220,15 @@ namespace Achordeon.Shell.Wpf.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Automatic updates ähnelt.
+        /// </summary>
+        public static string EnableAutoUpdates {
+            get {
+                return ResourceManager.GetString("EnableAutoUpdates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Something went terribly wrong. ähnelt.
         /// </summary>
         public static string ErrorDialogHeader {

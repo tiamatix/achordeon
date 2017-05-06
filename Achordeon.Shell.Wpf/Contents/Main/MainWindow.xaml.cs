@@ -52,6 +52,7 @@ namespace Achordeon.Shell.Wpf.Contents.Main
             InitializeComponent();
             Closing += MainWindowClosing;
             Closed += MainWindowClosed;
+            Loaded += (ASender, AArgs) => MainViewModel.StartAutoUpdateCheck();
             View.Core.SettingsViewModel.MainWindowPosition.ApplyTo(this);
             ACore.IoC.Unregister<IMessageBoxService>();
             ACore.IoC.RegisterInstance<IMessageBoxService>(this);
@@ -65,7 +66,6 @@ namespace Achordeon.Shell.Wpf.Contents.Main
            typeof(MainViewModel),
            typeof(MainWindow), 
            new PropertyMetadata(null));
-
 
         public MainViewModel MainViewModel
         {

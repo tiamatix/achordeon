@@ -110,6 +110,10 @@
       <HintPath>..\packages\Mono.Cecil.0.9.6.4\lib\net45\Mono.Cecil.Rocks.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="NuGet.Squirrel, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\squirrel.windows.1.6.0\lib\Net45\NuGet.Squirrel.dll</HintPath>
       <Private>True</Private>
@@ -160,6 +164,9 @@
     <Compile Include="Controls\SongOptions\SongOptionsEditor.xaml.cs">
       <DependentUpon>SongOptionsEditor.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\AutoUpdater\HttpHelper.cs" />
+    <Compile Include="Helpers\AutoUpdater\HttpProxySettings.cs" />
+    <Compile Include="Helpers\LanguageInfo.cs" />
     <Compile Include="Helpers\LogViewModel\CollapsibleLogEntry.cs" />
     <Compile Include="Helpers\LogViewModel\LogViewModelLogger.cs" />
     <Compile Include="Helpers\LogViewModel\LogViewModelLoggerFactoryAdapter.cs" />
@@ -278,6 +285,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Helpers\RecetFileList\RecentFileList.cs" />
+    <Compile Include="Helpers\AutoUpdater\UpdateEngine.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -342,6 +350,7 @@
   <ItemGroup>
     <Resource Include="giatec.ico" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>$(SolutionDir)005_TOOLS\HeaderLicensePrepend.exe $(SolutionDir)License.Template.json -a</PreBuildEvent>

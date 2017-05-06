@@ -25,6 +25,8 @@
             <RowDefinition Height="5" />
             <RowDefinition Height="30" />
             <RowDefinition Height="5" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="5" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0"
@@ -65,8 +67,21 @@
                                OffLabel="{x:Static p:Resources.No}"
                                OnLabel="{x:Static p:Resources.Yes}" />
 
+        <TextBlock Grid.Row="6"
+                   Grid.Column="0"
+                   VerticalAlignment="Center"
+                   Text="{x:Static p:Resources.EnableAutoUpdates}" />
+
+        <controls:ToggleSwitch Grid.Row="6"
+                               Grid.Column="1"
+                               HorizontalAlignment="Left"
+                               FocusVisualStyle="{x:Null}"
+                               IsChecked="{Binding Path=Settings.AutoUpdates}"
+                               OffLabel="{x:Static p:Resources.No}"
+                               OnLabel="{x:Static p:Resources.Yes}" />
+
         <songOptions:SongOptionsEditor x:Name="soeGlobal"
-                                       Grid.Row="6"
+                                       Grid.Row="8"
                                        Grid.Column="0"
                                        Grid.ColumnSpan="2" />
     </Grid>

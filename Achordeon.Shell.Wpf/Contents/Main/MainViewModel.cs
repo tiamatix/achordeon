@@ -27,6 +27,8 @@ using System.Windows.Input;
 using System.Windows.Threading;
 using Achordeon.Common.Helpers;
 using Achordeon.Shell.Wpf.Contents.Home;
+using Achordeon.Shell.Wpf.Helpers;
+using Achordeon.Shell.Wpf.Helpers.AutoUpdater;
 using DryIoc.Experimental;
 using Squirrel;
 
@@ -71,14 +73,12 @@ namespace Achordeon.Shell.Wpf.Contents.Main
             set { SetProperty(ref m_GoToGitHubCommand, value, nameof(GoToGitHubCommand)); }
         }
 
-        public async void CheckForUpdates()
+        public async void StartAutoUpdateCheck()
         {
-            using (var mgr = new UpdateManager("C:\\Projects\\MyApp\\Releases"))
-            {
-                await mgr.UpdateApp();
-            }
+            await Task.Delay(5000);
+            if (Core.SettingsViewModel.AutoUpdates)
+                new UpdateEngine(Core).StartAutoUpdateCheck();
         }
-
 
         public async Task Closing(System.ComponentModel.CancelEventArgs AArgs)
         {

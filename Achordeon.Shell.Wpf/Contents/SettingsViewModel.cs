@@ -46,6 +46,7 @@ namespace Achordeon.Shell.Wpf.Contents
         private string m_LanguageCode;
         private bool m_UsePdfPreview;
         private bool m_ShowLogger;
+        private bool m_AutoUpdates;
         private SongOptionsViewModel m_GlobalSongOptions;
 
         public SettingsViewModel(CoreViewModel ACore)
@@ -58,6 +59,7 @@ namespace Achordeon.Shell.Wpf.Contents
             ChordProEditorSplitPosition = 0;
             UsePdfPreview = true;
             ShowLogger = false;
+            AutoUpdates = true;
             GlobalSongOptions = new SongOptionsViewModel(Core);
             LanguageCode = AchordeonConstants.DEFAULT_LANGUAGE;
         }
@@ -86,6 +88,11 @@ namespace Achordeon.Shell.Wpf.Contents
             set { SetProperty(ref m_ShowLogger, value, nameof(ShowLogger)); }
         }
 
+        public bool AutoUpdates
+        {
+            get { return m_AutoUpdates; }
+            set { SetProperty(ref m_AutoUpdates, value, nameof(AutoUpdates)); }
+        }
 
         public WindowPosition MainWindowPosition
         {
@@ -145,6 +152,8 @@ namespace Achordeon.Shell.Wpf.Contents
             new SongOptionsConverter(DefaultSongOptions.Default).SaveToXml(GlobalSongOptions, GlobalSongOptionsNode);
             var LanguageNode = Xml.Add("Language");
             LanguageNode.Set("SelectedLanguageCode", LanguageCode);
+            var AutoUpdatesNode = Xml.Add("AutoUpdates");
+            AutoUpdatesNode.Set("EnableAutomaticUpdate", AutoUpdates);
             Xml.Save(AchordeonConstants.SettingsFileFullPath, true);
         }
 
@@ -183,7 +192,12 @@ namespace Achordeon.Shell.Wpf.Contents
             if (LanguageNode != null)
             {
                 LanguageCode = LanguageNode.Get("SelectedLanguageCode", LanguageCode);
-            }            
+            }
+            var AutoUpdatesNode = Xml.SelectSingle("AutoUpdates");
+            if (AutoUpdatesNode != null)
+            {
+                AutoUpdates = AutoUpdatesNode.GetB("EnableAutomaticUpdate", AutoUpdates);
+            }
         }
 
     }

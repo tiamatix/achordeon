@@ -28,18 +28,6 @@ using System.Reflection;
 
 namespace Achordeon.Shell.Wpf.Helpers
 {
-    public class LanguageInfo
-    {
-        public LanguageInfo(string ALanguageCode, string ADisplayName)
-        {
-            LanguageCode = ALanguageCode;
-            DisplayName = ADisplayName;
-        }
-
-        public string LanguageCode { get; }
-        public string DisplayName { get; }
-    }
-
     public static class AchordeonConstants
     {
         public const string ACHORDEON = "Achordeon";
@@ -47,13 +35,20 @@ namespace Achordeon.Shell.Wpf.Helpers
         public static readonly string SettingsFolderName = ACHORDEON;
         public static readonly string SettingsFileRootNodeName = ACHORDEON + "Settings";
         public static readonly string SettingsFileName = ACHORDEON + ".Settings.xml";
-                
+
+        public const string GITHUB_OWNER = "tiamatix";
+        public const string GITHUB_REPO = "achordeon";
+        public static readonly string GithubBase = $"https://github.com/{GITHUB_OWNER}/{GITHUB_REPO}";
+        public static readonly string GithubApiBase = $"https://api.github.com/repos/{GITHUB_OWNER}/{GITHUB_REPO}";
+        public static readonly string GithubLatestReleaseApi = GithubApiBase + "/releases/latest";
+
+        public static readonly string GithubProjectLink = GithubBase;
+        public static readonly string GithubIssueTracker = GithubBase + @"/issues/new";
+
         public static readonly string ApplicationDataDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), SettingsFolderName);
         public static readonly string SettingsFileFullPath = Path.Combine(ApplicationDataDirectory, SettingsFileName);
 
         public const string DEFAULT_LANGUAGE = "en-EN";
-        public const string GITHUB = "https://github.com/Wox-launcher/Wox";
-        public const string ISSUE = "https://github.com/Wox-launcher/Wox/issues/new";
 
         private static readonly Assembly _Assembly = Assembly.GetExecutingAssembly();
         public static readonly string Version = FileVersionInfo.GetVersionInfo(_Assembly.Location).ProductVersion;

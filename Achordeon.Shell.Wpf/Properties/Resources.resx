@@ -245,7 +245,10 @@
   <data name="ShowLogger" xml:space="preserve">
     <value>Show logger</value>
   </data>
-  <data name="SongEditorFont" xml:space="preserve">
+  <data name="EnableAutoUpdates" xml:space="preserve">
+    <value>Automatic updates</value>
+  </data>
+    <data name="SongEditorFont" xml:space="preserve">
     <value>Song editor font</value>
   </data>
   <data name="TextFontSize" xml:space="preserve">
