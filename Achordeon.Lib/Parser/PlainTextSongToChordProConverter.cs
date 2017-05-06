@@ -29,7 +29,7 @@ namespace Achordeon.Lib.Parser
 {
     public class PlainTextSongToChordProConverter
     {
-        private readonly Regex m_ChordRex = new Regex(@"^[CDEFGABH]{1}[#B]?(MAJ)?[M]?(SUS)?[245679]?(/[CDEFGABH]{1}[#B]?)?$");
+        private readonly Regex m_ChordRex = new Regex(@"^[CDEFGABH]{1}[#B]?(MAJ)?[M]?(SUS)?(DIM)?[245679]?[#B]?(/[CDEFGABH]{1}[#B]?)?(\(\w{1,5}\))?$");
         private readonly Regex m_NoBlankTokenizerRex = new Regex(@"\S+");
         private readonly Regex m_BlankTokenizerRex = new Regex(@"\s+");
 
@@ -41,14 +41,17 @@ namespace Achordeon.Lib.Parser
             var Result = new StringBuilder();
             while (CurrentLineNo < LineCount)
             {
-                if (CurrentLineNo + 1 < LineCount && IsChordLine(InputLines[CurrentLineNo]) && !IsChordLine(InputLines[CurrentLineNo + 1]))
+                var ThisLine = InputLines[CurrentLineNo];
+                var NextLine = CurrentLineNo + 1 < LineCount ? InputLines[CurrentLineNo+1] : string.Empty;
+
+                if (CurrentLineNo + 1 < LineCount && IsChordLine(ThisLine) && !IsChordLine(NextLine))
                 {
                     Result.AppendLine(IntegrateChords(InputLines[CurrentLineNo], InputLines[CurrentLineNo + 1]));
                     CurrentLineNo += 2;
                 }
                 else
                 {
-                    Result.AppendLine(InputLines[CurrentLineNo]);
+                    Result.AppendLine(ThisLine);
                     CurrentLineNo += 1;
                 }
             }
@@ -86,7 +89,8 @@ namespace Achordeon.Lib.Parser
 
         private bool IsChordLine(string ATextLine)
         {
-            return m_BlankTokenizerRex.Split(ATextLine).All(a => m_ChordRex.IsMatch(a.ToUpper()));
+            var Parts = m_BlankTokenizerRex.Split(ATextLine);
+            return Parts.All(a => string.IsNullOrWhiteSpace(a) ||  m_ChordRex.IsMatch(a.ToUpper()));
         }
     }
 }
