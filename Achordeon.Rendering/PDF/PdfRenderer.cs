@@ -107,6 +107,7 @@ namespace Achordeon.Rendering.Pdf
             return "base64:" + Convert.ToBase64String(AImage);
         }
 
+
         private void RenderLine(Line ALine,
             Document ADocument,
             Section ASongSection,
@@ -127,7 +128,8 @@ namespace Achordeon.Rendering.Pdf
                     {
                         //If the previous chord needs more (or equal) space than the text
                         //we have to reserve extra space for the chord and one extra blank
-                        var PreviousChordName = (ALine.GetPreviousElementOrNullOfType<LineChord>(Text) as LineChord)?.Name ?? String.Empty;
+                        var PreviousChordName = (ALine.GetPreviousElementOrNullOfType<LineChord>(Text) as LineChord)?.Name ?? string.Empty;
+                        PreviousChordName = ChordNameBeautifier.BeautifySharpsAndFlatsOnly(PreviousChordName);
                         var PreviousChordNameWidthMm = MeasureTextMm(ADocument, AStyle.ChordStyle, ReplaceBreakingSpace(PreviousChordName)).Width;
                         if (PreviousChordNameWidthMm >= TextWidthMm)
                             CurrentXPositionMm += PreviousChordNameWidthMm + MeasureTextMm(ADocument, AStyle.ChordStyle, "_").Width;
@@ -152,6 +154,7 @@ namespace Achordeon.Rendering.Pdf
             {
                 foreach (var Chord in ALine.Runs.OfType<LineChord>())
                 {
+                    var PrettyName = ChordNameBeautifier.BeautifySharpsAndFlatsOnly(Chord.Name);
 
                     if (AStyle.DrawChorusBorder)
                     {
@@ -161,13 +164,13 @@ namespace Achordeon.Rendering.Pdf
                         BorderFrame.AddParagraph(" ").Style = CHORUS_BORDER_STYLE;
                     }
 
-                    var ChordSize = MeasureTextMm(ADocument, AStyle.ChordStyle, ReplaceBreakingSpace(Chord.Name));
+                    var ChordSize = MeasureTextMm(ADocument, AStyle.ChordStyle, ReplaceBreakingSpace(PrettyName));
                     var ChordFrame = ASongSection.AddTextFrame();
                     ChordFrame.WrapFormat.Style = WrapStyle.None;
                     ChordFrame.WrapFormat.DistanceLeft = Unit.FromMillimeter(ChordPositions[Chord]);
                     ChordFrame.Width = Unit.FromMillimeter(ChordSize.Width);
                     ChordFrame.Height = Unit.FromMillimeter(ChordSize.Height);
-                    var paragraph = ChordFrame.AddParagraph(ReplaceBreakingSpace(Chord.Name));
+                    var paragraph = ChordFrame.AddParagraph(ReplaceBreakingSpace(PrettyName));
                     paragraph.Style = AStyle.ChordStyle;
                 }
                 InsertMediumLinebreak = false;

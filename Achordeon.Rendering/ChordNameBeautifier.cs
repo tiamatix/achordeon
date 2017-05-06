@@ -1,4 +1,4 @@
-/*! Achordeon - MIT License
+﻿/*! Achordeon - MIT License
 
 Copyright (c) 2017 Wolf Robben
 
@@ -59,7 +59,9 @@ namespace Achordeon.Lib.DataModel
                 }
                 switch (AName[1])
                 {
+                    case '♭':
                     case 'b':
+                    case '♯':
                     case '#':
                     case 'm':
                         return AName;
@@ -119,16 +121,21 @@ namespace Achordeon.Lib.DataModel
             return AName;
         }
 
-        public static string Beautify(string AChordName)
+        public static string BeautifySharpsAndFlatsOnly(string AChordName)
+        {
+            return string.IsNullOrWhiteSpace(AChordName) ? AChordName : AChordName.Replace('b', '♭').Replace('#', '♯');
+        }
+
+        public static string BeautifyForChordBoxImage(string AChordName)
         {
             //Trivial chord names
             if (!AChordName.Contains("/"))
-                return DoNamePart(AChordName);
+                return BeautifySharpsAndFlatsOnly(DoNamePart(AChordName));
 
             var Parts = AChordName.Split(new[] {'/'});
             var res = string.Empty;
                 
-            for (int i = 0; i < Parts.Length; i++)
+            for (var i = 0; i < Parts.Length; i++)
             {
                 var LastPart = string.Empty;
                 if (i > 0)
@@ -140,7 +147,7 @@ namespace Achordeon.Lib.DataModel
                 res += Parts[i];
 
             }
-            return res;
+            return BeautifySharpsAndFlatsOnly(res);
         }
     }
 }

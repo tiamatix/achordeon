@@ -134,7 +134,7 @@ namespace Achordeon.Lib.Lib.Rendering.ChordDiagrams
         public ChordBoxImage(Container AIoC, Chord AChord, int ASize)
         {
             IoC = AIoC;
-            _chordName = AChord.Name.Contains("_") ? AChord.Name : ChordNameBeautifier.Beautify(AChord.Name);
+            _chordName = ChordNameBeautifier.BeautifySharpsAndFlatsOnly(AChord.Name.Contains("_") ? AChord.Name : ChordNameBeautifier.BeautifyForChordBoxImage(AChord.Name));
             var bf = AChord.BaseFret - 1;
             _chordPositions[0] = AChord.Fret1 + bf;
             _chordPositions[1] = AChord.Fret2 + bf;

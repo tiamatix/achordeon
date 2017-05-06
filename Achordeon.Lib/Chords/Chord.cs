@@ -1,4 +1,4 @@
-/*! Achordeon - MIT License
+﻿/*! Achordeon - MIT License
 
 Copyright (c) 2017 Wolf Robben
 
