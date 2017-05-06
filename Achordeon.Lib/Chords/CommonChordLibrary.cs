@@ -284,7 +284,7 @@ namespace Achordeon.Lib.Chords
             Chords.LearnChord("Emaj", 0, 2, 2, 1, 0, 0, 1, ChordOrigin.BuildIn, Difficulty.Hard);
             Chords.LearnChord("Emaj7", 0, 2, 1, 1, 0, N, 1, ChordOrigin.BuildIn, Difficulty.Hard);
             Chords.LearnChord("Edim", N, N, 2, 3, 2, 3, 1, ChordOrigin.BuildIn, Difficulty.Hard);
-            Chords.LearnChord("Em", 0, 2, 2, 0, 0, 0, 1, ChordOrigin.BuildIn, Difficulty.Hard);
+            Chords.LearnChord("Em", 0, 2, 2, 0, 0, 0, 1, ChordOrigin.BuildIn, Difficulty.Easy);
             Chords.LearnChord("Emin", 0, 2, 2, 0, 0, 0, 1, ChordOrigin.BuildIn, Difficulty.Hard);
 
             Chords.LearnChord("Em6", 0, 2, 2, 0, 2, 0, 1, ChordOrigin.BuildIn, Difficulty.Hard);
