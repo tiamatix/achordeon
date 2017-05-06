@@ -26,6 +26,7 @@
 
                         <Button Width="50"
                                 Height="50"
+                                ToolTip="{x:Static p:Resources.SaveSongButtonTooltip}"
                                 Command="{Binding SaveCommand}"
                                 DockPanel.Dock="Left"
                                 FocusVisualStyle="{x:Null}"
@@ -35,6 +36,7 @@
                         <Button Width="50"
                                 Height="50"
                                 Margin="0,0,50,0"
+                                ToolTip="{x:Static p:Resources.SaveSongAsButtonTooltip}"
                                 Command="{Binding SaveAsCommand}"
                                 DockPanel.Dock="Left"
                                 FocusVisualStyle="{x:Null}"
@@ -44,6 +46,7 @@
 
                         <Button Width="50"
                                 Height="50"
+                                ToolTip="{x:Static p:Resources.SavePdfButtonTooltip}"
                                 Command="{Binding SavePdfCommand}"
                                 DockPanel.Dock="Left"
                                 FocusVisualStyle="{x:Null}"
@@ -53,6 +56,7 @@
 
                         <Button Width="50"
                                 Height="50"
+                                ToolTip="{x:Static p:Resources.SaveAndRunPdfButtonTooltip}"
                                 Command="{Binding RunPdfCommand}"
                                 DockPanel.Dock="Left"
                                 FocusVisualStyle="{x:Null}"
@@ -62,6 +66,7 @@
 
                         <Button Width="50"
                                 Height="50"
+                                ToolTip="{x:Static p:Resources.PrintButtonTooltip}"
                                 Command="{Binding PrintCommand}"
                                 DockPanel.Dock="Left"
                                 FocusVisualStyle="{x:Null}"
@@ -76,6 +81,7 @@
                     <DockPanel HorizontalAlignment="Left">
                         <Button Width="50"
                                 Height="50"
+                                ToolTip="{x:Static p:Resources.UndoButtonTooltip}"
                                 Command="ApplicationCommands.Undo"
                                 CommandTarget="{Binding Path=TextArea,
                                                         ElementName=TextEditor}"
@@ -86,6 +92,7 @@
                         </Button>
                         <Button Width="50"
                                 Height="50"
+                                ToolTip="{x:Static p:Resources.RedoButtonTooltip}"
                                 Command="ApplicationCommands.Redo"
                                 CommandTarget="{Binding Path=TextArea,
                                                         ElementName=TextEditor}"
@@ -98,6 +105,7 @@
                         <Button Width="50"
                                 Height="50"
                                 Margin="25,0,0,0"
+                                ToolTip="{x:Static p:Resources.CutButtonTooltip}"
                                 Command="ApplicationCommands.Cut"
                                 CommandTarget="{Binding Path=TextArea,
                                                         ElementName=TextEditor}"
@@ -108,6 +116,7 @@
                         </Button>
                         <Button Width="50"
                                 Height="50"
+                                ToolTip="{x:Static p:Resources.CopyButtonTooltip}"
                                 Command="ApplicationCommands.Copy"
                                 CommandTarget="{Binding Path=TextArea,
                                                         ElementName=TextEditor}"
@@ -118,6 +127,7 @@
                         </Button>
                         <Button Width="50"
                                 Height="50"
+                                ToolTip="{x:Static p:Resources.PasteButtonTooltip}"
                                 Command="ApplicationCommands.Paste"
                                 CommandTarget="{Binding Path=TextArea,
                                                         ElementName=TextEditor}"
@@ -129,7 +139,7 @@
                     </DockPanel>
                 </TabItem>
                 <TabItem Header="{x:Static p:Resources.Options}">
-                    <DockPanel Margin="10,0,0,0">
+                    <DockPanel Margin="10,0,0,0" HorizontalAlignment="Left">
                         <Border BorderBrush="{StaticResource AccentColorBrush4}"
                                 BorderThickness="1"
                                 FocusVisualStyle="{x:Null}">
@@ -145,6 +155,7 @@
                                            Text="{x:Static p:Resources.TransposeByHalftones}"
                                            TextAlignment="Center" />
                                 <controls:NumericUpDown Width="100"
+                                                         ToolTip="{x:Static p:Resources.TransposeBoxTooltip}"
                                                         Height="27"
                                                         HorizontalAlignment="Center"
                                                         VerticalAlignment="Center"
@@ -157,34 +168,11 @@
                             </DockPanel>
                         </Border>
 
-                        <Border Margin="25,0,0,0"
-                                BorderBrush="{StaticResource AccentColorBrush4}"
-                                BorderThickness="1"
-                                FocusVisualStyle="{x:Null}">
-                            <DockPanel HorizontalAlignment="Center"
-                                       VerticalAlignment="Center"
-                                       LastChildFill="True">
-                                <TextBlock VerticalAlignment="Top"
-                                           DockPanel.Dock="Top"
-                                           FocusVisualStyle="{x:Null}"
-                                           FontSize="12"
-                                           FontWeight="Bold"
-                                           Text="{x:Static p:Resources.LyricsOnly}"
-                                           TextAlignment="Center" />
-                                <controls:ToggleSwitch Margin="20,0,50,0"
-                                                       VerticalAlignment="Center"
-                                                       DockPanel.Dock="Bottom"
-                                                       FocusVisualStyle="{x:Null}"
-                                                       FontSize="16"
-                                                       IsChecked="{Binding SongOptionViewModel.LyricsOnly}"
-                                                       OffLabel="{x:Static p:Resources.No}"
-                                                       OnLabel="{x:Static p:Resources.Yes}" />
-                            </DockPanel>
-                        </Border>
 
                         <Button Width="50"
                                 Height="50"
-                                Margin="50,0,0,0"
+                                Margin="25,0,0,0"
+                                 ToolTip="{x:Static p:Resources.ImportPlainTextButtonTooltip}"
                                 Command="{Binding ImportPlainTextCommand}"
                                 CommandTarget="{Binding Path=TextArea,
                                                         ElementName=TextEditor}"
@@ -210,6 +198,7 @@
                                            Text="{x:Static p:Resources.PreviewMode}"
                                            TextAlignment="Center" />
                                 <controls:ToggleSwitch Margin="20,0,50,0"
+                                                        ToolTip="{x:Static p:Resources.SetPreviewModeTooltip}"
                                                        VerticalAlignment="Center"
                                                        DockPanel.Dock="Bottom"
                                                        FocusVisualStyle="{x:Null}"
@@ -219,7 +208,34 @@
                                                        OnLabel="{x:Static p:Resources.PDF}" />
                             </DockPanel>
                         </Border>
+
+                        <Border Margin="0,0,0,0"
+                                BorderBrush="{StaticResource AccentColorBrush4}"
+                                BorderThickness="1"
+                                FocusVisualStyle="{x:Null}">
+                            <DockPanel HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       LastChildFill="True">
+                                <TextBlock VerticalAlignment="Top"
+                                           DockPanel.Dock="Top"
+                                           FocusVisualStyle="{x:Null}"
+                                           FontSize="12"
+                                           FontWeight="Bold"
+                                           Text="{x:Static p:Resources.LyricsOnly}"
+                                           TextAlignment="Center" />
+                                <controls:ToggleSwitch Margin="20,0,50,0"
+                                                       VerticalAlignment="Center"
+                                                       DockPanel.Dock="Bottom"
+                                                         ToolTip="{x:Static p:Resources.LyricsOnlyModeTooltip}"
+                                                       FocusVisualStyle="{x:Null}"
+                                                       FontSize="16"
+                                                       IsChecked="{Binding SongOptionViewModel.LyricsOnly}"
+                                                       OffLabel="{x:Static p:Resources.No}"
+                                                       OnLabel="{x:Static p:Resources.Yes}" />
+                            </DockPanel>
+                        </Border>
                         <Button Width="50"
+                                ToolTip="{x:Static p:Resources.ZoomInToolTip}"
                                 Height="50"
                                 Command="{Binding ZoomViewModel.ZoomInCommand}"
                                 DockPanel.Dock="Left"
@@ -230,6 +246,7 @@
                         <Button Width="50"
                                 Height="50"
                                 Margin="0,0,50,0"
+                                ToolTip="{x:Static p:Resources.ZoomOutToolTip}"
                                 Command="{Binding ZoomViewModel.ZoomOutCommand}"
                                 DockPanel.Dock="Left"
                                 FocusVisualStyle="{x:Null}"
@@ -238,6 +255,7 @@
                         </Button>
                         <Button Width="50"
                                 Height="50"
+                                ToolTip="{x:Static p:Resources.FitToWidthToolTip}"
                                 Command="{Binding ZoomViewModel.FitToWidthCommand}"
                                 DockPanel.Dock="Left"
                                 FocusVisualStyle="{x:Null}"
@@ -246,6 +264,7 @@
                         </Button>
                         <Button Width="50"
                                 Height="50"
+                                ToolTip="{x:Static p:Resources.FitToHeightToolTip}"
                                 Command="{Binding ZoomViewModel.FitToHeightCommand}"
                                 DockPanel.Dock="Left"
                                 FocusVisualStyle="{x:Null}"
@@ -255,6 +274,7 @@
                         <Button Width="50"
                                 Height="50"
                                 Margin="0,0,50,0"
+                                ToolTip="{x:Static p:Resources.FitToPageToolTip}"
                                 Command="{Binding ZoomViewModel.FitToPageCommand}"
                                 DockPanel.Dock="Left"
                                 FocusVisualStyle="{x:Null}"
@@ -263,6 +283,7 @@
                         </Button>
                         <Button Width="50"
                                 Height="50"
+                                 ToolTip="{x:Static p:Resources.ResetZoomToolTip}"
                                 Command="{Binding ZoomViewModel.ResetZoomCommand}"
                                 DockPanel.Dock="Left"
                                 FocusVisualStyle="{x:Null}"
@@ -277,6 +298,7 @@
                 <Button Width="50"
                         Height="50"
                         Margin="0,17,17,17"
+                        ToolTip="{x:Static p:Resources.CloseButtonTooltip}"
                         Command="{Binding CloseCommand}"
                         DockPanel.Dock="Right"
                         Style="{DynamicResource MetroCircleButtonStyle}">

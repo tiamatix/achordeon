@@ -201,7 +201,7 @@
     <value>Lied öffnen</value>
   </data>
   <data name="Options" xml:space="preserve">
-    <value>Optionen</value>
+    <value>Sonderfunktionen</value>
   </data>
   <data name="PageSize" xml:space="preserve">
     <value>Seitengröße</value>
@@ -268,5 +268,80 @@
   </data>
   <data name="Yes" xml:space="preserve">
     <value>Ja</value>
+  </data>
+  <data name="GlobalSettingsTooltip" xml:space="preserve">
+    <value>Achordeons globale Einstellungen</value>
+  </data>
+  <data name="GlobalSettingsButtonTooltip" xml:space="preserve">
+    <value>Dialog mit globalen Einstellungen öffnen</value>
+  </data>
+  <data name="SaveSongButtonTooltip" xml:space="preserve">
+    <value>Speichert das aktuelle Lied unter dem derzeitigen Namen</value>
+  </data>
+  <data name="SaveSongAsButtonTooltip" xml:space="preserve">
+    <value>Speichert das aktuelle Lied unter einem neuen Namen</value>
+  </data>
+  <data name="SavePdfButtonTooltip" xml:space="preserve">
+    <value>Erzeugt eine PDF-Datei des aktuellen Liedes und speichert diese PDF-Datei. Als Dateiname wird der Name der Lieddatei verwendet, allerdings mit der .PDF-Dateiendng</value>
+  </data>
+  <data name="SaveAndRunPdfButtonTooltip" xml:space="preserve">
+    <value>Erzeugt eine PDF-Datei des aktuellen Liedes und zeigt sie mit dem installierten PDF-Betrachter an</value>
+  </data>
+  <data name="PrintButtonTooltip" xml:space="preserve">
+    <value>Aktuelles Lied ausdrucken</value>
+  </data>
+  <data name="CloseButtonTooltip" xml:space="preserve">
+    <value>Die aktuelle Ansicht schließen</value>
+  </data>
+  <data name="UndoButtonTooltip" xml:space="preserve">
+    <value>Macht die letzte Änderung rückgängig</value>
+  </data>
+  <data name="RedoButtonTooltip" xml:space="preserve">
+    <value>Stellt die zuletzt rückgängig gemachte Änderung wieder her</value>
+  </data>
+  <data name="CutButtonTooltip" xml:space="preserve">
+    <value>Schneidet den den selektierten Text aus und kopiert ihn in die Zwischenablage</value>
+  </data>
+  <data name="CopyButtonTooltip" xml:space="preserve">
+    <value>Kopiert den selektierten Text in die Zwischenablage</value>
+  </data>
+  <data name="PasteButtonTooltip" xml:space="preserve">
+    <value>Fügt den Inhalt der Zwischenablage in den Lied-Editor ein</value>
+  </data>
+  <data name="TransposeBoxTooltip" xml:space="preserve">
+    <value>Transponiert das Lied um die angegebene Anzahl von Halbtönen</value>
+  </data>
+  <data name="ImportPlainTextButtonTooltip" xml:space="preserve">
+    <value>Interpretiert den selektierten Text als Liedtext mit Akkorden über dem Text, und konvertiert das Ergebnis in das ChordPro Format</value>
+  </data>
+  <data name="SetPreviewModeTooltip" xml:space="preserve">
+    <value>Schaltet die Voransicht in den Text- oder PDF-Modus</value>
+  </data>
+  <data name="LyricsOnlyModeTooltip" xml:space="preserve">
+    <value>Aktiviert den "Nur-Text"-Modus, in dem die Akkorde nicht angezeigt werden</value>
+  </data>
+  <data name="ResetZoomToolTip" xml:space="preserve">
+    <value>Setzt die Vergrößerung der Vorschau zurück</value>
+  </data>
+  <data name="FitToPageToolTip" xml:space="preserve">
+    <value>Stellt die Vergrößerung der Vorschau so ein, dass eine ganze Seite angezeigt wird.</value>
+  </data>
+  <data name="FitToHeightToolTip" xml:space="preserve">
+    <value>Stellt die Vergrößerung der Vorschau so ein, dass die volle Seitenhöhe angezeigt wird.</value>
+  </data>
+  <data name="FitToWidthToolTip" xml:space="preserve">
+    <value>Stellt die Vergrößerung der Vorschau so ein, dass die volle Seitenbreite angezeigt wird.</value>
+  </data>
+  <data name="ZoomInToolTip" xml:space="preserve">
+    <value>Vorschau vergrößern</value>
+  </data>
+  <data name="ZoomOutToolTip" xml:space="preserve">
+    <value>Vorschau verkleinern</value>
+  </data>
+  <data name="OpenSongButtonTooltip" xml:space="preserve">
+    <value>Ein Lied aus einer Datei laden</value>
+  </data>
+  <data name="NewSongButtonTooltip" xml:space="preserve">
+    <value>Lass' uns ein neues Lied schreiben</value>
   </data>
 </root>

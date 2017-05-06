@@ -200,6 +200,45 @@
   <data name="GlobalSettings" xml:space="preserve">
     <value>Global Settings</value>
   </data>
+  <data name="GlobalSettingsTooltip" xml:space="preserve">
+    <value>Achordeon global settings dialog</value>
+  </data>
+  <data name="GlobalSettingsButtonTooltip" xml:space="preserve">
+    <value>Opens the global settings dialog</value>
+  </data>
+  <data name="SaveSongButtonTooltip" xml:space="preserve">
+    <value>Save the current song to the original file</value>
+  </data>
+  <data name="SaveSongAsButtonTooltip" xml:space="preserve">
+    <value>Save the current song under a new name</value>
+  </data>
+  <data name="SavePdfButtonTooltip" xml:space="preserve">
+    <value>Renders the current song to a PDF file and saves the result chord sheet file. The file will have the same name as the song file, but .PDF file extension</value>
+  </data>
+  <data name="SaveAndRunPdfButtonTooltip" xml:space="preserve">
+    <value>Renders the current song to a PDF file, saves it and runs it using your installed PDF viewer application</value>
+  </data>
+  <data name="PrintButtonTooltip" xml:space="preserve">
+    <value>Prints the current song</value>
+  </data>
+  <data name="CloseButtonTooltip" xml:space="preserve">
+    <value>Closes the current view</value>
+  </data>
+  <data name="UndoButtonTooltip" xml:space="preserve">
+    <value>Reverts the last edits</value>
+  </data>
+  <data name="RedoButtonTooltip" xml:space="preserve">
+    <value>Reverts the last undo</value>
+  </data>
+  <data name="CutButtonTooltip" xml:space="preserve">
+    <value>Cuts the current selection to the clipboard</value>
+  </data>
+  <data name="CopyButtonTooltip" xml:space="preserve">
+    <value>Copies the current selection to the clipboard</value>
+  </data>
+  <data name="PasteButtonTooltip" xml:space="preserve">
+    <value>Pastes the current clipboard content to the song editor</value>
+  </data>
   <data name="No" xml:space="preserve">
     <value>No</value>
   </data>
@@ -249,7 +288,7 @@
     <value>Lyrics only:</value>
   </data>
   <data name="Options" xml:space="preserve">
-    <value>Options</value>
+    <value>Operations</value>
   </data>
   <data name="PDF" xml:space="preserve">
     <value>PDF</value>
@@ -268,5 +307,41 @@
   </data>
   <data name="TransposeByHalftones" xml:space="preserve">
     <value>Transpose by halftones</value>
+  </data>
+  <data name="TransposeBoxTooltip" xml:space="preserve">
+    <value>Transposes the whole song by the specified amount of halftones</value>
+  </data>
+  <data name="ImportPlainTextButtonTooltip" xml:space="preserve">
+    <value>Interpretes the selected text als ASCII with chords written on top of each line, and converts it to ChordPro format</value>
+  </data>
+  <data name="SetPreviewModeTooltip" xml:space="preserve">
+    <value>Selects the preview mode to either be plain text or PDF</value>
+  </data>
+  <data name="LyricsOnlyModeTooltip" xml:space="preserve">
+    <value>Enables the "lyrics only" mode where chords are omitted in the output</value>
+  </data>
+  <data name="ResetZoomToolTip" xml:space="preserve">
+    <value>Resets the zoom to the default value</value>
+  </data>
+  <data name="FitToPageToolTip" xml:space="preserve">
+    <value>Adjusts the zoom to display the whole page</value>
+  </data>
+  <data name="FitToHeightToolTip" xml:space="preserve">
+    <value>Adjusts the zoom to display the full height of page</value>
+  </data>
+  <data name="FitToWidthToolTip" xml:space="preserve">
+    <value>Adjusts the zoom to display the full width of page</value>
+  </data>
+  <data name="ZoomInToolTip" xml:space="preserve">
+    <value>Increases the zoom</value>
+  </data>
+  <data name="ZoomOutToolTip" xml:space="preserve">
+    <value>Decreases the zoom</value>
+  </data>
+  <data name="OpenSongButtonTooltip" xml:space="preserve">
+    <value>Open a song from a file</value>
+  </data>
+  <data name="NewSongButtonTooltip" xml:space="preserve">
+    <value>Let's write another song</value>
   </data>
 </root>

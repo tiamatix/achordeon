@@ -146,11 +146,38 @@ namespace Achordeon.Shell.Wpf.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Closes the current view ähnelt.
+        /// </summary>
+        public static string CloseButtonTooltip {
+            get {
+                return ResourceManager.GetString("CloseButtonTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Copies the current selection to the clipboard ähnelt.
+        /// </summary>
+        public static string CopyButtonTooltip {
+            get {
+                return ResourceManager.GetString("CopyButtonTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die _Copy ähnelt.
         /// </summary>
         public static string CopyMenu {
             get {
                 return ResourceManager.GetString("CopyMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Cuts the current selection to the clipboard ähnelt.
+        /// </summary>
+        public static string CutButtonTooltip {
+            get {
+                return ResourceManager.GetString("CutButtonTooltip", resourceCulture);
             }
         }
         
@@ -229,11 +256,56 @@ namespace Achordeon.Shell.Wpf.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Adjusts the zoom to display the full height of page ähnelt.
+        /// </summary>
+        public static string FitToHeightToolTip {
+            get {
+                return ResourceManager.GetString("FitToHeightToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Adjusts the zoom to display the whole page ähnelt.
+        /// </summary>
+        public static string FitToPageToolTip {
+            get {
+                return ResourceManager.GetString("FitToPageToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Adjusts the zoom to display the full width of page ähnelt.
+        /// </summary>
+        public static string FitToWidthToolTip {
+            get {
+                return ResourceManager.GetString("FitToWidthToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Global Settings ähnelt.
         /// </summary>
         public static string GlobalSettings {
             get {
                 return ResourceManager.GetString("GlobalSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Opens the global settings dialog ähnelt.
+        /// </summary>
+        public static string GlobalSettingsButtonTooltip {
+            get {
+                return ResourceManager.GetString("GlobalSettingsButtonTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Achordeon global settings dialog ähnelt.
+        /// </summary>
+        public static string GlobalSettingsTooltip {
+            get {
+                return ResourceManager.GetString("GlobalSettingsTooltip", resourceCulture);
             }
         }
         
@@ -256,11 +328,29 @@ namespace Achordeon.Shell.Wpf.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Interpretes the selected text als ASCII with chords written on top of each line, and converts it to ChordPro format ähnelt.
+        /// </summary>
+        public static string ImportPlainTextButtonTooltip {
+            get {
+                return ResourceManager.GetString("ImportPlainTextButtonTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Lyrics only: ähnelt.
         /// </summary>
         public static string LyricsOnly {
             get {
                 return ResourceManager.GetString("LyricsOnly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Enables the &quot;lyrics only&quot; mode where chords are omitted in the output ähnelt.
+        /// </summary>
+        public static string LyricsOnlyModeTooltip {
+            get {
+                return ResourceManager.GetString("LyricsOnlyModeTooltip", resourceCulture);
             }
         }
         
@@ -301,6 +391,15 @@ namespace Achordeon.Shell.Wpf.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Let&apos;s write another song ähnelt.
+        /// </summary>
+        public static string NewSongButtonTooltip {
+            get {
+                return ResourceManager.GetString("NewSongButtonTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die No ähnelt.
         /// </summary>
         public static string No {
@@ -328,7 +427,16 @@ namespace Achordeon.Shell.Wpf.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Options ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Open a song from a file ähnelt.
+        /// </summary>
+        public static string OpenSongButtonTooltip {
+            get {
+                return ResourceManager.GetString("OpenSongButtonTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Operations ähnelt.
         /// </summary>
         public static string Options {
             get {
@@ -342,6 +450,15 @@ namespace Achordeon.Shell.Wpf.Properties {
         public static string PageSize {
             get {
                 return ResourceManager.GetString("PageSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Pastes the current clipboard content to the song editor ähnelt.
+        /// </summary>
+        public static string PasteButtonTooltip {
+            get {
+                return ResourceManager.GetString("PasteButtonTooltip", resourceCulture);
             }
         }
         
@@ -409,11 +526,29 @@ namespace Achordeon.Shell.Wpf.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Prints the current song ähnelt.
+        /// </summary>
+        public static string PrintButtonTooltip {
+            get {
+                return ResourceManager.GetString("PrintButtonTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Recent files ähnelt.
         /// </summary>
         public static string RecentFiles {
             get {
                 return ResourceManager.GetString("RecentFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Reverts the last undo ähnelt.
+        /// </summary>
+        public static string RedoButtonTooltip {
+            get {
+                return ResourceManager.GetString("RedoButtonTooltip", resourceCulture);
             }
         }
         
@@ -427,11 +562,65 @@ namespace Achordeon.Shell.Wpf.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Resets the zoom to the default value ähnelt.
+        /// </summary>
+        public static string ResetZoomToolTip {
+            get {
+                return ResourceManager.GetString("ResetZoomToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Renders the current song to a PDF file, saves it and runs it using your installed PDF viewer application ähnelt.
+        /// </summary>
+        public static string SaveAndRunPdfButtonTooltip {
+            get {
+                return ResourceManager.GetString("SaveAndRunPdfButtonTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die The document has to be saved first. ähnelt.
         /// </summary>
         public static string SaveBevorePdf {
             get {
                 return ResourceManager.GetString("SaveBevorePdf", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Renders the current song to a PDF file and saves the result chord sheet file. The file will have the same name as the song file, but .PDF file extension ähnelt.
+        /// </summary>
+        public static string SavePdfButtonTooltip {
+            get {
+                return ResourceManager.GetString("SavePdfButtonTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Save the current song under a new name ähnelt.
+        /// </summary>
+        public static string SaveSongAsButtonTooltip {
+            get {
+                return ResourceManager.GetString("SaveSongAsButtonTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Save the current song to the original file ähnelt.
+        /// </summary>
+        public static string SaveSongButtonTooltip {
+            get {
+                return ResourceManager.GetString("SaveSongButtonTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Selects the preview mode to either be plain text or PDF ähnelt.
+        /// </summary>
+        public static string SetPreviewModeTooltip {
+            get {
+                return ResourceManager.GetString("SetPreviewModeTooltip", resourceCulture);
             }
         }
         
@@ -499,11 +688,29 @@ namespace Achordeon.Shell.Wpf.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Transposes the whole song by the specified amount of halftones ähnelt.
+        /// </summary>
+        public static string TransposeBoxTooltip {
+            get {
+                return ResourceManager.GetString("TransposeBoxTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Transpose by halftones ähnelt.
         /// </summary>
         public static string TransposeByHalftones {
             get {
                 return ResourceManager.GetString("TransposeByHalftones", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Reverts the last edits ähnelt.
+        /// </summary>
+        public static string UndoButtonTooltip {
+            get {
+                return ResourceManager.GetString("UndoButtonTooltip", resourceCulture);
             }
         }
         
@@ -531,6 +738,24 @@ namespace Achordeon.Shell.Wpf.Properties {
         public static string Yes {
             get {
                 return ResourceManager.GetString("Yes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Increases the zoom ähnelt.
+        /// </summary>
+        public static string ZoomInToolTip {
+            get {
+                return ResourceManager.GetString("ZoomInToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Decreases the zoom ähnelt.
+        /// </summary>
+        public static string ZoomOutToolTip {
+            get {
+                return ResourceManager.GetString("ZoomOutToolTip", resourceCulture);
             }
         }
     }

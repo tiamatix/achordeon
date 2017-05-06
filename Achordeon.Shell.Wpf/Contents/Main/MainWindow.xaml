@@ -50,7 +50,8 @@
 
     <Controls:MetroWindow.RightWindowCommands>
         <Controls:WindowCommands>
-            <ToggleButton Cursor="Hand" IsChecked="{Binding ElementName=SettingsFlyout, Path=IsOpen}">
+
+            <ToggleButton Cursor="Hand" IsChecked="{Binding ElementName=SettingsFlyout, Path=IsOpen}" ToolTip="{x:Static p:Resources.GlobalSettingsButtonTooltip}">
                 <iconPacks:PackIconMaterial Kind="Settings" />
             </ToggleButton>
         </Controls:WindowCommands>
@@ -60,6 +61,7 @@
         <Controls:FlyoutsControl>
             <Controls:Flyout x:Name="SettingsFlyout"
                              Width="400"
+                             ToolTip="{x:Static p:Resources.GlobalSettingsTooltip}"
                              Header="{x:Static p:Resources.GlobalSettings}"
                              Position="Right"
                              Theme="Light">

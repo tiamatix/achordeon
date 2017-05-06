@@ -47,10 +47,7 @@ namespace Achordeon.Shell.Wpf.Contents.Main
             GoToGitHubCommand = new SimpleCommand
                 {
                     CanExecuteDelegate = x => true,                    
-                    ExecuteDelegate = x =>
-                    {
-                        Core.IoC.Get<IMessageBoxService>().ShowErrorAsync("Ohje", "Bla", new DivideByZeroException());                        
-                    }
+                    ExecuteDelegate = x => System.Diagnostics.Process.Start(@"https://github.com/tiamatix/achordeon")
                 };
 
             Core.DocumentsViewModel.AddDocumentView(new HomeViewModel(Core));
