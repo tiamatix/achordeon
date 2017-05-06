@@ -1,0 +1,28 @@
+<SyntaxDefinition name="ChordPro" extensions=".pro" xmlns="http://icsharpcode.net/sharpdevelop/syntaxdefinition/2008">
+
+	<Color name="Comment" foreground="DarkGray" exampleText="# This is a comment line" />
+	<Color name="Chord" foreground="DarkRed"  fontWeight="bold" exampleText="[C]"/>
+	<Color name="CommentDirective" foreground="Green" exampleText="{c:Capo on 2nd fret}"/>
+	<Color name="Directive" foreground="Blue" exampleText="{soc}"/>
+
+	<RuleSet>
+
+		<Span color="Comment" begin="^#" />
+
+		<Span color="Chord">
+			<Begin>\[</Begin>
+			<End>\]</End>
+		</Span>
+
+		<Span color="CommentDirective">
+			<Begin>\{[cC]([oO][mM][mM][eE][nN][tT])?:</Begin>
+			<End>\}</End>
+		</Span>
+
+		<Span color="Directive">
+			<Begin>\{</Begin>
+			<End>\}</End>
+		</Span>		
+
+	</RuleSet>
+</SyntaxDefinition>

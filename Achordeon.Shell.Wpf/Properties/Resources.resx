@@ -1,0 +1,272 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="CannotRunFile" xml:space="preserve">
+    <value>The application cannot run the file '{0}'.</value>
+  </data>
+  <data name="CannotSaveFile" xml:space="preserve">
+    <value>The application cannot save the file '{0}'.</value>
+  </data>
+  <data name="ChordProFileDialogFilter" xml:space="preserve">
+    <value>Chord Pro files (*.pro)|*.pro</value>
+  </data>
+  <data name="CopyMenu" xml:space="preserve">
+    <value>_Copy</value>
+  </data>
+  <data name="CutMenu" xml:space="preserve">
+    <value>Cu_t</value>
+  </data>
+  <data name="EmptyFileTemplate" xml:space="preserve">
+    <value>{t:New Song}
+{st:Composer Name}
+{c:1.)}</value>
+  </data>
+  <data name="ErrorDialogHeader" xml:space="preserve">
+    <value>Something went terribly wrong.</value>
+  </data>
+  <data name="ErrorDialogTitle" xml:space="preserve">
+    <value>Achordeon encountered an error...</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="HomeButtonTitle" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="HomeTitle" xml:space="preserve">
+    <value>Welcome to Achordeon!</value>
+  </data>
+  <data name="MainWindowTitle" xml:space="preserve">
+    <value>Achordeon</value>
+  </data>
+  <data name="MissingFileBody" xml:space="preserve">
+    <value>The file {0} does not exists.</value>
+  </data>
+  <data name="FailedToConvertPlainText" xml:space="preserve">
+    <value>The plain text could not be imported.</value>
+  </data>
+  <data name="MissingFileHeader" xml:space="preserve">
+    <value>File missing</value>
+  </data>
+  <data name="NewSong" xml:space="preserve">
+    <value>New Song</value>
+  </data>
+  <data name="OpenFileMenu" xml:space="preserve">
+    <value>_Open</value>
+  </data>
+  <data name="OpenSong" xml:space="preserve">
+    <value>Open Song</value>
+  </data>
+  <data name="PasteMenu" xml:space="preserve">
+    <value>_Paste</value>
+  </data>
+  <data name="PinFileMenu" xml:space="preserve">
+    <value>_Pin to list</value>
+  </data>
+  <data name="PinToolTip" xml:space="preserve">
+    <value>Pin this item to the list.</value>
+  </data>
+  <data name="RemoveFileMenu" xml:space="preserve">
+    <value>_Remove from list</value>
+  </data>
+  <data name="SaveBevorePdf" xml:space="preserve">
+    <value>The document has to be saved first.</value>
+  </data>
+  <data name="StatusBarAppVersion" xml:space="preserve">
+    <value>Achordeon v{0}</value>
+  </data>
+  <data name="UnpinFileMenu" xml:space="preserve">
+    <value>_Unpin from list</value>
+  </data>
+  <data name="UnpinToolTip" xml:space="preserve">
+    <value>Unpin this item from the list.</value>
+  </data>
+  <data name="GlobalSettings" xml:space="preserve">
+    <value>Global Settings</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="ShowLogger" xml:space="preserve">
+    <value>Show logger</value>
+  </data>
+  <data name="SongEditorFont" xml:space="preserve">
+    <value>Song editor font</value>
+  </data>
+  <data name="TextFontSize" xml:space="preserve">
+    <value>Text font size</value>
+  </data>
+  <data name="SongEditorFontSize" xml:space="preserve">
+    <value>Song editor font size</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="ChordFont" xml:space="preserve">
+    <value>Chord font</value>
+  </data>
+  <data name="ChordFontSize" xml:space="preserve">
+    <value>Chord font size</value>
+  </data>
+  <data name="ChordGridSizeMm" xml:space="preserve">
+    <value>Chord grid size (mm)</value>
+  </data>
+  <data name="DrawChordGrids" xml:space="preserve">
+    <value>Draw chord grids</value>
+  </data>
+  <data name="PageSize" xml:space="preserve">
+    <value>Page size</value>
+  </data>
+  <data name="SortChordGrids" xml:space="preserve">
+    <value>Sort chord grids</value>
+  </data>
+  <data name="TextFont" xml:space="preserve">
+    <value>Text font</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="File" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="LyricsOnly" xml:space="preserve">
+    <value>Lyrics only:</value>
+  </data>
+  <data name="Options" xml:space="preserve">
+    <value>Options</value>
+  </data>
+  <data name="PDF" xml:space="preserve">
+    <value>PDF</value>
+  </data>
+  <data name="PlainText" xml:space="preserve">
+    <value>Plain text</value>
+  </data>
+  <data name="Preview" xml:space="preserve">
+    <value>Preview</value>
+  </data>
+  <data name="PreviewMode" xml:space="preserve">
+    <value>Preview mode:</value>
+  </data>
+  <data name="RecentFiles" xml:space="preserve">
+    <value>Recent files</value>
+  </data>
+  <data name="TransposeByHalftones" xml:space="preserve">
+    <value>Transpose by halftones</value>
+  </data>
+</root>

@@ -1,0 +1,54 @@
+﻿<UserControl x:Class="Achordeon.Shell.Wpf.Controls.FontCombo.FontCombo"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Achordeon.Shell.Wpf.Controls.FontCombo"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             d:DesignHeight="26"
+             d:DesignWidth="250"
+             DataContext="{Binding RelativeSource={RelativeSource Self}}"
+             mc:Ignorable="d">
+    <UserControl.Resources />
+
+    <ComboBox Name="cbFont"
+              VerticalAlignment="Center"
+              ItemTemplate="{DynamicResource FontTemplate}"
+              SelectionChanged="FontComboBoxOnSelectionChanged">
+        <ComboBox.Resources>
+            <Style x:Key="FontStyle">
+                <Setter Property="Control.FontFamily" Value="{Binding Path=Family}" />
+                <Setter Property="Control.FontSize" Value="16" />
+            </Style>
+
+
+            <CollectionViewSource x:Key="SortedFonts" 
+                                  Filter="FilterItems"
+                                  IsLiveFilteringRequested="True"
+                                  Source="{Binding Path=Fonts, Mode=OneWay}">
+                <CollectionViewSource.SortDescriptions>
+                    <componentModel:SortDescription PropertyName="DisplayText" />
+                </CollectionViewSource.SortDescriptions>
+                <CollectionViewSource.LiveFilteringProperties>
+                    <system:String>IsBuildIn</system:String>
+                </CollectionViewSource.LiveFilteringProperties>
+            </CollectionViewSource>
+
+
+            <DataTemplate x:Key="FontTemplate">
+                <StackPanel VirtualizingStackPanel.IsVirtualizing="True">
+                    <TextBlock Style="{StaticResource FontStyle}"
+                               Text="{Binding DisplayText}"
+                               ToolTip="{Binding DisplayText}" />
+                </StackPanel>
+            </DataTemplate>
+
+        </ComboBox.Resources>
+
+
+        <ComboBox.ItemsSource>
+            <Binding Source="{StaticResource SortedFonts}" />
+        </ComboBox.ItemsSource>
+    </ComboBox>
+</UserControl>

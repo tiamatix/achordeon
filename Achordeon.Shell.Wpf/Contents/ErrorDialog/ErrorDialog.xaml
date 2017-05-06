@@ -1,0 +1,66 @@
+﻿<controls:MetroWindow x:Class="Achordeon.Shell.Wpf.Contents.ErrorDialog.ErrorDialog"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:properties="clr-namespace:Achordeon.Shell.Wpf.Properties"
+                      Title="{x:Static properties:Resources.ErrorDialogTitle}"
+                      Width="600"
+                      Height="455"
+                      d:DesignHeight="300"
+                      d:DesignWidth="600"
+                      x:ClassModifier="internal"
+                      BorderBrush="{DynamicResource AccentColorBrush}"
+                      BorderThickness="1"
+                      ResizeMode="NoResize"
+                      Topmost="True"
+                      WindowStartupLocation="CenterScreen"
+                      mc:Ignorable="d">
+
+    <controls:MetroWindow.IconTemplate>
+        <DataTemplate>
+            <iconPacks:PackIconMaterial Width="{TemplateBinding Width}"
+                                        Height="{TemplateBinding Height}"
+                                        Margin="2"
+                                        Foreground="{DynamicResource BlackColorBrush}"
+                                        Kind="EmoticonSad"
+                                        Padding="4" />
+        </DataTemplate>
+    </controls:MetroWindow.IconTemplate>
+    <DockPanel LastChildFill="True">
+        <DockPanel Margin="10,10,10,10"
+                   VerticalAlignment="Center"
+                   Dock="Top">
+            <TextBlock FontSize="16"
+                       FontWeight="Bold"
+                       Text="{x:Static properties:Resources.ErrorDialogHeader}" />
+        </DockPanel>
+        <DockPanel HorizontalAlignment="Left"
+                   VerticalAlignment="Center"
+                   DockPanel.Dock="Bottom">
+            <Button Height="50"
+                    Margin="20,5,5,5"
+                    Click="CloseButtonClick"
+                    DockPanel.Dock="Left"
+                    Style="{DynamicResource SquareButtonStyle}">
+                <DockPanel LastChildFill="True">
+                    <iconPacks:PackIconMaterial Margin="10,0,0,0" Kind="Close" />
+                    <TextBlock Margin="25,0,25,0"
+                               FontWeight="Bold"
+                               Text="{x:Static properties:Resources.Close}" />
+                </DockPanel>
+            </Button>
+        </DockPanel>
+        <RichTextBox x:Name="ErrorTextbox"
+                     Margin="10"
+                     BorderThickness="0"
+                     DockPanel.Dock="Top"
+                     FontSize="14"
+                     HorizontalScrollBarVisibility="Auto"
+                     IsDocumentEnabled="True"
+                     VerticalScrollBarVisibility="Auto" />
+    </DockPanel>
+
+</controls:MetroWindow>

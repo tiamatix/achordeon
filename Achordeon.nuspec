@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package>
+	<metadata>
+		<id>Achordeon</id>
+		<title>Achordeon</title>
+		<version>$version$</version>
+		<authors>tiamatix</authors>
+		<owners>tiamatix</owners>
+		<projectUrl>https://github.com/tiamatix/achordeon</projectUrl>
+		<iconUrl>https://raw.githubusercontent.com/tiamatix/achordeon/master/Achordeon.Shell.Wpf/logo.png</iconUrl>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<description>$Desc$</description>
+		<summary>$Summary$</summary>
+		<releaseNotes>$ReleaseNotes$</releaseNotes>
+		</metadata>
+		<files>
+			<file src="**\*.*" target="lib\net45\" exclude="Achordeon.vshost.exe;Achordeon.vshost.exe.config;Achordeon.vshost.exe.manifest;*.nupkg;Setup.exe;RELEASES"/>
+		</files>
+	</package>
+	

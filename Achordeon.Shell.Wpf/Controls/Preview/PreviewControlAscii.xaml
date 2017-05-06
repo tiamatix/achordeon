@@ -1,0 +1,19 @@
+﻿<UserControl x:Class="Achordeon.Shell.Wpf.Controls.Preview.PreviewControlAscii"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Achordeon.Shell.Wpf.Contents.ChordProFile"
+             xmlns:windows="clr-namespace:MigraDoc.Rendering.Windows;assembly=MigraDoc.Rendering-wpf"
+             d:DataContext="{d:DesignInstance local:ChordProFileViewModel}"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <RichTextBox Name="tbPreview"
+            AcceptsReturn="True"
+             IsReadOnly="True"
+             FontFamily="Courier New"
+             FontSize="16"
+HorizontalScrollBarVisibility="Auto"
+VerticalScrollBarVisibility="Auto"/>
+
+</UserControl>

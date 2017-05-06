@@ -1,0 +1,21 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=System"
+                    xmlns:converters="clr-namespace:Achordeon.Shell.Wpf.Helpers.Converters">
+
+    <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+
+    <converters:InvertBooleanConverter x:Key="InvertBooleanConverter" />
+
+    <componentModel:BooleanConverter x:Key="BooleanConverter" />
+
+    <converters:DoubleToZoomConverter x:Key="DoubleToZoomConverter" />
+
+    <converters:MenuFileNameConverter x:Key="MenuFileNameConverter" />
+
+    <converters:PercentToDoubleConverter x:Key="PercentConverter" />
+
+    <converters:TabFileNameConverter x:Key="TabFileNameConverter" />
+
+
+</ResourceDictionary>
