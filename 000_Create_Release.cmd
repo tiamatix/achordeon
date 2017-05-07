@@ -16,6 +16,10 @@ echo *** 004_RELEASE - this is where the release goes  **
 echo *** 005_TOOLS - several tools (extract ZIP file)  **
 echo ***********************************************
 echo.
+rem fetch Version (required for Squirrel input file name)
+for /F "tokens=1" %%F in ('005_TOOLS\filever.exe "%~dp0\000_BIN\Achordeon.exe"') do (set RELVERSION=%%F)
+echo Detected version: "%RELVERSION%"
+echo.
 echo.
 echo Press any key to continue or CTRL-C to abort...
 echo.
@@ -25,17 +29,22 @@ if not exist "%~dp0\004_RELEASE" mkdir  "%~dp0\004_RELEASE"
 if not exist "%~dp0\005_TOOLS" goto error_tools_missing
 echo Creating NUGET package...
 rem  Build the whole solution and create a NUGET package
-005_TOOLS\nuget pack Achordeon.Shell.Wpf\Achordeon.Shell.Wpf.csproj -OutputDirectory 003_NUGET
+005_TOOLS\nuget pack Achordeon.Shell.Wpf\Achordeon.Shell.Wpf.csproj -Version %RELVERSION%  -Properties Configuration=Release -BasePath . -OutputDirectory 003_NUGET
 echo.
 echo.
-rem fetch Version (required for Squirrel input file name)
-for /F "tokens=1" %%F in ('005_TOOLS\filever.exe "%~dp0\000_BIN\Achordeon.exe"') do (set RELVERSION=%%F)
-echo Detected version: "%RELVERSION%"
-echo.
+if exist 000_BIN\Update.exe del 000_BIN\Update.exe
+pushd .
+cd
+cd packages
+cd squirrel*
+cd tools
+copy squirrel.exe "%~dp0\000_BIN\Update.exe"
+popd
+cd.
 echo Creating SQUIRREL release...
 echo.
 rem now releasify the NUGET package and create the release
-packages\squirrel.windows.1.6.0\tools\squirrel.com --releaseDir=004_RELEASE --releasify "003_NUGET\Achordeon.%RELVERSION%.nupkg" --packagesDir=packages --icon=Achordeon.Shell.Wpf\logo.ico --setupIcon=Achordeon.Shell.Wpf\logo.ico --no-msi
+packages\squirrel.windows.1.6.0\tools\squirrel.com --releasify "003_NUGET\Achordeon.%RELVERSION%.nupkg" --releaseDir=004_RELEASE  --packagesDir=packages --setupIcon=Achordeon.Shell.Wpf\logo.ico --no-msi 
 rem rename the setup to the release file name
 move "004_RELEASE\Setup.exe" "004_RELEASE\Achordeon.%RELVERSION%.exe"
 echo.

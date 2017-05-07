@@ -14,7 +14,7 @@
 		<releaseNotes>$ReleaseNotes$</releaseNotes>
 		</metadata>
 		<files>
-			<file src="000_BIN\**\*.*" target="lib\net45\" exclude="Achordeon.vshost.exe;Achordeon.vshost.exe.config;Achordeon.vshost.exe.manifest;*.nupkg;Setup.exe;RELEASES"/>
+			<file src="000_BIN\**\*.*" target="lib\net45\" exclude="Achordeon.vshost.exe;Achordeon.vshost.exe.config;Achordeon.vshost.exe.manifest;*.nupkg;Setup.exe;RELEASES"/>			
 		</files>
 	</package>
 	
