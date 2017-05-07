@@ -25,7 +25,7 @@ if not exist "%~dp0\004_RELEASE" mkdir  "%~dp0\004_RELEASE"
 if not exist "%~dp0\005_TOOLS" goto error_tools_missing
 echo Creating NUGET package...
 rem  Build the whole solution and create a NUGET package
-005_TOOLS\nuget pack Achordeon.Shell.Wpf\Achordeon.Shell.Wpf.csproj -Build -OutputDirectory 003_NUGET -IncludeReferencedProjects
+005_TOOLS\nuget pack Achordeon.Shell.Wpf\Achordeon.Shell.Wpf.csproj -OutputDirectory 003_NUGET
 echo.
 echo.
 rem fetch Version (required for Squirrel input file name)
