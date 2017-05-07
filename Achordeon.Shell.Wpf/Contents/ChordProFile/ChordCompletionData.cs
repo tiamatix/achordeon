@@ -110,8 +110,8 @@ namespace Achordeon.Shell.Wpf.Contents.ChordProFile
                 sb.Append("-");
                 sb.Append(Chord.GetFretDisplay(Chord.Fret6));
                 sb.AppendLine();
-                return sb.ToString();
-                //return GetImage();
+                return sb.ToString();  
+                //return GetImage(); does not work
             }
         }
 
@@ -119,7 +119,7 @@ namespace Achordeon.Shell.Wpf.Contents.ChordProFile
 
         public void Complete(TextArea ATextArea, ISegment ACompletionSegment, EventArgs AInsertionRequestEventArgs)
         {
-            ATextArea.Document.Replace(ACompletionSegment, Text);
+            ATextArea.Document.Replace(ACompletionSegment, Text + "]");
         }
     }
 }

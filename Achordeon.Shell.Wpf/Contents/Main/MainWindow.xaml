@@ -51,9 +51,18 @@
     <Controls:MetroWindow.RightWindowCommands>
         <Controls:WindowCommands>
 
-            <ToggleButton Cursor="Hand" IsChecked="{Binding ElementName=SettingsFlyout, Path=IsOpen}" ToolTip="{x:Static p:Resources.GlobalSettingsButtonTooltip}">
+            <ToggleButton Cursor="Hand" IsChecked="{Binding ElementName=SettingsFlyout, Path=IsOpen}" FocusVisualStyle="{x:Null}" ToolTip="{x:Static p:Resources.GlobalSettingsButtonTooltip}">
+                <DockPanel>
                 <iconPacks:PackIconMaterial Kind="Settings" />
+                    <TextBlock Margin="5,0,0,0" Text="{x:Static p:Resources.Settings}"/>
+                </DockPanel>
             </ToggleButton>
+            <Button Cursor="Hand" ToolTip="{x:Static p:Resources.AboutTooltip}" FocusVisualStyle="{x:Null}" Click="AboutButtonClick">
+                <DockPanel>
+                    <iconPacks:PackIconFontAwesome Kind="QuestionCircleOutline" />
+                    <TextBlock Margin="5,0,0,0" Text="{x:Static p:Resources.About}"/>
+                </DockPanel>
+            </Button>
         </Controls:WindowCommands>
     </Controls:MetroWindow.RightWindowCommands>
 

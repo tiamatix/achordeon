@@ -36,8 +36,9 @@ namespace Achordeon.Shell.Wpf.Contents.Main
 {
     public class MainViewModel : ViewModelBase
     {
-        
-        private ICommand m_GoToGitHubCommand;
+        private string m_ProjectUrl;
+        private string m_LicenseUrl;
+        private string m_ReleaseNotesUrl;
         private Dispatcher m_Dispatcher;
         private CoreViewModel m_Core;
 
@@ -45,14 +46,10 @@ namespace Achordeon.Shell.Wpf.Contents.Main
         {
             Core = ACore;
             Dispatcher = ADispatcher;
-            
-            GoToGitHubCommand = new SimpleCommand
-                {
-                    CanExecuteDelegate = x => true,                    
-                    ExecuteDelegate = x => System.Diagnostics.Process.Start(@"https://github.com/tiamatix/achordeon")
-                };
-
             Core.DocumentsViewModel.AddDocumentView(new HomeViewModel(Core));
+            ReleaseNotesUrl = AchordeonConstants.GithubLatestReleaseNotes;
+            ProjectUrl = AchordeonConstants.GithubProjectLink;
+            LicenseUrl = AchordeonConstants.GithubLicense;
         }
 
         public Dispatcher Dispatcher
@@ -66,12 +63,25 @@ namespace Achordeon.Shell.Wpf.Contents.Main
             get { return m_Core; }
             set { SetProperty(ref m_Core, value, nameof(Core)); }
         }
-     
-        public ICommand GoToGitHubCommand
+
+        public string ProjectUrl
         {
-            get { return m_GoToGitHubCommand; }
-            set { SetProperty(ref m_GoToGitHubCommand, value, nameof(GoToGitHubCommand)); }
+            get { return m_ProjectUrl; }
+            set { SetProperty(ref m_ProjectUrl, value, nameof(ProjectUrl)); }
         }
+
+        public string LicenseUrl
+        {
+            get { return m_LicenseUrl; }
+            set { SetProperty(ref m_LicenseUrl, value, nameof(LicenseUrl)); }
+        }
+
+        public string ReleaseNotesUrl
+        {
+            get { return m_ReleaseNotesUrl; }
+            set { SetProperty(ref m_ReleaseNotesUrl, value, nameof(ReleaseNotesUrl)); }
+        }
+
 
         public async void StartAutoUpdateCheck()
         {

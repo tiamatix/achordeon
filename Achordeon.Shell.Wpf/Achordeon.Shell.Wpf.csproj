@@ -163,6 +163,9 @@
     <Compile Include="Contents\ChordProFile\CommandWorkingOnSelectionTextArguments.cs" />
     <Compile Include="Contents\CloseEventArguments.cs" />
     <Compile Include="Contents\LinkedSongOptionsViewModel.cs" />
+    <Compile Include="Contents\Main\AboutWindow.xaml.cs">
+      <DependentUpon>AboutWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\SongOptions\SongOptionsEditor.xaml.cs">
       <DependentUpon>SongOptionsEditor.xaml</DependentUpon>
     </Compile>
@@ -221,6 +224,10 @@
     <Page Include="Contents\Logger\LogViewer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Contents\Main\AboutWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\FontCombo\FontCombo.xaml">
       <SubType>Designer</SubType>

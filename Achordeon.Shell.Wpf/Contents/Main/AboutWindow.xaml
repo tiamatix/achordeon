@@ -1,0 +1,117 @@
+﻿<simpleChildWindow:ChildWindow x:Class="Achordeon.Shell.Wpf.Contents.Main.AboutWindow"
+                               xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                               xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                               xmlns:local="clr-namespace:Achordeon.Shell.Wpf.Contents.Main"
+                               xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                               xmlns:p="clr-namespace:Achordeon.Shell.Wpf.Properties"
+                               xmlns:simpleChildWindow="clr-namespace:MahApps.Metro.SimpleChildWindow;assembly=MahApps.Metro.SimpleChildWindow"
+                               xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+                               d:DataContext="{d:DesignInstance local:MainViewModel}"
+                               d:DesignHeight="300"
+                               d:DesignWidth="300"
+                               BorderBrush="{DynamicResource AccentColorBrush}"
+                               BorderThickness="1"
+                               CloseOnOverlay="True"
+                               Title="{x:Static p:Resources.AboutWindowTitle}"
+                               GlowBrush="{DynamicResource AccentColorBrush}"
+                               ShowCloseButton="True"
+                               mc:Ignorable="d">
+
+    <simpleChildWindow:ChildWindow.Icon>
+        <Rectangle Width="22"
+                   Height="22"
+                   Fill="{DynamicResource IdealForegroundColorBrush}">
+            <Rectangle.OpacityMask>
+                <VisualBrush Stretch="Uniform" Visual="{DynamicResource appbar_question}" />
+            </Rectangle.OpacityMask>
+        </Rectangle>
+    </simpleChildWindow:ChildWindow.Icon>
+
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="100" />
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Row="0"
+                   Grid.ColumnSpan="2"
+                   Margin="5,0,100,0"
+                   FontSize="36"
+                   FontWeight="Thin"
+                   Text="{x:Static p:Resources.MainWindowTitle}" />
+        <TextBlock Grid.Row="1"
+                   Grid.ColumnSpan="2"
+                   Margin="100,0,100,0"
+                   FontSize="18"
+                   FontWeight="Thin"
+                   Text="(c) Tiamatix / Wolf Robben - MIT license" />
+
+
+        <TextBlock Grid.Row="3"
+                   Grid.Column="0"
+                   Margin="5"
+                    Text="{x:Static p:Resources.Version}"/>
+        <TextBlock Grid.Row="3"
+                   Grid.Column="1"
+                   Margin="5"
+                   Text="{Binding Mode=OneWay,
+                                  Path=Core.AppVersion}" />
+
+        <TextBlock Grid.Row="4"
+                   Grid.Column="0"
+                   Margin="5"
+                   Text="{x:Static p:Resources.WebSite}"/>
+
+        <TextBlock Grid.Row="4"
+                   Grid.Column="1"
+                   Margin="5">
+            <Hyperlink NavigateUri="{Binding ProjectUrl, Mode=OneWay}" RequestNavigate="UrlLickClicked">
+                <Run Text="{Binding ProjectUrl, Mode=OneWay}" />
+            </Hyperlink>
+        </TextBlock>
+
+        <TextBlock Grid.Row="5"
+                   Grid.Column="0"
+                   Margin="5"
+                   Text="{x:Static p:Resources.ReleaseNotes}"/>
+
+        
+        <TextBlock Grid.Row="5"
+                   Grid.Column="1"
+                   Margin="5">
+            <Hyperlink NavigateUri="{Binding ReleaseNotesUrl, Mode=OneWay}" RequestNavigate="UrlLickClicked">
+                <Run Text="{Binding ReleaseNotesUrl, Mode=OneWay}" />
+            </Hyperlink>
+        </TextBlock>
+
+        <TextBlock Grid.Row="6"
+                   Grid.Column="0"
+                   Margin="5"
+                   Text="{x:Static p:Resources.License}"/>
+
+
+        <TextBlock Grid.Row="6"
+                   Grid.Column="1"
+                   Margin="5">
+            <Hyperlink NavigateUri="{Binding LicenseUrl, Mode=OneWay}" RequestNavigate="UrlLickClicked">
+                <Run Text="{Binding LicenseUrl, Mode=OneWay}" />
+            </Hyperlink>
+        </TextBlock>
+
+        <Button Margin="5,20,0,5" Grid.Row="7" Grid.Column="0" FocusVisualStyle="{x:Null}" Style="{StaticResource AccentedSquareButtonStyle}" Click="CloseButtonClick">
+            <iconPacks:PackIconMaterial Kind="CloseCircleOutline" />
+        </Button>
+        
+    </Grid>
+</simpleChildWindow:ChildWindow>

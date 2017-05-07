@@ -25,6 +25,7 @@ using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using Achordeon.Common.Helpers;
+using Achordeon.Lib.Parser;
 using Achordeon.Shell.Wpf.Contents.ChordProFile;
 using Common.Logging;
 using DryIoc.Experimental;
@@ -65,6 +66,10 @@ namespace Achordeon.Shell.Wpf.Controls.Preview
                     dpPreview.Ddl = Ddl;
                     ScrollViewer?.ScrollToHorizontalOffset(HorizontalOffset ?? 0);
                     ScrollViewer?.ScrollToVerticalOffset(VerticalOffset ?? 0);
+                }
+                catch (ParseException ex)
+                {
+                    Log.WarnFormat("{0} failed: {1}", nameof(Update), ex.Message);
                 }
                 catch (Exception ex)
                 {

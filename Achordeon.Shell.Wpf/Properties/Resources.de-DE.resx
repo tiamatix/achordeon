@@ -344,4 +344,43 @@
   <data name="NewSongButtonTooltip" xml:space="preserve">
     <value>Lass' uns ein neues Lied schreiben</value>
   </data>
+  <data name="AboutWindowTitle" xml:space="preserve">
+    <value>Über Achordeon...</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Version:</value>
+  </data>
+  <data name="WebSite" xml:space="preserve">
+    <value>Webseite:</value>
+  </data>
+  <data name="ReleaseNotes" xml:space="preserve">
+    <value>Versionshinweise:</value>
+  </data>
+  <data name="License" xml:space="preserve">
+    <value>Lizenz:</value>
+  </data>
+  <data name="FailedToConvertTheSelection" xml:space="preserve">
+    <value>Fehler bei Konvertierung der Selektion.</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Einstellungen</value>
+  </data>
+  <data name="About" xml:space="preserve">
+    <value>Über</value>
+  </data>
+  <data name="AboutTooltip" xml:space="preserve">
+    <value>Über Achordeon...</value>
+  </data>
+  <data name="CommentUncommentSelectionTooltip" xml:space="preserve">
+    <value>Konvertiert den selektierten Text in einen Kommentar, oder auch wieder zurück</value>
+  </data>
+  <data name="ChorusUnchorusSelectionTooltip" xml:space="preserve">
+    <value>Konvertiert den selektierten Text in einen Chorus (Refrain), oder auch wieder zurück</value>
+  </data>
+  <data name="TabUnTabSelectionTooltip" xml:space="preserve">
+    <value>Konvertiert den selektierten Text in einen Gitarrentab, oder auch wieder zurück</value>
+  </data>
+  <data name="EnableAutoUpdates" xml:space="preserve">
+    <value>Automtaische Aktualisierung</value>
+  </data>
 </root>

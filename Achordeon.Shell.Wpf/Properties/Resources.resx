@@ -155,6 +155,21 @@
   <data name="MainWindowTitle" xml:space="preserve">
     <value>Achordeon</value>
   </data>
+  <data name="AboutWindowTitle" xml:space="preserve">
+    <value>About Achordeon...</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Version:</value>
+  </data>
+  <data name="WebSite" xml:space="preserve">
+    <value>Web site:</value>
+  </data>
+  <data name="ReleaseNotes" xml:space="preserve">
+    <value>Release notes:</value>
+  </data>
+  <data name="License" xml:space="preserve">
+    <value>License:</value>
+  </data>
   <data name="MissingFileBody" xml:space="preserve">
     <value>The file {0} does not exists.</value>
   </data>
@@ -162,7 +177,7 @@
     <value>The plain text could not be imported.</value>
   </data>
   <data name="FailedToConvertTheSelection" xml:space="preserve">
-    <value>Failed to convet the selection.</value>
+    <value>Failed to convert the selection.</value>
   </data>
   <data name="MissingFileHeader" xml:space="preserve">
     <value>File missing</value>
@@ -200,6 +215,9 @@
   <data name="UnpinToolTip" xml:space="preserve">
     <value>Unpin this item from the list.</value>
   </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
   <data name="GlobalSettings" xml:space="preserve">
     <value>Global Settings</value>
   </data>
@@ -208,6 +226,12 @@
   </data>
   <data name="GlobalSettingsButtonTooltip" xml:space="preserve">
     <value>Opens the global settings dialog</value>
+  </data>
+  <data name="About" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="AboutTooltip" xml:space="preserve">
+    <value>About Achordeon</value>
   </data>
   <data name="SaveSongButtonTooltip" xml:space="preserve">
     <value>Save the current song to the original file</value>
@@ -250,7 +274,7 @@
   </data>
   <data name="TabUnTabSelectionTooltip" xml:space="preserve">
     <value>Marks the selected text to be a guitar tab, or removes the marks</value>
-  </data>  
+  </data>
   <data name="No" xml:space="preserve">
     <value>No</value>
   </data>
@@ -260,7 +284,7 @@
   <data name="EnableAutoUpdates" xml:space="preserve">
     <value>Automatic updates</value>
   </data>
-    <data name="SongEditorFont" xml:space="preserve">
+  <data name="SongEditorFont" xml:space="preserve">
     <value>Song editor font</value>
   </data>
   <data name="TextFontSize" xml:space="preserve">

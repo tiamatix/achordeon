@@ -35,6 +35,20 @@ using DryIoc;
 
 namespace Achordeon.Lib.Parser
 {
+    public class ParseException : Exception
+    {
+        public int LineNumber { get; }
+
+        public ParseException(string AMessage) : base(AMessage)
+        {
+            LineNumber = -1;
+        }
+
+        public ParseException(string AMessage, int ALineNumber) : base(AMessage)
+        {
+            LineNumber = ALineNumber;
+        }
+    }
     public class ChordProParser : IDisposable
     {
         private Container IoC { get; }
@@ -144,7 +158,7 @@ namespace Achordeon.Lib.Parser
         private void Expect(char AChar)
         {
             if (Current != AChar)
-                throw new Exception(string.Format(Resources.ChordProParser_Expect___0___expected__but___1___found_, AChar, Current));
+                throw new ParseException(string.Format(Resources.ChordProParser_Expect___0___expected__but___1___found_, AChar, Current), m_CurrentLineNo);
         }
 
         private string ReadUntil(params char[] AStopChars)
@@ -259,7 +273,7 @@ namespace Achordeon.Lib.Parser
                     CurrentRange.RemoveLastEmptyLine();
                     EndRange();
                     if (CurrentRange == null)
-                        throw new Exception(string.Format(Resources.ChordProParser_ReadDirective_Unexpected___0_____not_within_a_tab_, FirstString));
+                        throw new ParseException(string.Format(Resources.ChordProParser_ReadDirective_Unexpected___0_____not_within_a_tab_, FirstString), m_CurrentLineNo);
                     return;
                 case "define":
                     SkipWhitespace();
@@ -342,15 +356,15 @@ namespace Achordeon.Lib.Parser
                                 Style = CommentStyle.ComentBox;
                                 break;
                             default:
-                                throw new Exception(string.Format(Resources.ChordProParser_ReadDirective_Comment_style__0__unsupported, FirstString));
+                                throw new ParseException(string.Format(Resources.ChordProParser_ReadDirective_Comment_style__0__unsupported, FirstString), m_CurrentLineNo);
                         }
                         CurrentRange.InsertBefore(CurrentLine, new Comment(IoC, Style, RestOfLine, m_CurrentLineNo, m_CurrentLinePos));
                         return;
                     default:
-                        throw new Exception(string.Format(Resources.ChordProParser_ReadDirective_Directive___0___unsupported, FirstString));
+                        throw new ParseException(string.Format(Resources.ChordProParser_ReadDirective_Directive___0___unsupported, FirstString), m_CurrentLineNo);
                 }
             }
-            throw new Exception(string.Format(Resources.ChordProParser_ReadDirective_Directive___0___unsupported, FirstString));
+            throw new ParseException(string.Format(Resources.ChordProParser_ReadDirective_Directive___0___unsupported, FirstString), m_CurrentLineNo);
         }
 
 

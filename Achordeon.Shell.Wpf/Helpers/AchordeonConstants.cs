@@ -40,8 +40,9 @@ namespace Achordeon.Shell.Wpf.Helpers
         public const string GITHUB_REPO = "achordeon";
         public static readonly string GithubBase = $"https://github.com/{GITHUB_OWNER}/{GITHUB_REPO}";
         public static readonly string GithubApiBase = $"https://api.github.com/repos/{GITHUB_OWNER}/{GITHUB_REPO}";
+        public static readonly string GithubLatestReleaseNotes = GithubBase + "/releases/latest";
         public static readonly string GithubLatestReleaseApi = GithubApiBase + "/releases/latest";
-
+        public static readonly string GithubLicense = GithubBase + "/blob/master/LICENSE";
         public static readonly string GithubProjectLink = GithubBase;
         public static readonly string GithubIssueTracker = GithubBase + @"/issues/new";
 

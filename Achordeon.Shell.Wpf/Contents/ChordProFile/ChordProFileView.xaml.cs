@@ -30,6 +30,7 @@ using System.Xml;
 using Achordeon.Common.Helpers;
 using Achordeon.Lib.Chords;
 using Achordeon.Shell.Wpf.Controls.Preview;
+using Common.Logging;
 using DryIoc.Experimental;
 using ICSharpCode.AvalonEdit.CodeCompletion;
 using ICSharpCode.AvalonEdit.Document;
@@ -51,26 +52,33 @@ namespace Achordeon.Shell.Wpf.Contents.ChordProFile
 
         public ChordProFileViewModel View => DataContext as ChordProFileViewModel;
 
+        private ILog Log => View.Core.IoC.Get<Log>().Using(this);
+
+
         private void ReCreatePreviewControl()
         {
             if (m_PreviewControl != null)
             {
+                Log.Trace("Unregistering old preview control");
                 m_PreviewControl.LayoutUpdated -= PreviewControlOnLayoutUpdated;
                 m_PreviewControl = null;
                 PreviewContainer.Child = null;
             }
             if (View.Core.SettingsViewModel.UsePdfPreview)
             {
+                Log.Trace("Creating PDF preview control");
                 var Control = new PreviewControlPdf(View);
                 PreviewContainer.Child = Control;
                 m_PreviewControl = Control;
             }
             else
             {
+                Log.Trace("Creating ASCII preview control");
                 var Control = new PreviewControlAscii(View);
                 PreviewContainer.Child = Control;
                 m_PreviewControl = Control;
             }
+            Log.Trace("Registering new preview control");
             m_PreviewControl.Zoom = View.ZoomViewModel.Zoom;
             m_PreviewControl.LayoutUpdated += PreviewControlOnLayoutUpdated;
             DelayedUpdate();
@@ -98,6 +106,7 @@ namespace Achordeon.Shell.Wpf.Contents.ChordProFile
             Loaded += FirstTimeLoadedHandler;
             TextEditor.TextChanged += (ASender, AArgs) =>
             {
+                Log.Trace("TextEditor.TextChanged");
                 if (!m_SuppressTextChanged)
                     View.HasUnsavedChanges = true;
                 View.Content = TextEditor.Text;
@@ -134,6 +143,7 @@ namespace Achordeon.Shell.Wpf.Contents.ChordProFile
             {
                 try
                 {
+                    Log.Trace(nameof(View.TabUnTabSelectionCommand));
                     var Args = new CommandWorkingOnSelectionTextArguments(TextEditor.SelectionStart, TextEditor.SelectionLength, TextEditor.SelectedText);
                     View.TabUnTabSelection(Args);
                     if (Args.Success)
@@ -147,6 +157,7 @@ namespace Achordeon.Shell.Wpf.Contents.ChordProFile
                 }
                 catch (Exception ex)
                 {
+                    Log.Error(ex);
                     View.Core.IoC.Get<IMessageBoxService>().ShowErrorAsync(
                           Properties.Resources.ErrorDialogTitle,
                            Properties.Resources.FailedToConvertTheSelection,
@@ -159,6 +170,7 @@ namespace Achordeon.Shell.Wpf.Contents.ChordProFile
             {
                 try
                 {
+                    Log.Trace(nameof(View.ChorusUnchorusSelectionCommand));
                     var Args = new CommandWorkingOnSelectionTextArguments(TextEditor.SelectionStart, TextEditor.SelectionLength, TextEditor.SelectedText);
                     View.ChorusUnchorusSelection(Args);
                     if (Args.Success)
@@ -172,6 +184,7 @@ namespace Achordeon.Shell.Wpf.Contents.ChordProFile
                 }
                 catch (Exception ex)
                 {
+                    Log.Error(ex);
                     View.Core.IoC.Get<IMessageBoxService>().ShowErrorAsync(
                           Properties.Resources.ErrorDialogTitle,
                            Properties.Resources.FailedToConvertTheSelection,
@@ -184,6 +197,7 @@ namespace Achordeon.Shell.Wpf.Contents.ChordProFile
             {
                 try
                 {
+                    Log.Trace(nameof(View.CommentUncommentSelectionCommand));
                     var Args = new CommandWorkingOnSelectionTextArguments(TextEditor.SelectionStart, TextEditor.SelectionLength, TextEditor.SelectedText);
                     View.CommentUncommentSelection(Args);
                     if (Args.Success)
@@ -197,6 +211,7 @@ namespace Achordeon.Shell.Wpf.Contents.ChordProFile
                 }
                 catch (Exception ex)
                 {
+                    Log.Error(ex);
                     View.Core.IoC.Get<IMessageBoxService>().ShowErrorAsync(
                           Properties.Resources.ErrorDialogTitle,
                            Properties.Resources.FailedToConvertTheSelection,
@@ -209,6 +224,7 @@ namespace Achordeon.Shell.Wpf.Contents.ChordProFile
             {
                 try
                 {
+                    Log.Trace(nameof(View.ImportPlainTextCommand));
                     var Args = new CommandWorkingOnSelectionTextArguments(TextEditor.SelectionStart, TextEditor.SelectionLength, TextEditor.SelectedText);
                     View.ImportPlainText(Args);
                     if (Args.Success)
@@ -219,6 +235,7 @@ namespace Achordeon.Shell.Wpf.Contents.ChordProFile
                 }
                 catch (Exception ex)
                 {
+                    Log.Error(ex);
                     View.Core.IoC.Get<IMessageBoxService>().ShowErrorAsync(
                         Properties.Resources.ErrorDialogTitle,
                         Properties.Resources.FailedToConvertPlainText,
@@ -229,6 +246,7 @@ namespace Achordeon.Shell.Wpf.Contents.ChordProFile
             {
                 if (AArgs.PropertyName == nameof(ZoomViewModel.Zoom))
                 {
+                    Log.TraceFormat("{0} changed, adjusting zoom", nameof(ZoomViewModel.Zoom));
                     if (m_PreviewControl != null)
                         m_PreviewControl.Zoom = View.ZoomViewModel.Zoom;
                 }
@@ -237,6 +255,7 @@ namespace Achordeon.Shell.Wpf.Contents.ChordProFile
             {
                 if (AArgs.PropertyName == nameof(SettingsViewModel.UsePdfPreview))
                 {
+                    Log.TraceFormat("{0} changed, recreate preview control", nameof(SettingsViewModel.UsePdfPreview));
                     Dispatcher.BeginInvoke((Action)(ReCreatePreviewControl));
                 }
             };
@@ -265,6 +284,7 @@ namespace Achordeon.Shell.Wpf.Contents.ChordProFile
         
         private void DelayedUpdate()
         {
+            Log.Trace("Resetting/starting delayed update");
             m_UpdatePreviewTimer.Stop();
             m_UpdatePreviewTimer.Start();            
         }
@@ -272,6 +292,7 @@ namespace Achordeon.Shell.Wpf.Contents.ChordProFile
         private void FirstTimeLoadedHandler(object ASender, RoutedEventArgs AArgs)
         {
             // Ensure that this handler is called only once.
+            Log.Trace("main initialization after load");
             Loaded -= FirstTimeLoadedHandler;
             m_SuppressTextChanged = true;
             TextEditor.Text = View.Content;
@@ -282,7 +303,7 @@ namespace Achordeon.Shell.Wpf.Contents.ChordProFile
         }
 
 
-        private void RichTextBoxIsVisibleChanged(object ASender, DependencyPropertyChangedEventArgs AArgs)
+        private void TextEditorIsVisibleChanged(object ASender, DependencyPropertyChangedEventArgs AArgs)
         {
             if (TextEditor.IsVisible)
                 TextEditor.Focus();
@@ -292,16 +313,23 @@ namespace Achordeon.Shell.Wpf.Contents.ChordProFile
         {
             if (AArgs.Text == "[")
             {
-                //Chord completion window requested
-                m_CurrentChordCompletionWindow = new CompletionWindow(TextEditor.TextArea);
-                var CompletionData = m_CurrentChordCompletionWindow.CompletionList.CompletionData;
+                try
+                {
+                    //Chord completion window requested
+                    m_CurrentChordCompletionWindow = new CompletionWindow(TextEditor.TextArea);
+                    var CompletionData = m_CurrentChordCompletionWindow.CompletionList.CompletionData;
 
-                var CommonChordLibrary = View.Core.IoC.Get<CommonChordLibrary>();
+                    var CommonChordLibrary = View.Core.IoC.Get<CommonChordLibrary>();
 
-                foreach (var Chord in CommonChordLibrary.Chords)
-                    CompletionData.Add(new ChordCompletionData(View.Core.IoC, new[] {CommonChordLibrary.Chords}, 1, Chord.Name));
-                m_CurrentChordCompletionWindow.Show();
-                m_CurrentChordCompletionWindow.Closed += delegate { m_CurrentChordCompletionWindow = null; };
+                    foreach (var Chord in CommonChordLibrary.Chords)
+                        CompletionData.Add(new ChordCompletionData(View.Core.IoC, new[] {CommonChordLibrary.Chords}, 1, Chord.Name));
+                    m_CurrentChordCompletionWindow.Show();
+                    m_CurrentChordCompletionWindow.Closed += delegate { m_CurrentChordCompletionWindow = null; };
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex);
+                }
             }
         }
 

@@ -1,4 +1,4 @@
-/*! Achordeon - MIT License
+﻿/*! Achordeon - MIT License
 
 Copyright (c) 2017 Wolf Robben
 
@@ -32,6 +32,7 @@ using Achordeon.Common.Helpers;
 using DryIoc;
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
+using MahApps.Metro.SimpleChildWindow;
 using Timer = System.Timers.Timer;
 
 namespace Achordeon.Shell.Wpf.Contents.Main
@@ -182,6 +183,13 @@ namespace Achordeon.Shell.Wpf.Contents.Main
         protected virtual void OnPropertyChanged([CallerMemberName] string APropertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(APropertyName));
+        }
+
+        private async void AboutButtonClick(object ASender, RoutedEventArgs AE)
+        {
+            var About = new AboutWindow() {IsModal = true};
+            About.DataContext = View;
+            await this.ShowChildWindowAsync(About);
         }
     }
 }

@@ -27,6 +27,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using Achordeon.Common.Helpers;
+using Achordeon.Lib.Parser;
 using Achordeon.Shell.Wpf.Contents.ChordProFile;
 using Common.Logging;
 using DryIoc.Experimental;
@@ -52,19 +53,24 @@ namespace Achordeon.Shell.Wpf.Controls.Preview
 
         public void Update()
         {
-            try
+
+            Application.Current.Dispatcher.Invoke(() =>
             {
-                Application.Current.Dispatcher.Invoke(() =>
+                try
                 {
                     Log.Trace("Updating ASCII preview");
                     tbPreview.Document.Blocks.Clear();
                     tbPreview.Document.Blocks.Add(new Paragraph(new Run(View.GetAscii())));
-                });
-            }
-            catch (Exception ex)
-            {
-                Log.Error("Update failed", ex);
-            }
+                }
+                catch (ParseException ex)
+                {
+                    Log.WarnFormat("{0} failed: {1}",nameof(Update), ex.Message);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error("Update failed", ex);
+                }
+            });
         }
 
         public void FitToHeight()

@@ -357,7 +357,7 @@
                                        FocusVisualStyle="{x:Null}"
                                        FontFamily="{Binding Core.SettingsViewModel.ChordProFont.Family}"
                                        FontSize="{Binding Core.SettingsViewModel.ChordProFontSize}"
-                                       IsVisibleChanged="RichTextBoxIsVisibleChanged"
+                                       IsVisibleChanged="TextEditorIsVisibleChanged"
                                        RenderOptions.ClearTypeHint="Enabled"
                                        RenderOptions.EdgeMode="Aliased"
                                        SyntaxHighlighting="C#">
