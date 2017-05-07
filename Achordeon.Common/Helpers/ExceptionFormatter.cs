@@ -22,6 +22,7 @@ SOFTWARE.
 !*/
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -185,6 +186,7 @@ namespace Achordeon.Common.Helpers
             }
             catch (System.Exception e)
             {
+                Debug.WriteLine(e.ToString());
                 return new List<string>();
             }
 
