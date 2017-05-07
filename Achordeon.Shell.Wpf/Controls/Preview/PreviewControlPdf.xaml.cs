@@ -21,6 +21,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 !*/
 using System;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using Achordeon.Common.Helpers;
@@ -54,8 +55,16 @@ namespace Achordeon.Shell.Wpf.Controls.Preview
                 try
                 {
                     Log.Trace(nameof(Update));
+                    //Unfortunally, MigraDoc preview does not expose the scroll viewer, and also no option to preserve scroll position
+                    //So we apply this ugly hack and do this manually
+                    var HiddenScrollViewerProperty = dpPreview.viewer.GetType().GetProperty("ScrollViewer", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+                    var ScrollViewer = HiddenScrollViewerProperty?.GetValue(dpPreview.viewer) as ScrollViewer;
+                    var HorizontalOffset = ScrollViewer?.HorizontalOffset;
+                    var VerticalOffset = ScrollViewer?.VerticalOffset;
                     var Ddl = View.GetDdl();
                     dpPreview.Ddl = Ddl;
+                    ScrollViewer?.ScrollToHorizontalOffset(HorizontalOffset ?? 0);
+                    ScrollViewer?.ScrollToVerticalOffset(VerticalOffset ?? 0);
                 }
                 catch (Exception ex)
                 {
