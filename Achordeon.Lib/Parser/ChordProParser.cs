@@ -385,7 +385,18 @@ namespace Achordeon.Lib.Parser
 
         private void ReadPlainText()
         {
-            var Text = ReadUntil('[', '{', EOL, '\r');
+            var Text = string.Empty;
+            switch (Current)
+            {
+                case '[':
+                case '{':
+                case '\r':
+                case EOL:
+                    Text += Current;
+                    ReadNextChar();
+                    break;
+            }            
+            Text += ReadUntil('[', '{', EOL, '\r');
             CurrentLine.AddText(new LineText(IoC, Text, m_CurrentLineNo, m_CurrentLinePos));
         }
 
