@@ -136,6 +136,29 @@
                                 Style="{DynamicResource MetroCircleButtonStyle}">
                             <iconPacks:PackIconModern Kind="ClipboardPaste" />
                         </Button>
+                        <Button Width="50"
+                                Height="50"
+                                Margin="50,0,0,0"
+                                ToolTip="{x:Static p:Resources.CommentUncommentSelectionTooltip}"
+                                Command="{Binding CommentUncommentSelectionCommand}"
+                                CommandTarget="{Binding Path=TextArea,
+                                                        ElementName=TextEditor}"
+                                DockPanel.Dock="Left"
+                                FocusVisualStyle="{x:Null}"
+                                Style="{DynamicResource MetroCircleButtonStyle}">
+                            <iconPacks:PackIconFontAwesome Kind="CommentingOutline" />
+                        </Button>
+                        <Button Width="50"
+                                Height="50"
+                                ToolTip="{x:Static p:Resources.ChorusUnchorusSelectionTooltip}"
+                                Command="{Binding ChorusUnchorusSelectionCommand}"
+                                CommandTarget="{Binding Path=TextArea,
+                                                        ElementName=TextEditor}"
+                                DockPanel.Dock="Left"
+                                FocusVisualStyle="{x:Null}"
+                                Style="{DynamicResource MetroCircleButtonStyle}">
+                            <iconPacks:PackIconEntypo Kind="FlowLine" />
+                        </Button>
                     </DockPanel>
                 </TabItem>
                 <TabItem Header="{x:Static p:Resources.Options}">

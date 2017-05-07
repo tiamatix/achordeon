@@ -161,6 +161,9 @@
   <data name="FailedToConvertPlainText" xml:space="preserve">
     <value>The plain text could not be imported.</value>
   </data>
+  <data name="FailedToConvertTheSelection" xml:space="preserve">
+    <value>Failed to convet the selection.</value>
+  </data>
   <data name="MissingFileHeader" xml:space="preserve">
     <value>File missing</value>
   </data>
@@ -238,6 +241,12 @@
   </data>
   <data name="PasteButtonTooltip" xml:space="preserve">
     <value>Pastes the current clipboard content to the song editor</value>
+  </data>
+  <data name="CommentUncommentSelectionTooltip" xml:space="preserve">
+    <value>Converts the selected text to a comment, or back to plain text</value>
+  </data>
+  <data name="ChorusUnchorusSelectionTooltip" xml:space="preserve">
+    <value>Marks the selected text to be a chorus, or removes the marks</value>
   </data>
   <data name="No" xml:space="preserve">
     <value>No</value>

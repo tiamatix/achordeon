@@ -20,10 +20,12 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 !*/
+
 using System;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows.Input;
 using System.Windows.Threading;
 using Achordeon.Common.Helpers;
@@ -58,6 +60,12 @@ namespace Achordeon.Shell.Wpf.Contents.ChordProFile
         private ICommand m_CloseCommand;
         private ICommand m_PrintCommand;
         private ICommand m_ImportPlainTextCommand;
+        private ICommand m_CommentUncommentSelectionCommand;
+        private ICommand m_ChorusUnchorusSelectionCommand;
+
+        private readonly Regex m_ConvertPlainToCommentRegex = new Regex(@"^\s*(?<text>[^\r\n]+)\s*$");
+        private readonly Regex m_ConvertCommentToPlainRegex = new Regex(@"^\s*{\s*[c](omment)?(_)?(i)?(talic)?(b)?(ox)?:(?<text>[^\r\n]+)\s*}\s*$", RegexOptions.IgnoreCase);
+
 
         private ILog Log => Core.IoC.Get<Log>().Using(this);
 
@@ -78,6 +86,8 @@ namespace Achordeon.Shell.Wpf.Contents.ChordProFile
             CloseCommand = new SimpleCommand(Close);
             PrintCommand = new SimpleCommand(Dummy);
             ImportPlainTextCommand = new SimpleCommand(ImportPlainText, CanImportPlainText);
+            CommentUncommentSelectionCommand = new SimpleCommand(CommentUncommentSelection, CanCommentUncommentSelection);
+            ChorusUnchorusSelectionCommand = new SimpleCommand(ChorusUnchorusSelection, CanChorusUnchorusSelection);
             SongOptionViewModel = Core.SettingsViewModel.GlobalSongOptions.AsLinkedOptions();
         }
 
@@ -85,13 +95,94 @@ namespace Achordeon.Shell.Wpf.Contents.ChordProFile
         {
         }
 
-        private bool CanImportPlainText(object AParameter)
+        public bool CanChorusUnchorusSelection(object AParameter)
         {
-            return false;
+            var Args = (AParameter as CommandWorkingOnSelectionTextArguments);
+            if (string.IsNullOrWhiteSpace(Args?.SelectedText))
+                return false;
+            var ContainsSoc = Regex.IsMatch(Args.SelectedText, @"^\s*{soc}\s*$", RegexOptions.Multiline | RegexOptions.IgnoreCase);
+            var ContainsEoc = Regex.IsMatch(Args.SelectedText, @"^\s*{eoc}\s*$", RegexOptions.Multiline | RegexOptions.IgnoreCase);
+            //Check for partial seledction
+            if (ContainsEoc && !ContainsSoc)
+                return false;
+            return !ContainsSoc || ContainsEoc;
         }
 
-        private void ImportPlainText(object AParameter)
+        public void ChorusUnchorusSelection(object AParameter)
         {
+            var Args = (AParameter as CommandWorkingOnSelectionTextArguments);
+            if (Args == null)
+                return;
+            var ContainsSoc = Regex.IsMatch(Args.SelectedText, @"^\s*{soc}\s*$", RegexOptions.Multiline | RegexOptions.IgnoreCase);
+            var ContainsEoc = Regex.IsMatch(Args.SelectedText, @"^\s*{eoc}\s*$", RegexOptions.Multiline | RegexOptions.IgnoreCase);
+            //Check for partial seledction
+            if (ContainsEoc && !ContainsSoc)
+                return;
+            if (ContainsSoc && !ContainsEoc)
+                return;
+            //Remember if selection already contained a chorus
+            var WasAlreadyAChorusBefore = ContainsSoc;
+            //Remove old chorus marks in either case
+            Args.Result = Regex.Replace(Args.SelectedText, @"^\s*{soc}\s*$", AMatch => string.Empty, RegexOptions.Multiline | RegexOptions.IgnoreCase);
+            Args.Result = Regex.Replace(Args.Result, @"^\s*{eoc}\s*$", AMatch => string.Empty, RegexOptions.Multiline | RegexOptions.IgnoreCase);
+            Args.Result = Args.Result.Trim();
+            //Add new chorus marks if it hasn't been a chorus before
+            if (!WasAlreadyAChorusBefore)
+                Args.Result = "{soc}" + Environment.NewLine + Args.Result + Environment.NewLine + "{eoc}" + Environment.NewLine;
+            else
+                Args.Result += Environment.NewLine;
+            Args.Success = true;
+        }
+
+        public bool CanCommentUncommentSelection(object AParameter)
+        {
+            var Args = (AParameter as CommandWorkingOnSelectionTextArguments);
+            if (Args == null)
+                return false;
+            var M = m_ConvertCommentToPlainRegex.Match(Args.SelectedText);
+            if (M.Success)
+                return true; //Is already a comment, we can uncomment it
+            M = m_ConvertPlainToCommentRegex.Match(Args.SelectedText);
+            return M.Success; //Is plain text, but can be commented
+        }
+
+        public void CommentUncommentSelection(object AParameter)
+        {
+            var Args = (AParameter as CommandWorkingOnSelectionTextArguments);
+            if (Args == null)
+                return;
+            var M = m_ConvertCommentToPlainRegex.Match(Args.SelectedText);
+            if (M.Success)
+            {
+                //Is already a comment, we can uncomment it
+                Args.Result = M.Groups["text"].Value;
+                Args.Success = true;
+                return;
+            }
+            M = m_ConvertPlainToCommentRegex.Match(Args.SelectedText);
+            if (M.Success)
+            {
+                //Is plain text, but can converted to a comment
+                Args.Result = "{c:" + M.Groups["text"].Value + "}";
+                Args.Success = true;
+            }
+        }
+
+        public bool CanImportPlainText(object AParameter)
+        {
+            return (AParameter as CommandWorkingOnSelectionTextArguments)?.SelectionLength > 0;
+        }
+
+        public void ImportPlainText(object AParameter)
+        {
+            var Args = (AParameter as CommandWorkingOnSelectionTextArguments);
+            if (Args == null)
+                return;
+            if (!CanImportPlainText(AParameter))
+                return;
+            var Converter = new PlainTextSongToChordProConverter();
+            Args.Result = Converter.Convert(Args.SelectedText);
+            Args.Success = Args.Result != Args.SelectedText;
         }
 
         private bool CanSave(object AParameter)
@@ -206,11 +297,23 @@ namespace Achordeon.Shell.Wpf.Contents.ChordProFile
             get { return m_CloseCommand; }
             set { SetProperty(ref m_CloseCommand, value, nameof(CloseCommand)); }
         }
-
+        
         public ICommand SaveCommand
         {
             get { return m_SaveCommand; }
             set { SetProperty(ref m_SaveCommand, value, nameof(SaveCommand)); }
+        }
+
+        public ICommand CommentUncommentSelectionCommand
+        {
+            get { return m_CommentUncommentSelectionCommand; }
+            set { SetProperty(ref m_CommentUncommentSelectionCommand, value, nameof(CommentUncommentSelectionCommand)); }
+        }
+
+        public ICommand ChorusUnchorusSelectionCommand
+        {
+            get { return m_ChorusUnchorusSelectionCommand; }
+            set { SetProperty(ref m_ChorusUnchorusSelectionCommand, value, nameof(ChorusUnchorusSelectionCommand)); }
         }
 
         public ICommand SaveAsCommand

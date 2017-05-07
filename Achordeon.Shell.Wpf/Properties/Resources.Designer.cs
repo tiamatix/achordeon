@@ -137,6 +137,15 @@ namespace Achordeon.Shell.Wpf.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Marks the selected text to be a chorus, or removes the marks ähnelt.
+        /// </summary>
+        public static string ChorusUnchorusSelectionTooltip {
+            get {
+                return ResourceManager.GetString("ChorusUnchorusSelectionTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Close ähnelt.
         /// </summary>
         public static string Close {
@@ -151,6 +160,15 @@ namespace Achordeon.Shell.Wpf.Properties {
         public static string CloseButtonTooltip {
             get {
                 return ResourceManager.GetString("CloseButtonTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Converts the selected text to a comment, or back to plain text ähnelt.
+        /// </summary>
+        public static string CommentUncommentSelectionTooltip {
+            get {
+                return ResourceManager.GetString("CommentUncommentSelectionTooltip", resourceCulture);
             }
         }
         
@@ -252,6 +270,15 @@ namespace Achordeon.Shell.Wpf.Properties {
         public static string FailedToConvertPlainText {
             get {
                 return ResourceManager.GetString("FailedToConvertPlainText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Failed to convet the selection. ähnelt.
+        /// </summary>
+        public static string FailedToConvertTheSelection {
+            get {
+                return ResourceManager.GetString("FailedToConvertTheSelection", resourceCulture);
             }
         }
         

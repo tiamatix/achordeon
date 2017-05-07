@@ -123,23 +123,76 @@ namespace Achordeon.Shell.Wpf.Contents.ChordProFile
             ((SimpleCommand) View.ZoomViewModel.FitDefaultCommand).ExecuteDelegate = AO => m_PreviewControl?.FitDefault();
             ((SimpleCommand) View.ZoomViewModel.FitToPageCommand).ExecuteDelegate = AO => m_PreviewControl?.FitToPage();
             ((SimpleCommand) View.PrintCommand).ExecuteDelegate = AO => { m_PreviewControl?.Print(); };
-            ((SimpleCommand) View.ImportPlainTextCommand).CanExecuteDelegate = AO => TextEditor.SelectionLength > 0;
-            ((SimpleCommand)View.ImportPlainTextCommand).ExecuteDelegate = AO =>
+
+            ((SimpleCommand)View.ChorusUnchorusSelectionCommand).CanExecuteDelegate = AO => View.CanChorusUnchorusSelection(new CommandWorkingOnSelectionTextArguments(TextEditor.SelectionStart, TextEditor.SelectionLength, TextEditor.SelectedText));
+            ((SimpleCommand)View.ChorusUnchorusSelectionCommand).ExecuteDelegate = AO =>
             {
                 try
                 {
-                    var Converter = new PlainTextSongToChordProConverter();
-                    var Start = TextEditor.SelectionStart;
-                    var Length = TextEditor.SelectionLength;
-                    var SongFragment = Converter.Convert(TextEditor.SelectedText);
-                    TextEditor.TextArea.Document.Replace(Start, Length, SongFragment, OffsetChangeMappingType.RemoveAndInsert);
+                    var Args = new CommandWorkingOnSelectionTextArguments(TextEditor.SelectionStart, TextEditor.SelectionLength, TextEditor.SelectedText);
+                    View.ChorusUnchorusSelection(Args);
+                    if (Args.Success)
+                    {
+                        TextEditor.TextArea.Document.Replace(Args.SelectionStart,
+                            Args.SelectionLength,
+                            Args.Result,
+                            OffsetChangeMappingType.RemoveAndInsert);
+                        TextEditor.Select(Args.SelectionStart, Args.Result.Length);
+                    }
                 }
                 catch (Exception ex)
                 {
                     View.Core.IoC.Get<IMessageBoxService>().ShowErrorAsync(
                           Properties.Resources.ErrorDialogTitle,
-                           Properties.Resources.FailedToConvertPlainText, 
+                           Properties.Resources.FailedToConvertTheSelection,
                            ex);
+                }
+            };
+
+            ((SimpleCommand)View.CommentUncommentSelectionCommand).CanExecuteDelegate = AO => View.CanCommentUncommentSelection(new CommandWorkingOnSelectionTextArguments(TextEditor.SelectionStart, TextEditor.SelectionLength, TextEditor.SelectedText));
+            ((SimpleCommand) View.CommentUncommentSelectionCommand).ExecuteDelegate = AO =>
+            {
+                try
+                {
+                    var Args = new CommandWorkingOnSelectionTextArguments(TextEditor.SelectionStart, TextEditor.SelectionLength, TextEditor.SelectedText);
+                    View.CommentUncommentSelection(Args);
+                    if (Args.Success)
+                    {
+                        TextEditor.TextArea.Document.Replace(Args.SelectionStart,
+                            Args.SelectionLength,
+                            Args.Result,
+                            OffsetChangeMappingType.RemoveAndInsert);
+                        TextEditor.Select(Args.SelectionStart, Args.Result.Length);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    View.Core.IoC.Get<IMessageBoxService>().ShowErrorAsync(
+                          Properties.Resources.ErrorDialogTitle,
+                           Properties.Resources.FailedToConvertTheSelection,
+                           ex);
+                }
+            };
+
+            ((SimpleCommand) View.ImportPlainTextCommand).CanExecuteDelegate = AO => View.CanImportPlainText(new CommandWorkingOnSelectionTextArguments(TextEditor.SelectionStart, TextEditor.SelectionLength, TextEditor.SelectedText));
+            ((SimpleCommand)View.ImportPlainTextCommand).ExecuteDelegate = AO =>
+            {
+                try
+                {
+                    var Args = new CommandWorkingOnSelectionTextArguments(TextEditor.SelectionStart, TextEditor.SelectionLength, TextEditor.SelectedText);
+                    View.ImportPlainText(Args);
+                    if (Args.Success)
+                        TextEditor.TextArea.Document.Replace(Args.SelectionStart,
+                            Args.SelectionLength,
+                            Args.Result,
+                            OffsetChangeMappingType.RemoveAndInsert);
+                }
+                catch (Exception ex)
+                {
+                    View.Core.IoC.Get<IMessageBoxService>().ShowErrorAsync(
+                        Properties.Resources.ErrorDialogTitle,
+                        Properties.Resources.FailedToConvertPlainText,
+                        ex);
                 }
             };
             View.ZoomViewModel.PropertyChanged += (ASender, AArgs) =>
