@@ -1,37 +1,43 @@
-## Welcome to GitHub Pages
+## Welcome to the Achordeon project!
 
-You can use the [editor on GitHub](https://github.com/tiamatix/achordeon/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+Achordeon is basically a chord editor, organizer and notation tool.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+It was designed to replace [Chordii](http://www.vromans.org/johan/projects/Chordii/) and therefore uses the ChordPro file format.
 
-### Markdown
+Many song writers use text editor to do the writing, and this works quite well.
+But sometimes you have to change words or insert lines, and therefore you have to reformat all your chords. This can be pretty much work. This is where Achordeon steps in.
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+Achordeon lets you enter chords and text in the same place, and creates nice looking PDF song sheets from your input.
+This means:
+- all chords names appear right above the right lyrics
+- the lyrics will always be in the font and size of your choice
+- the chords used in a song can be printed as grids at the bottom of the page.
 
-```markdown
-Syntax highlighted code block
+### Lets see an example
 
-# Header 1
-## Header 2
-### Header 3
+Given the following song
 
-- Bulleted
-- List
+![Image](https://cloud.githubusercontent.com/assets/28042110/25782580/0a69976c-334e-11e7-8409-5659d30dfee2.PNG)
 
-1. Numbered
-2. List
+Achordeon will render this input to:
 
-**Bold** and _Italic_ and `Code` text
+![Image](https://cloud.githubusercontent.com/assets/28042110/25782558/bc6b367e-334d-11e7-99d2-aa6e1564eb64.PNG)
 
-[Link](url) and ![Image](src)
-```
+Of course, everything can be reconfigured to your needs. Achordeon can directly print out your song sheet, open it using your favorite PDF editor, or save it for later usage.
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+### How-To
 
-### Jekyll Themes
+Achordeon is WYSIWYG editor: you will see any change in realtime while editing your song.
+To edit a song you have to....
+1. Click the "new song" button
+2. Type in your lyrics
+3. Insert the chord names between square brackets throughout the lyrics. In the resulting PDF, the chord names will appear right above the letter that follows the closing bracket.
+4. Insert any directives like song title, subtitles, comments and so on...
+5. Save, print and share your song.
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/tiamatix/achordeon/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+### Additional features
 
-### Support or Contact
+Achordeon can transpose your songs on the fly, render lyrics only, can also render ASCII files you can process with other editors and can import ASCII files from other programs and convert them to the ChordPro format.
 
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+### Installation
+Achordeon uses a Click-Once-like installer based on Squirrel: just [download](https://github.com/tiamatix/achordeon/releases) and run Achordeon. 
