@@ -1,37 +1,43 @@
-## Welcome to GitHub Pages
+## Welcome to the Achordeon project!
 
-You can use the [editor on GitHub](https://github.com/tiamatix/achordeon/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+Achordeon is basically a chord editor, organizer and notation tool.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+It was designed to replace [Chordii](http://www.vromans.org/johan/projects/Chordii/).
 
-### Markdown
+Many song writers use text editor to do the writing, and this works quite well.
+But sometimes you have to change words or insert lines, and therefore you have to reformat all your chords. This can be pretty much work. This is where Achordeon steps in.
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+Achordeon lets you enter chords and text in the same place, and creates nice looking PDF song sheets from your input.
+This means:
+- all chords names appear right above the right lyrics
+- the lyrics will always be in the font and size of your choice
+- the chords used in a song can be printed as grids at the bottom of the page.
 
-```markdown
-Syntax highlighted code block
+### Lets see an example
+`
+{title:Auld Lang Syne}
+{st:Traditional}
 
-# Header 1
-## Header 2
-### Header 3
+{c:4/4}
+Should old a[C]cquaintance be forgot  [G7]  
+And neve[C]r brought to mind [F] 
+Should old acq[C]uaintanc[Am]e be forgot [G7]  
+And days[F] of auld lang syne [C]  [F] 
 
-- Bulleted
-- List
+{soc}
+For aul[C]d lang syne, my[G7] dear,
+For aul[C]d lang syne,    [F] 
+We'll take[C] a cup o'k[Am]indness[G7] yet
+And days[F] of auld lang syne [C]  [F]
+{eoc}
 
-1. Numbered
-2. List
+And there''s a hand, my trusty fiere,
+And gie''s a hand o'' thine!
+And we''ll tak a right guid-willie waught
+For auld lang syne.
 
-**Bold** and _Italic_ and `Code` text
+{c:Chorus}
+`
+Achordeon will render this input to:
 
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/tiamatix/achordeon/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+![Image](https://cloud.githubusercontent.com/assets/28042110/25782558/bc6b367e-334d-11e7-99d2-aa6e1564eb64.PNG)
