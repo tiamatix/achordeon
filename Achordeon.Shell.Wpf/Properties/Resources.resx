@@ -248,6 +248,9 @@
   <data name="ChorusUnchorusSelectionTooltip" xml:space="preserve">
     <value>Marks the selected text to be a chorus, or removes the marks</value>
   </data>
+  <data name="TabUnTabSelectionTooltip" xml:space="preserve">
+    <value>Marks the selected text to be a guitar tab, or removes the marks</value>
+  </data>  
   <data name="No" xml:space="preserve">
     <value>No</value>
   </data>

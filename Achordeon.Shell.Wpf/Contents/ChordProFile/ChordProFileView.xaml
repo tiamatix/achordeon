@@ -159,6 +159,17 @@
                                 Style="{DynamicResource MetroCircleButtonStyle}">
                             <iconPacks:PackIconEntypo Kind="FlowLine" />
                         </Button>
+                        <Button Width="50"
+                                Height="50"
+                                ToolTip="{x:Static p:Resources.TabUnTabSelectionTooltip}"
+                                Command="{Binding TabUnTabSelectionCommand}"
+                                CommandTarget="{Binding Path=TextArea,
+                                                        ElementName=TextEditor}"
+                                DockPanel.Dock="Left"
+                                FocusVisualStyle="{x:Null}"
+                                Style="{DynamicResource MetroCircleButtonStyle}">
+                            <iconPacks:PackIconModern Kind="Table" />
+                        </Button>
                     </DockPanel>
                 </TabItem>
                 <TabItem Header="{x:Static p:Resources.Options}">

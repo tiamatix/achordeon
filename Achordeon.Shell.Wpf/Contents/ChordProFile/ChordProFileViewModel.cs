@@ -62,6 +62,7 @@ namespace Achordeon.Shell.Wpf.Contents.ChordProFile
         private ICommand m_ImportPlainTextCommand;
         private ICommand m_CommentUncommentSelectionCommand;
         private ICommand m_ChorusUnchorusSelectionCommand;
+        private ICommand m_TabUnTabSelectionCommand;
 
         private readonly Regex m_ConvertPlainToCommentRegex = new Regex(@"^\s*(?<text>[^\r\n]+)\s*$");
         private readonly Regex m_ConvertCommentToPlainRegex = new Regex(@"^\s*{\s*[c](omment)?(_)?(i)?(talic)?(b)?(ox)?:(?<text>[^\r\n]+)\s*}\s*$", RegexOptions.IgnoreCase);
@@ -88,6 +89,8 @@ namespace Achordeon.Shell.Wpf.Contents.ChordProFile
             ImportPlainTextCommand = new SimpleCommand(ImportPlainText, CanImportPlainText);
             CommentUncommentSelectionCommand = new SimpleCommand(CommentUncommentSelection, CanCommentUncommentSelection);
             ChorusUnchorusSelectionCommand = new SimpleCommand(ChorusUnchorusSelection, CanChorusUnchorusSelection);
+            TabUnTabSelectionCommand = new SimpleCommand(TabUnTabSelection, CanTabUnTabSelection);
+
             SongOptionViewModel = Core.SettingsViewModel.GlobalSongOptions.AsLinkedOptions();
         }
 
@@ -95,44 +98,69 @@ namespace Achordeon.Shell.Wpf.Contents.ChordProFile
         {
         }
 
-        public bool CanChorusUnchorusSelection(object AParameter)
+        private bool CanConvertSelectionToOrFromBlock(CommandWorkingOnSelectionTextArguments Args, string ABlockStart, string ABlockEnd)
         {
-            var Args = (AParameter as CommandWorkingOnSelectionTextArguments);
-            if (string.IsNullOrWhiteSpace(Args?.SelectedText))
-                return false;
-            var ContainsSoc = Regex.IsMatch(Args.SelectedText, @"^\s*{soc}\s*$", RegexOptions.Multiline | RegexOptions.IgnoreCase);
-            var ContainsEoc = Regex.IsMatch(Args.SelectedText, @"^\s*{eoc}\s*$", RegexOptions.Multiline | RegexOptions.IgnoreCase);
+            var ContainsSoc = Regex.IsMatch(Args.SelectedText, @"^\s*{" + ABlockStart + @"}\s*$", RegexOptions.Multiline | RegexOptions.IgnoreCase);
+            var ContainsEoc = Regex.IsMatch(Args.SelectedText, @"^\s*{" + ABlockEnd + @"}\s*$", RegexOptions.Multiline | RegexOptions.IgnoreCase);
             //Check for partial seledction
             if (ContainsEoc && !ContainsSoc)
                 return false;
             return !ContainsSoc || ContainsEoc;
         }
 
-        public void ChorusUnchorusSelection(object AParameter)
+        private void ConvertSelectionToOrFromBlock(CommandWorkingOnSelectionTextArguments Args, string ABlockStart, string ABlockEnd)
         {
-            var Args = (AParameter as CommandWorkingOnSelectionTextArguments);
-            if (Args == null)
-                return;
-            var ContainsSoc = Regex.IsMatch(Args.SelectedText, @"^\s*{soc}\s*$", RegexOptions.Multiline | RegexOptions.IgnoreCase);
-            var ContainsEoc = Regex.IsMatch(Args.SelectedText, @"^\s*{eoc}\s*$", RegexOptions.Multiline | RegexOptions.IgnoreCase);
+            var ContainsBlockStart = Regex.IsMatch(Args.SelectedText, @"^\s*{" + ABlockStart + @"}\s*$", RegexOptions.Multiline | RegexOptions.IgnoreCase);
+            var ContainsBlockEnd = Regex.IsMatch(Args.SelectedText, @"^\s*{" + ABlockEnd + @"}\s*$", RegexOptions.Multiline | RegexOptions.IgnoreCase);
             //Check for partial seledction
-            if (ContainsEoc && !ContainsSoc)
+            if (ContainsBlockEnd && !ContainsBlockStart)
                 return;
-            if (ContainsSoc && !ContainsEoc)
+            if (ContainsBlockStart && !ContainsBlockEnd)
                 return;
             //Remember if selection already contained a chorus
-            var WasAlreadyAChorusBefore = ContainsSoc;
+            var WasAlreadyABlockBefore = ContainsBlockStart;
             //Remove old chorus marks in either case
-            Args.Result = Regex.Replace(Args.SelectedText, @"^\s*{soc}\s*$", AMatch => string.Empty, RegexOptions.Multiline | RegexOptions.IgnoreCase);
-            Args.Result = Regex.Replace(Args.Result, @"^\s*{eoc}\s*$", AMatch => string.Empty, RegexOptions.Multiline | RegexOptions.IgnoreCase);
+            Args.Result = Regex.Replace(Args.SelectedText, @"^\s*{" + ABlockStart + @"}\s*$", AMatch => string.Empty, RegexOptions.Multiline | RegexOptions.IgnoreCase);
+            Args.Result = Regex.Replace(Args.Result, @"^\s*{" + ABlockEnd + @"}\s*$", AMatch => string.Empty, RegexOptions.Multiline | RegexOptions.IgnoreCase);
             Args.Result = Args.Result.Trim();
             //Add new chorus marks if it hasn't been a chorus before
-            if (!WasAlreadyAChorusBefore)
-                Args.Result = "{soc}" + Environment.NewLine + Args.Result + Environment.NewLine + "{eoc}" + Environment.NewLine;
+            if (!WasAlreadyABlockBefore)
+                Args.Result = "{" + ABlockStart + "}" + Environment.NewLine + Args.Result + Environment.NewLine + "{" + ABlockEnd + "}" + Environment.NewLine;
             else
                 Args.Result += Environment.NewLine;
             Args.Success = true;
         }
+
+        public bool CanChorusUnchorusSelection(object AParameter)
+        {
+            var Args = (AParameter as CommandWorkingOnSelectionTextArguments);
+            if (string.IsNullOrWhiteSpace(Args?.SelectedText))
+                return false;
+            return CanConvertSelectionToOrFromBlock(Args, "soc", "eoc");
+        }
+
+        public void ChorusUnchorusSelection(object AParameter)
+        {
+            var Args = (AParameter as CommandWorkingOnSelectionTextArguments);
+            if (Args != null)
+                ConvertSelectionToOrFromBlock(Args, "soc", "eoc");
+        }
+
+        public bool CanTabUnTabSelection(object AParameter)
+        {
+            var Args = (AParameter as CommandWorkingOnSelectionTextArguments);
+            if (string.IsNullOrWhiteSpace(Args?.SelectedText))
+                return false;
+            return CanConvertSelectionToOrFromBlock(Args, "sot", "eot");
+        }
+
+        public void TabUnTabSelection(object AParameter)
+        {
+            var Args = (AParameter as CommandWorkingOnSelectionTextArguments);
+            if (Args != null)
+                ConvertSelectionToOrFromBlock(Args, "sot", "eot");
+        }
+
 
         public bool CanCommentUncommentSelection(object AParameter)
         {
@@ -308,6 +336,12 @@ namespace Achordeon.Shell.Wpf.Contents.ChordProFile
         {
             get { return m_CommentUncommentSelectionCommand; }
             set { SetProperty(ref m_CommentUncommentSelectionCommand, value, nameof(CommentUncommentSelectionCommand)); }
+        }
+
+        public ICommand TabUnTabSelectionCommand
+        {
+            get { return m_TabUnTabSelectionCommand; }
+            set { SetProperty(ref m_TabUnTabSelectionCommand, value, nameof(TabUnTabSelectionCommand)); }
         }
 
         public ICommand ChorusUnchorusSelectionCommand

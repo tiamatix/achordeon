@@ -706,6 +706,15 @@ namespace Achordeon.Shell.Wpf.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Marks the selected text to be a guitar tab, or removes the marks ähnelt.
+        /// </summary>
+        public static string TabUnTabSelectionTooltip {
+            get {
+                return ResourceManager.GetString("TabUnTabSelectionTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Text font ähnelt.
         /// </summary>
         public static string TextFont {

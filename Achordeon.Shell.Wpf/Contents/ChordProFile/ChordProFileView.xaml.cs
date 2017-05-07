@@ -27,7 +27,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Xml;
 using Achordeon.Common.Helpers;
-using Achordeon.Lib.Parser;
 using Achordeon.Shell.Wpf.Controls.Preview;
 using DryIoc.Experimental;
 using ICSharpCode.AvalonEdit.Document;
@@ -123,6 +122,31 @@ namespace Achordeon.Shell.Wpf.Contents.ChordProFile
             ((SimpleCommand) View.ZoomViewModel.FitDefaultCommand).ExecuteDelegate = AO => m_PreviewControl?.FitDefault();
             ((SimpleCommand) View.ZoomViewModel.FitToPageCommand).ExecuteDelegate = AO => m_PreviewControl?.FitToPage();
             ((SimpleCommand) View.PrintCommand).ExecuteDelegate = AO => { m_PreviewControl?.Print(); };
+
+            ((SimpleCommand)View.TabUnTabSelectionCommand).CanExecuteDelegate = AO => View.CanTabUnTabSelection(new CommandWorkingOnSelectionTextArguments(TextEditor.SelectionStart, TextEditor.SelectionLength, TextEditor.SelectedText));
+            ((SimpleCommand)View.TabUnTabSelectionCommand).ExecuteDelegate = AO =>
+            {
+                try
+                {
+                    var Args = new CommandWorkingOnSelectionTextArguments(TextEditor.SelectionStart, TextEditor.SelectionLength, TextEditor.SelectedText);
+                    View.TabUnTabSelection(Args);
+                    if (Args.Success)
+                    {
+                        TextEditor.TextArea.Document.Replace(Args.SelectionStart,
+                            Args.SelectionLength,
+                            Args.Result,
+                            OffsetChangeMappingType.RemoveAndInsert);
+                        TextEditor.Select(Args.SelectionStart, Args.Result.Length);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    View.Core.IoC.Get<IMessageBoxService>().ShowErrorAsync(
+                          Properties.Resources.ErrorDialogTitle,
+                           Properties.Resources.FailedToConvertTheSelection,
+                           ex);
+                }
+            };
 
             ((SimpleCommand)View.ChorusUnchorusSelectionCommand).CanExecuteDelegate = AO => View.CanChorusUnchorusSelection(new CommandWorkingOnSelectionTextArguments(TextEditor.SelectionStart, TextEditor.SelectionLength, TextEditor.SelectedText));
             ((SimpleCommand)View.ChorusUnchorusSelectionCommand).ExecuteDelegate = AO =>
