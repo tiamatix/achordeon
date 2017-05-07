@@ -1,6 +1,6 @@
 /*! Achordeon - MIT License
 
-Copyright (c) 2017 Wolf Robben
+Copyright (c) 2017 tiamatix / Wolf Robben
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -27,7 +27,7 @@ using System.Resources;
 
 [assembly: AssemblyCompany("Tiamatix")]
 [assembly: AssemblyProduct("Achordeon - a chord editor, organizer, notator - by Wolf Robben")]
-[assembly: AssemblyCopyright("Copyright © 2017 Wolf Robben")]
+[assembly: AssemblyCopyright("Copyright © 2017 tiamatix / Wolf Robben")]
 [assembly: AssemblyCulture("")]
 
 [assembly: CLSCompliant(false)]
@@ -36,6 +36,6 @@ using System.Resources;
 [assembly: NeutralResourcesLanguage("en-US", UltimateResourceFallbackLocation.MainAssembly)]
 
 
-[assembly: AssemblyVersion("0.1.0")]
-[assembly: AssemblyFileVersion("0.1.0")]
-[assembly: AssemblyInformationalVersion("0.1.0-beta")]
+[assembly: AssemblyVersion("0.1.1")]
+[assembly: AssemblyFileVersion("0.1.1")]
+[assembly: AssemblyInformationalVersion("0.1.1-beta")]
