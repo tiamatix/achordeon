@@ -106,7 +106,7 @@ namespace Achordeon.Lib.Chords
         public ChordOrigin Origin { get; }
         public Difficulty Difficulty { get; }
 
-        private string GetFretDisplay(int AFret)
+        public string GetFretDisplay(int AFret)
         {
             return AFret == UNUSED_FRET ? "-" : AFret.ToString();
         }

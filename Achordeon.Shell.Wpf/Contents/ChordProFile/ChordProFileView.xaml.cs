@@ -25,10 +25,13 @@ using System.Reflection;
 using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Xml;
 using Achordeon.Common.Helpers;
+using Achordeon.Lib.Chords;
 using Achordeon.Shell.Wpf.Controls.Preview;
 using DryIoc.Experimental;
+using ICSharpCode.AvalonEdit.CodeCompletion;
 using ICSharpCode.AvalonEdit.Document;
 using ICSharpCode.AvalonEdit.Highlighting;
 using ICSharpCode.AvalonEdit.Highlighting.Xshd;
@@ -99,6 +102,8 @@ namespace Achordeon.Shell.Wpf.Contents.ChordProFile
                 View.Content = TextEditor.Text;
                 DelayedUpdate();
             };
+            TextEditor.TextArea.TextEntering += textEditor_TextArea_TextEntering;
+            TextEditor.TextArea.TextEntered += textEditor_TextArea_TextEntered;
             using (var SyntaxHighlightStream = Assembly.GetAssembly(GetType()).GetManifestResourceStream("Achordeon.Shell.Wpf.ChordPro.xshd"))
             {
                 if (SyntaxHighlightStream != null)
@@ -280,6 +285,39 @@ namespace Achordeon.Shell.Wpf.Contents.ChordProFile
         {
             if (TextEditor.IsVisible)
                 TextEditor.Focus();
+        }
+
+        private CompletionWindow m_ChordCompletionWindow;
+
+        private void textEditor_TextArea_TextEntered(object sender, TextCompositionEventArgs e)
+        {
+            if (e.Text != "[")
+                return;
+            // Open code completion after the user has pressed dot:
+            m_ChordCompletionWindow = new CompletionWindow(TextEditor.TextArea);
+            var data = m_ChordCompletionWindow.CompletionList.CompletionData;
+            
+            var CommonChordLibrary = View.Core.IoC.Get<CommonChordLibrary>();
+
+            foreach (var Chord in CommonChordLibrary.Chords)
+                data.Add(new ChordCompletionData(View.Core.IoC, new [] { CommonChordLibrary.Chords }, 1, Chord.Name));
+            m_ChordCompletionWindow.Show();
+            m_ChordCompletionWindow.Closed += delegate { m_ChordCompletionWindow = null; };
+        }
+
+        void textEditor_TextArea_TextEntering(object sender, TextCompositionEventArgs e)
+        {
+            if (e.Text.Length > 0 && m_ChordCompletionWindow != null)
+            {
+                if (!char.IsLetterOrDigit(e.Text[0]))
+                {
+                    // Whenever a non-letter is typed while the completion window is open,
+                    // insert the currently selected element.
+                    m_ChordCompletionWindow.CompletionList.RequestInsertion(e);
+                }
+            }
+            // Do not set e.Handled=true.
+            // We still want to insert the character that was typed.
         }
     }
 }

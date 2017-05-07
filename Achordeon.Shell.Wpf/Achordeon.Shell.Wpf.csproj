@@ -159,6 +159,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Contents\ChordProFile\ChordCompletionData.cs" />
     <Compile Include="Contents\ChordProFile\CommandWorkingOnSelectionTextArguments.cs" />
     <Compile Include="Contents\CloseEventArguments.cs" />
     <Compile Include="Contents\LinkedSongOptionsViewModel.cs" />
