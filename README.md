@@ -2,7 +2,7 @@
 
 Achordeon is basically a chord editor, organizer and notation tool.
 
-It was designed to replace [Chordii](http://www.vromans.org/johan/projects/Chordii/).
+It was designed to replace [Chordii](http://www.vromans.org/johan/projects/Chordii/) and therefore uses the ChordPro file format.
 
 Many song writers use text editor to do the writing, and this works quite well.
 But sometimes you have to change words or insert lines, and therefore you have to reformat all your chords. This can be pretty much work. This is where Achordeon steps in.
@@ -14,30 +14,30 @@ This means:
 - the chords used in a song can be printed as grids at the bottom of the page.
 
 ### Lets see an example
-`
-{title:Auld Lang Syne}
-{st:Traditional}
 
-{c:4/4}
-Should old a[C]cquaintance be forgot  [G7]  
-And neve[C]r brought to mind [F] 
-Should old acq[C]uaintanc[Am]e be forgot [G7]  
-And days[F] of auld lang syne [C]  [F] 
+Given the following song
 
-{soc}
-For aul[C]d lang syne, my[G7] dear,
-For aul[C]d lang syne,    [F] 
-We'll take[C] a cup o'k[Am]indness[G7] yet
-And days[F] of auld lang syne [C]  [F]
-{eoc}
+![Image](https://cloud.githubusercontent.com/assets/28042110/25782580/0a69976c-334e-11e7-8409-5659d30dfee2.PNG)
 
-And there''s a hand, my trusty fiere,
-And gie''s a hand o'' thine!
-And we''ll tak a right guid-willie waught
-For auld lang syne.
-
-{c:Chorus}
-`
 Achordeon will render this input to:
 
 ![Image](https://cloud.githubusercontent.com/assets/28042110/25782558/bc6b367e-334d-11e7-99d2-aa6e1564eb64.PNG)
+
+Of course, everything can be reconfigured to your needs. Achordeon can directly print out your song sheet, open it using your favorite PDF editor, or save it for later usage.
+
+### How-To
+
+Achordeon is WYSIWYG editor: you will see any change in realtime while editing your song.
+To edit a song you have to....
+1. Click the "new song" button
+2. Type in your lyrics
+3. Insert the chord names between square brackets throughout the lyrics. In the resulting PDF, the chord names will appear right above the letter that follows the closing bracket.
+4. Insert any directives like song title, subtitles, comments and so on...
+5. Save, print and share your song.
+
+### Additional features
+
+Achordeon can transpose your songs on the fly, render lyrics only, can also render ASCII files you can process with other editors and can import ASCII files from other programs and convert them to the ChordPro format.
+
+### Installation
+Achordeon uses a Click-Once-like installer based on Squirrel: just download and run Achordeon. 
