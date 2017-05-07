@@ -40,4 +40,4 @@ To edit a song you have to....
 Achordeon can transpose your songs on the fly, render lyrics only, can also render ASCII files you can process with other editors and can import ASCII files from other programs and convert them to the ChordPro format.
 
 ### Installation
-Achordeon uses a Click-Once-like installer based on Squirrel: just download and run Achordeon. 
+Achordeon uses a Click-Once-like installer based on Squirrel: just [download](https://github.com/tiamatix/achordeon/releases) and run Achordeon. 
