@@ -38,6 +38,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="30" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -109,8 +110,8 @@
             </Hyperlink>
         </TextBlock>
 
-        <Button Margin="5,20,0,5" Grid.Row="7" Grid.Column="0" FocusVisualStyle="{x:Null}" Style="{StaticResource AccentedSquareButtonStyle}" Click="CloseButtonClick">
-            <iconPacks:PackIconMaterial Kind="CloseCircleOutline" />
+        <Button Grid.Row="8" Grid.Column="0" HorizontalAlignment="Left"  Width="50" Height="50" FocusVisualStyle="{x:Null}" Style="{StaticResource MetroCircleButtonStyle}" Click="CloseButtonClick">
+            <iconPacks:PackIconMaterial Kind="Close" />
         </Button>
         
     </Grid>

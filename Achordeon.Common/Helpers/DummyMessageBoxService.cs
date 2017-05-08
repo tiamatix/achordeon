@@ -57,5 +57,10 @@ namespace Achordeon.Common.Helpers
         {
             return WaitFor.This(() => AArguments.Result = true);
         }
+
+        public Task ShowDialogAsync(object AChildWindow)
+        {
+            return WaitFor.Nothing;
+        }
     }
 }

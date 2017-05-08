@@ -20,19 +20,22 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 !*/
-
 using System;
-using System.Threading.Tasks;
 
-namespace Achordeon.Common.Helpers
+namespace Achordeon.Lib.Parser
 {
-    public interface IMessageBoxService
+    public class ParseException : Exception
     {
-        Task ShowInfoAsync(string ATitle, string AMessage);
-        Task ShowWarningAsync(string ATitle, string AMessage);
-        Task ShowErrorAsync(string ATitle, string AMessage);
-        Task ShowErrorAsync(string ATitle, string AMessage, Exception AException);
-        Task ConfirmAsync(ConfirmArguments AArguments);
-        Task ShowDialogAsync(object AChildWindow);
+        public int LineNumber { get; }
+
+        public ParseException(string AMessage) : base(AMessage)
+        {
+            LineNumber = -1;
+        }
+
+        public ParseException(string AMessage, int ALineNumber) : base(AMessage)
+        {
+            LineNumber = ALineNumber;
+        }
     }
 }

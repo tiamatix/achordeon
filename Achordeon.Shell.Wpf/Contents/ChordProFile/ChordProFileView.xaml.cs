@@ -125,6 +125,8 @@ namespace Achordeon.Shell.Wpf.Contents.ChordProFile
                 }
             }
 
+            ((SimpleCommand) View.EditSongOptionsCommand).ExecuteDelegate = EditSongOptions;
+
             ((SimpleCommand) View.ZoomViewModel.ResetZoomCommand).ExecuteDelegate = AO =>
             {
                 Dispatcher.BeginInvoke((Action) (() =>
@@ -263,6 +265,11 @@ namespace Achordeon.Shell.Wpf.Contents.ChordProFile
             {
                 DelayedUpdate();
             };
+        }
+
+        private async void EditSongOptions(object AArgs)
+        {                                                 
+            await View.Core.IoC.Get<IMessageBoxService>().ShowDialogAsync(new SongMetasDialog() { IsModal = true, SongView = View });
         }
 
         //TODO this should be moved to the view model, but acutally I don't know how to bind to a percentage

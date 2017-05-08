@@ -158,6 +158,9 @@
   <data name="AboutWindowTitle" xml:space="preserve">
     <value>About Achordeon...</value>
   </data>
+  <data name="SongMetasHeader" xml:space="preserve">
+    <value>Song properties</value>
+  </data>
   <data name="Version" xml:space="preserve">
     <value>Version:</value>
   </data>
@@ -241,6 +244,9 @@
   </data>
   <data name="SavePdfButtonTooltip" xml:space="preserve">
     <value>Renders the current song to a PDF file and saves the result chord sheet file. The file will have the same name as the song file, but .PDF file extension</value>
+  </data>
+  <data name="EditSongOptions" xml:space="preserve">
+    <value>Edit song options</value>
   </data>
   <data name="SaveAndRunPdfButtonTooltip" xml:space="preserve">
     <value>Renders the current song to a PDF file, saves it and runs it using your installed PDF viewer application</value>

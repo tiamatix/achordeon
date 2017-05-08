@@ -28,6 +28,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using Achordeon.Annotations;
+using Achordeon.Common.Extensions;
 using Achordeon.Common.Helpers;
 using DryIoc;
 using MahApps.Metro.Controls;
@@ -177,6 +178,15 @@ namespace Achordeon.Shell.Wpf.Contents.Main
         }
 
 
+        public async Task ShowDialogAsync(object AChildWindow)
+        {
+            AChildWindow.ThrowIfNullEx();
+            var cw = AChildWindow as ChildWindow;
+            if (cw == null)
+                throw new Exception($"{nameof(AChildWindow)} must derive from {nameof(ChildWindow)}");
+            await this.ShowChildWindowAsync(cw);
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]
@@ -187,9 +197,7 @@ namespace Achordeon.Shell.Wpf.Contents.Main
 
         private async void AboutButtonClick(object ASender, RoutedEventArgs AE)
         {
-            var About = new AboutWindow() {IsModal = true};
-            About.DataContext = View;
-            await this.ShowChildWindowAsync(About);
+            await ShowDialogAsync(new AboutWindow() { IsModal = true, DataContext = View });
         }
     }
 }

@@ -263,6 +263,15 @@ namespace Achordeon.Shell.Wpf.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Edit song options ähnelt.
+        /// </summary>
+        public static string EditSongOptions {
+            get {
+                return ResourceManager.GetString("EditSongOptions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die {t:New Song}
         ///{st:Composer Name}
         ///{c:1.)} ähnelt.
@@ -774,6 +783,15 @@ namespace Achordeon.Shell.Wpf.Properties {
         public static string SongEditorFontSize {
             get {
                 return ResourceManager.GetString("SongEditorFontSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Song properties ähnelt.
+        /// </summary>
+        public static string SongMetasHeader {
+            get {
+                return ResourceManager.GetString("SongMetasHeader", resourceCulture);
             }
         }
         

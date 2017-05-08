@@ -191,6 +191,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Contents\ChordProFile\SongMetasDialog.xaml.cs">
+      <DependentUpon>SongMetasDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Contents\ChordProFile\ChordCompletionData.cs" />
     <Compile Include="Contents\ChordProFile\CommandWorkingOnSelectionTextArguments.cs" />
     <Compile Include="Contents\CloseEventArguments.cs" />
@@ -252,6 +255,10 @@
     <Compile Include="Helpers\Converters\PercentToDoubleConverter.cs" />
     <Compile Include="Helpers\Converters\TabFileNameConverter.cs" />
     <Compile Include="Helpers\RecetFileList\RecentFile.cs" />
+    <Page Include="Contents\ChordProFile\SongMetasDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Contents\ChordProFile\ChordProFileView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

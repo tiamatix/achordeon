@@ -35,20 +35,6 @@ using DryIoc;
 
 namespace Achordeon.Lib.Parser
 {
-    public class ParseException : Exception
-    {
-        public int LineNumber { get; }
-
-        public ParseException(string AMessage) : base(AMessage)
-        {
-            LineNumber = -1;
-        }
-
-        public ParseException(string AMessage, int ALineNumber) : base(AMessage)
-        {
-            LineNumber = ALineNumber;
-        }
-    }
     public class ChordProParser : IDisposable
     {
         private Container IoC { get; }

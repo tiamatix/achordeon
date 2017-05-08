@@ -78,6 +78,7 @@
     <Compile Include="DataModel\Song.cs" />
     <Compile Include="DataModel\SongBook.cs" />
     <Compile Include="DataModel\Tab.cs" />
+    <Compile Include="Parser\ParseException.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <DependentUpon>Resources.resx</DependentUpon>
       <AutoGen>True</AutoGen>

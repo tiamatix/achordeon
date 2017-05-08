@@ -63,6 +63,7 @@ namespace Achordeon.Shell.Wpf.Contents.ChordProFile
         private ICommand m_CommentUncommentSelectionCommand;
         private ICommand m_ChorusUnchorusSelectionCommand;
         private ICommand m_TabUnTabSelectionCommand;
+        private ICommand m_EditSongOptionsCommand;
 
         private readonly Regex m_ConvertPlainToCommentRegex = new Regex(@"^\s*(?<text>[^\r\n]+)\s*$");
         private readonly Regex m_ConvertCommentToPlainRegex = new Regex(@"^\s*{\s*[c](omment)?(_)?(i)?(talic)?(b)?(ox)?:(?<text>[^\r\n]+)\s*}\s*$", RegexOptions.IgnoreCase);
@@ -86,6 +87,7 @@ namespace Achordeon.Shell.Wpf.Contents.ChordProFile
             RunPdfCommand = new SimpleCommand(RunPdf);
             CloseCommand = new SimpleCommand(Close);
             PrintCommand = new SimpleCommand(Dummy);
+            EditSongOptionsCommand = new SimpleCommand(Dummy);
             ImportPlainTextCommand = new SimpleCommand(ImportPlainText, CanImportPlainText);
             CommentUncommentSelectionCommand = new SimpleCommand(CommentUncommentSelection, CanCommentUncommentSelection);
             ChorusUnchorusSelectionCommand = new SimpleCommand(ChorusUnchorusSelection, CanChorusUnchorusSelection);
@@ -372,6 +374,12 @@ namespace Achordeon.Shell.Wpf.Contents.ChordProFile
         {
             get { return m_SavePdfCommand; }
             set { SetProperty(ref m_SavePdfCommand, value, nameof(SavePdfCommand)); }
+        }
+
+        public ICommand EditSongOptionsCommand
+        {
+            get { return m_EditSongOptionsCommand; }
+            set { SetProperty(ref m_EditSongOptionsCommand, value, nameof(EditSongOptionsCommand)); }
         }
 
         public ZoomViewModel ZoomViewModel

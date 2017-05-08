@@ -11,7 +11,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:p="clr-namespace:Achordeon.Shell.Wpf.Properties"
              xmlns:songOptions="clr-namespace:Achordeon.Shell.Wpf.Controls.SongOptions"
-             d:DesignHeight="500"
+             d:DesignHeight="7
+             00"
              d:DesignWidth="500"
              DataContext="{Binding RelativeSource={RelativeSource Self}}"
              mc:Ignorable="d">

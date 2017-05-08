@@ -46,6 +46,17 @@
 
                         <Button Width="50"
                                 Height="50"
+                                Margin="0,0,50,0"
+                                ToolTip="{x:Static p:Resources.EditSongOptions}"
+                                Command="{Binding EditSongOptionsCommand}"
+                                DockPanel.Dock="Left"
+                                FocusVisualStyle="{x:Null}"
+                                Style="{DynamicResource MetroCircleButtonStyle}">
+                            <iconPacks:PackIconModern Kind="PageMusic" />
+                        </Button>
+                        
+                        <Button Width="50"
+                                Height="50"
                                 ToolTip="{x:Static p:Resources.SavePdfButtonTooltip}"
                                 Command="{Binding SavePdfCommand}"
                                 DockPanel.Dock="Left"

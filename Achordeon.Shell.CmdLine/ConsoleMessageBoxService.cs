@@ -78,5 +78,10 @@ namespace Achordeon.Shell.CmdLine
                 }
             });
         }
+
+        public Task ShowDialogAsync(object AChildWindow)
+        {
+            throw new NotImplementedException("Console cannot display child windows");
+        }
     }
 }
