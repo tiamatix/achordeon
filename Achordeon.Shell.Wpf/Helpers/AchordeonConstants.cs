@@ -49,17 +49,13 @@ namespace Achordeon.Shell.Wpf.Helpers
         public static readonly string ApplicationDataDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), SettingsFolderName);
         public static readonly string SettingsFileFullPath = Path.Combine(ApplicationDataDirectory, SettingsFileName);
 
-        public const string DEFAULT_LANGUAGE = "en-EN";
+        public static readonly LanguageInfo DefaultLanguage = new LanguageInfo("en-EN", "English");       
 
         private static readonly Assembly _Assembly = Assembly.GetExecutingAssembly();
         public static readonly string Version = FileVersionInfo.GetVersionInfo(_Assembly.Location).ProductVersion;
 
         public static readonly IEnumerable<string> SupportedPaperSizes = new List<string>(new[] {"A4", "A5", "Letter"});
 
-        public static readonly IEnumerable<LanguageInfo> SupportedLanguages = new List<LanguageInfo>(new[]
-        {
-            new LanguageInfo(DEFAULT_LANGUAGE, "English"),
-            new LanguageInfo("de-DE", "Deutsch")
-        });
+
     }
 }

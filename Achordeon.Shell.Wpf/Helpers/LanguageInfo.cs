@@ -24,13 +24,13 @@ namespace Achordeon.Shell.Wpf.Helpers
 {
     public class LanguageInfo
     {
-        public LanguageInfo(string ALanguageCode, string ADisplayName)
+        public LanguageInfo(string ALanguageCode, string ADisplayText)
         {
             LanguageCode = ALanguageCode;
-            DisplayName = ADisplayName;
+            DisplayText = ADisplayText;
         }
 
         public string LanguageCode { get; }
-        public string DisplayName { get; }
+        public string DisplayText { get; }
     }
 }

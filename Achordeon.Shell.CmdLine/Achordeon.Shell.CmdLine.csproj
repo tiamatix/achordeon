@@ -43,7 +43,8 @@
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>achordeon.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <SignManifests>false</SignManifests>
@@ -90,7 +91,6 @@
     <Compile Include="CommandlineArguments\RunMode.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="achordeon.pfx" />
     <None Include="App.config" />
     <None Include="app.manifest" />
     <None Include="packages.config" />

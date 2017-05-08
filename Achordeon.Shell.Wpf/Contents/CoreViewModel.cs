@@ -125,7 +125,7 @@ namespace Achordeon.Shell.Wpf.Contents
             SettingsViewModel = new SettingsViewModel(this);
             AppVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
             SettingsViewModel.LoadSettings();
-            Thread.CurrentThread.CurrentUICulture = new CultureInfo(SettingsViewModel.LanguageCode);
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo(SettingsViewModel.Language.LanguageCode);
         }
     }
 }

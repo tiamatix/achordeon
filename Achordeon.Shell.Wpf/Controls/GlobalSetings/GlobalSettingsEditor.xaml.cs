@@ -23,6 +23,7 @@ SOFTWARE.
 using System.Windows;
 using System.Windows.Controls;
 using Achordeon.Shell.Wpf.Contents;
+using Achordeon.Shell.Wpf.Helpers;
 
 namespace Achordeon.Shell.Wpf.Controls.GlobalSetings
 {
@@ -61,8 +62,22 @@ namespace Achordeon.Shell.Wpf.Controls.GlobalSetings
                         Settings.ChordProFont = ChordProFontComboBox.SelectedFont;
                 };
                 soeGlobal.Settings = value.GlobalSongOptions;
+                cbLanguage.Languages = value.SupportedLanguages;
+                cbLanguage.SelectedLanguage = value.Language;
+                cbLanguage.PropertyChanged += (ASender, AArgs) =>
+                {
+                    if (AArgs.PropertyName == nameof(cbLanguage.SelectedLanguage))
+                        Settings.Language = cbLanguage.SelectedLanguage;
+                };
             }
         }
 
+        private void ResetButtonClick(object ASender, RoutedEventArgs AE)
+        {
+            Settings?.ResetToUserDefault();
+            if (Settings != null)
+                ChordProFontComboBox.SelectedFont = Settings.ChordProFont;
+            soeGlobal.Refresh();
+        }
     }
 }

@@ -69,8 +69,7 @@
     <Controls:MetroWindow.Flyouts>
         <Controls:FlyoutsControl>
             <Controls:Flyout x:Name="SettingsFlyout"
-                             Width="400"
-                             ToolTip="{x:Static p:Resources.GlobalSettingsTooltip}"
+                             Width="450"
                              Header="{x:Static p:Resources.GlobalSettings}"
                              Position="Right"
                              Theme="Light">

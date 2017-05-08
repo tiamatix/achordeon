@@ -20,17 +20,15 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 !*/
-using System;
+using System.Collections.ObjectModel;
 using System.IO;
-using System.Windows.Media;
+using System.Linq;
 using Achordeon.Common.Extensions;
 using Achordeon.Common.Helpers;
 using Achordeon.Lib.SongOptions;
 using Achordeon.Shell.Wpf.Helpers;
-using Achordeon.Shell.Wpf.Helpers.Converters;
 using Achordeon.Shell.Wpf.Helpers.FontViewModel;
 using Achordeon.Shell.Wpf.Helpers.RecetFileList;
-using DryIoc.Experimental;
 
 
 namespace Achordeon.Shell.Wpf.Contents
@@ -43,25 +41,40 @@ namespace Achordeon.Shell.Wpf.Contents
         private RecentFileList m_RecentFileList;
         private WindowPosition m_MainWindowPosition;
         private double m_ChordProEditorSplitPosition;
-        private string m_LanguageCode;
+        private LanguageInfo m_Language;
         private bool m_UsePdfPreview;
         private bool m_ShowLogger;
         private bool m_AutoUpdates;
         private SongOptionsViewModel m_GlobalSongOptions;
 
+        public ObservableCollection<LanguageInfo> SupportedLanguages { get; } = new ObservableCollection<LanguageInfo>();
+
         public SettingsViewModel(CoreViewModel ACore)
         {
             Core = ACore;
-            ChordProFont = Core.FontViewModel.GetFontInfo(FontViewModel.BUILDIN_SERIFE);
-            ChordProFontSize = 16;
             RecentFileList = new RecentFileList();
             MainWindowPosition = WindowPosition.Empty;
             ChordProEditorSplitPosition = 0;
+            GlobalSongOptions = new SongOptionsViewModel(Core);
+            SetupSupportedLanguages();
+            Language = AchordeonConstants.DefaultLanguage;
+            ResetToUserDefault();
+        }
+
+        private void SetupSupportedLanguages()
+        {
+            SupportedLanguages.Add(AchordeonConstants.DefaultLanguage);
+            SupportedLanguages.Add(new LanguageInfo("de-DE", "Deutsch"));
+        }
+
+        public void ResetToUserDefault()
+        {
+            ChordProFont = Core.FontViewModel.GetFontInfo(FontViewModel.BUILDIN_SERIFE);
+            ChordProFontSize = 16;
             UsePdfPreview = true;
             ShowLogger = false;
             AutoUpdates = true;
-            GlobalSongOptions = new SongOptionsViewModel(Core);
-            LanguageCode = AchordeonConstants.DEFAULT_LANGUAGE;
+            GlobalSongOptions.ResetToDefaults();
         }
 
         public CoreViewModel Core
@@ -76,10 +89,10 @@ namespace Achordeon.Shell.Wpf.Contents
             set { SetProperty(ref m_GlobalSongOptions, value, nameof(GlobalSongOptions)); }
         }
 
-        public string LanguageCode
+        public LanguageInfo Language
         {
-            get { return m_LanguageCode; }
-            set { SetProperty(ref m_LanguageCode, value, nameof(LanguageCode)); }
+            get { return m_Language; }
+            set { SetProperty(ref m_Language, value, nameof(Language)); }
         }
 
         public bool ShowLogger
@@ -151,7 +164,7 @@ namespace Achordeon.Shell.Wpf.Contents
             var GlobalSongOptionsNode = Xml.Add("GlobalSongOptions");
             new SongOptionsConverter(DefaultSongOptions.Default).SaveToXml(GlobalSongOptions, GlobalSongOptionsNode);
             var LanguageNode = Xml.Add("Language");
-            LanguageNode.Set("SelectedLanguageCode", LanguageCode);
+            LanguageNode.Set("SelectedLanguageCode", Language.LanguageCode);
             var AutoUpdatesNode = Xml.Add("AutoUpdates");
             AutoUpdatesNode.Set("EnableAutomaticUpdate", AutoUpdates);
             Xml.Save(AchordeonConstants.SettingsFileFullPath, true);
@@ -191,7 +204,8 @@ namespace Achordeon.Shell.Wpf.Contents
             var LanguageNode = Xml.SelectSingle("Language");
             if (LanguageNode != null)
             {
-                LanguageCode = LanguageNode.Get("SelectedLanguageCode", LanguageCode);
+                var LanguageCode = LanguageNode.Get("SelectedLanguageCode", Language.LanguageCode);
+                Language = SupportedLanguages.FirstOrDefault(a => a.LanguageCode.CiEquals(LanguageCode)) ?? AchordeonConstants.DefaultLanguage;
             }
             var AutoUpdatesNode = Xml.SelectSingle("AutoUpdates");
             if (AutoUpdatesNode != null)

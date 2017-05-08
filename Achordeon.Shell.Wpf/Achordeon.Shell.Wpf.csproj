@@ -48,7 +48,8 @@
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>achordeon.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
@@ -197,6 +198,9 @@
     <Compile Include="Contents\Main\AboutWindow.xaml.cs">
       <DependentUpon>AboutWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\LanguageCombo\LanguageCombo.xaml.cs">
+      <DependentUpon>LanguageCombo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\SongOptions\SongOptionsEditor.xaml.cs">
       <DependentUpon>SongOptionsEditor.xaml</DependentUpon>
     </Compile>
@@ -259,6 +263,10 @@
     <Page Include="Contents\Main\AboutWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\LanguageCombo\LanguageCombo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\FontCombo\FontCombo.xaml">
       <SubType>Designer</SubType>
@@ -347,7 +355,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ChordPro.xshd" />
     <EmbeddedResource Include="Properties\Resources.de-DE.resx" />
-    <None Include="achordeon.pfx" />
     <None Include="app.manifest">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

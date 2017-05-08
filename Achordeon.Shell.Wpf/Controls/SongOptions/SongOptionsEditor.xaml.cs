@@ -72,6 +72,13 @@ namespace Achordeon.Shell.Wpf.Controls.SongOptions
             }
         }
 
+        public void Refresh()
+        {
+            ChordFontComboBox.SelectedFont = Settings.CoreViewModel.FontViewModel.GetFontInfo(Settings.ChordFont);
+            TextFontComboBox.SelectedFont = Settings.CoreViewModel.FontViewModel.GetFontInfo(Settings.TextFont);
+            cbPageSize.SelectedItem = Settings.PageSize;
+        }
+
         private void PaperFormatComboOnSelectionChanged(object ASender, SelectionChangedEventArgs AE)
         {
             var NewSize = cbPageSize.SelectedItem as string;

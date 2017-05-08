@@ -54,6 +54,10 @@ namespace Achordeon.Shell.Wpf.Contents
             CoreViewModel = ACore;
         }
 
+        public void ResetToDefaults()
+        {
+            LoadFrom(DefaultSongOptions.Default);
+        }
 
         public SongOptionsViewModel(CoreViewModel ACore, ISongOptions AOtherOptions)
         {

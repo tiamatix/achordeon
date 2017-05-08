@@ -383,4 +383,16 @@
   <data name="EnableAutoUpdates" xml:space="preserve">
     <value>Automtaische Aktualisierung</value>
   </data>
+  <data name="Language" xml:space="preserve">
+    <value>Sprache</value>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>Zurücksetzen</value>
+  </data>
+  <data name="Note" xml:space="preserve">
+    <value>Hinweis:</value>
+  </data>
+  <data name="ApplyLanguageNote" xml:space="preserve">
+    <value>Die Sprache wird erst nach Neustart aktiv.</value>
+  </data>
 </root>

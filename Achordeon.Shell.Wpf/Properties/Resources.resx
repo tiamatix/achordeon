@@ -284,6 +284,15 @@
   <data name="EnableAutoUpdates" xml:space="preserve">
     <value>Automatic updates</value>
   </data>
+  <data name="Language" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="Note" xml:space="preserve">
+    <value>Note:</value>
+  </data>
+  <data name="ApplyLanguageNote" xml:space="preserve">
+    <value>language will be applied after restart.</value>
+  </data>
   <data name="SongEditorFont" xml:space="preserve">
     <value>Song editor font</value>
   </data>
@@ -295,6 +304,9 @@
   </data>
   <data name="Yes" xml:space="preserve">
     <value>Yes</value>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>Reset</value>
   </data>
   <data name="ChordFont" xml:space="preserve">
     <value>Chord font</value>

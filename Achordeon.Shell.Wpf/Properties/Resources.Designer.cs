@@ -110,6 +110,15 @@ namespace Achordeon.Shell.Wpf.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die language will be applied after restart. ähnelt.
+        /// </summary>
+        public static string ApplyLanguageNote {
+            get {
+                return ResourceManager.GetString("ApplyLanguageNote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die The application cannot run the file &apos;{0}&apos;. ähnelt.
         /// </summary>
         public static string CannotRunFile {
@@ -301,7 +310,7 @@ namespace Achordeon.Shell.Wpf.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Failed to convet the selection. ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Failed to convert the selection. ähnelt.
         /// </summary>
         public static string FailedToConvertTheSelection {
             get {
@@ -400,6 +409,15 @@ namespace Achordeon.Shell.Wpf.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Language ähnelt.
+        /// </summary>
+        public static string Language {
+            get {
+                return ResourceManager.GetString("Language", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die License: ähnelt.
         /// </summary>
         public static string License {
@@ -477,6 +495,15 @@ namespace Achordeon.Shell.Wpf.Properties {
         public static string No {
             get {
                 return ResourceManager.GetString("No", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Note: ähnelt.
+        /// </summary>
+        public static string Note {
+            get {
+                return ResourceManager.GetString("Note", resourceCulture);
             }
         }
         
@@ -639,6 +666,15 @@ namespace Achordeon.Shell.Wpf.Properties {
         public static string RemoveFileMenu {
             get {
                 return ResourceManager.GetString("RemoveFileMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Reset ähnelt.
+        /// </summary>
+        public static string Reset {
+            get {
+                return ResourceManager.GetString("Reset", resourceCulture);
             }
         }
         

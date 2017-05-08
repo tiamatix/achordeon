@@ -29,6 +29,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using Achordeon.Annotations;
+using Achordeon.Common.Extensions;
 using Achordeon.Shell.Wpf.Helpers;
 using Achordeon.Shell.Wpf.Helpers.FontViewModel;
 
@@ -55,8 +56,14 @@ namespace Achordeon.Shell.Wpf.Controls.FontCombo
             get { return cbFont?.SelectedItem as FontFamilyInfo ?? FontViewModel.UltimateFallbackFont; }
             set
             {
-                if (cbFont != null && cbFont.SelectedItem != value)
-                    cbFont.SelectedItem = value;
+                if (value == null)
+                    return;
+                if (cbFont == null)
+                    return;
+                var Selection = Fonts.FirstOrDefault(a => a.DisplayText.CiEquals(value.DisplayText));
+                if (cbFont.SelectedItem == Selection)
+                    return;
+                cbFont.SelectedItem = Selection;
                 OnPropertyChanged(nameof(SelectedFont));
             }
         }

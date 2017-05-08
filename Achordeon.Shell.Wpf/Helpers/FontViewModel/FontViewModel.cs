@@ -86,7 +86,7 @@ namespace Achordeon.Shell.Wpf.Helpers.FontViewModel
 
         private static string GetBuildinFontName(string AResourceName)
         {
-            return Regex.Match(AResourceName, @"#(?<name>[^,]+),").Groups["name"].Value;
+            return Regex.Match(AResourceName, @"#\s*(?<name>[^,]+)\s*,").Groups["name"].Value.Trim();
         }
         
         private void PreloadFont(string AFontName)
