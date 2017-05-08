@@ -28,7 +28,7 @@ using Achordeon.Common.Helpers;
 using Achordeon.Lib.SongOptions;
 using Achordeon.Shell.Wpf.Helpers;
 using Achordeon.Shell.Wpf.Helpers.FontViewModel;
-using Achordeon.Shell.Wpf.Helpers.RecetFileList;
+using Achordeon.Shell.Wpf.Helpers.RecentFileList;
 
 
 namespace Achordeon.Shell.Wpf.Contents

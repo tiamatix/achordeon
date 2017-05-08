@@ -1,4 +1,4 @@
-/*! Achordeon - MIT License
+﻿/*! Achordeon - MIT License
 
 Copyright (c) 2017 tiamatix / Wolf Robben
 
@@ -22,7 +22,7 @@ SOFTWARE.
 !*/
 using System.Windows;
 using System.Windows.Controls;
-using Achordeon.Shell.Wpf.Helpers.RecetFileList;
+using Achordeon.Shell.Wpf.Helpers.RecentFileList;
 
 
 namespace Achordeon.Shell.Wpf.Contents.Home

@@ -101,6 +101,8 @@
                 <TextBlock Margin="0,5,0,0"
                            DockPanel.Dock="Top"
                            Foreground="{StaticResource GrayBrush1}"
+                            Visibility="{Binding CoreViewModel.SettingsViewModel.RecentFileList.IsEmpty,
+                                                                       Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Invert}"
                            Text="{x:Static p:Resources.RecentFiles}" />
                 <ItemsControl Margin="5,5,5,5"
                               DockPanel.Dock="Top"
@@ -125,7 +127,7 @@
                                     </ContextMenu>
                                 </DockPanel.ContextMenu>
 
-                                <ToggleButton DockPanel.Dock="Left" IsChecked="{Binding IsPinned}">
+                                <ToggleButton FocusVisualStyle="{x:Null}" DockPanel.Dock="Left" IsChecked="{Binding IsPinned}">
                                     <ToggleButton.Style>
                                         <Style TargetType="ToggleButton">
                                             <Setter Property="Content" Value="{DynamicResource PinImage}" />

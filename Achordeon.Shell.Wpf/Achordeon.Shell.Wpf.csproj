@@ -254,7 +254,7 @@
     <Compile Include="Helpers\Converters\MenuFileNameConverter.cs" />
     <Compile Include="Helpers\Converters\PercentToDoubleConverter.cs" />
     <Compile Include="Helpers\Converters\TabFileNameConverter.cs" />
-    <Compile Include="Helpers\RecetFileList\RecentFile.cs" />
+    <Compile Include="Helpers\RecentFileList\RecentFile.cs" />
     <Page Include="Contents\ChordProFile\SongMetasDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -339,7 +339,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Helpers\RecetFileList\RecentFileList.cs" />
+    <Compile Include="Helpers\RecentFileList\RecentFileList.cs" />
     <Compile Include="Helpers\AutoUpdater\UpdateEngine.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">

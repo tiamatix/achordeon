@@ -25,7 +25,7 @@ using System.ComponentModel;
 using Achordeon.Common.Helpers;
 using Achordeon.Shell.Wpf.Contents;
 
-namespace Achordeon.Shell.Wpf.Helpers.RecetFileList
+namespace Achordeon.Shell.Wpf.Helpers.RecentFileList
 {
     public sealed class RecentFile : ViewModelBase
     {

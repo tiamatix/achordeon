@@ -25,13 +25,15 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using Achordeon.Annotations;
 using Achordeon.Common.Extensions;
 using Achordeon.Common.Helpers;
 
-namespace Achordeon.Shell.Wpf.Helpers.RecetFileList
+namespace Achordeon.Shell.Wpf.Helpers.RecentFileList
 {
 
-    public sealed class RecentFileList
+    public sealed class RecentFileList : INotifyPropertyChanged
     {
         private int m_MaxFilesNumber = 8;
         private readonly ObservableCollection<RecentFile> m_RecentFiles;
@@ -58,6 +60,8 @@ namespace Achordeon.Shell.Wpf.Helpers.RecetFileList
         {
             get { return m_RecentFiles.Count(r => r.IsPinned); }
         }
+
+        public bool IsEmpty => m_RecentFiles.Count < 1;
 
         public RecentFileList()
         {
@@ -110,7 +114,8 @@ namespace Achordeon.Shell.Wpf.Helpers.RecetFileList
                 throw new ArgumentNullException(nameof(ARecentFile));
             if (!m_RecentFiles.Remove(ARecentFile))
                 throw new ArgumentException("The passed recentFile was not found in the recent files list.");
-            ARecentFile.PropertyChanged -= RecentFilePropertyChanged;            
+            ARecentFile.PropertyChanged -= RecentFilePropertyChanged;
+            OnPropertyChanged(nameof(IsEmpty));
         }
    
         public void SaveToXml(XmlFile AXml)
@@ -134,6 +139,7 @@ namespace Achordeon.Shell.Wpf.Helpers.RecetFileList
                 if (!string.IsNullOrWhiteSpace(RecentFile.Path))
                     Add(RecentFile);
             }
+            OnPropertyChanged(nameof(IsEmpty));
         }
 
         private void Insert(int AIndex, RecentFile ARecentFile)
@@ -141,6 +147,7 @@ namespace Achordeon.Shell.Wpf.Helpers.RecetFileList
             ARecentFile.ThrowIfNullEx(nameof(ARecentFile));
             ARecentFile.PropertyChanged += RecentFilePropertyChanged;
             m_RecentFiles.Insert(AIndex, ARecentFile);
+            OnPropertyChanged(nameof(IsEmpty));
         }
 
         private void Add(RecentFile ARecentFile)
@@ -148,6 +155,7 @@ namespace Achordeon.Shell.Wpf.Helpers.RecetFileList
             ARecentFile.ThrowIfNullEx(nameof(ARecentFile));
             ARecentFile.PropertyChanged += RecentFilePropertyChanged;
             m_RecentFiles.Add(ARecentFile);
+            OnPropertyChanged(nameof(IsEmpty));
         }
 
         private void AddRange(IEnumerable<RecentFile> ARecentFilesToAdd)
@@ -160,12 +168,14 @@ namespace Achordeon.Shell.Wpf.Helpers.RecetFileList
         {
             m_RecentFiles[AIndex].PropertyChanged -= RecentFilePropertyChanged;
             m_RecentFiles.RemoveAt(AIndex);
+            OnPropertyChanged(nameof(IsEmpty));
         }
 
         private void RemoveRange(int AIndex, int ACount)
         {
             for (var i = 0; i < ACount; ++i)
                 RemoveAt(AIndex);
+            OnPropertyChanged(nameof(IsEmpty));
         }
 
         private void Clear()
@@ -173,6 +183,7 @@ namespace Achordeon.Shell.Wpf.Helpers.RecetFileList
             foreach (var File in m_RecentFiles)
                 File.PropertyChanged -= RecentFilePropertyChanged;
             m_RecentFiles.Clear();
+            OnPropertyChanged(nameof(IsEmpty));
         }
 
         private void RecentFilePropertyChanged(object ASender, PropertyChangedEventArgs AArgs)
@@ -193,6 +204,14 @@ namespace Achordeon.Shell.Wpf.Helpers.RecetFileList
                     return;
                 m_RecentFiles.Move(OldIndex, Count);
             }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        private void OnPropertyChanged([CallerMemberName] string APropertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(APropertyName));
         }
     }
 }
