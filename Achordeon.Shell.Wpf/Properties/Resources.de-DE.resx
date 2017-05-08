@@ -395,4 +395,13 @@
   <data name="ApplyLanguageNote" xml:space="preserve">
     <value>Die Sprache wird erst nach Neustart aktiv.</value>
   </data>
+  <data name="SongMetasHeader" xml:space="preserve">
+    <value>Liedeigenschaften</value>
+  </data>
+  <data name="SongTitle" xml:space="preserve">
+    <value>Titel</value>
+  </data>
+  <data name="SubTitles" xml:space="preserve">
+    <value>Untertitel</value>
+  </data>
 </root>

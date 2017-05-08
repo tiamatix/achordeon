@@ -796,6 +796,15 @@ namespace Achordeon.Shell.Wpf.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Song title ähnelt.
+        /// </summary>
+        public static string SongTitle {
+            get {
+                return ResourceManager.GetString("SongTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Sort chord grids ähnelt.
         /// </summary>
         public static string SortChordGrids {
@@ -810,6 +819,15 @@ namespace Achordeon.Shell.Wpf.Properties {
         public static string StatusBarAppVersion {
             get {
                 return ResourceManager.GetString("StatusBarAppVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Sub titles ähnelt.
+        /// </summary>
+        public static string SubTitles {
+            get {
+                return ResourceManager.GetString("SubTitles", resourceCulture);
             }
         }
         

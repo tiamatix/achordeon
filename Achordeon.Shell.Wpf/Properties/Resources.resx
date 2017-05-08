@@ -161,6 +161,12 @@
   <data name="SongMetasHeader" xml:space="preserve">
     <value>Song properties</value>
   </data>
+  <data name="SongTitle" xml:space="preserve">
+    <value>Song title</value>
+  </data>
+  <data name="SubTitles" xml:space="preserve">
+    <value>Sub titles</value>
+  </data>
   <data name="Version" xml:space="preserve">
     <value>Version:</value>
   </data>

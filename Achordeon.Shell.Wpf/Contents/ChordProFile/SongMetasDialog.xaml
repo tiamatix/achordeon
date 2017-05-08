@@ -44,7 +44,7 @@
         <TextBlock Grid.Row="0"
                    Grid.Column="0"
                    VerticalAlignment="Center"
-                   Text="Song title" />
+                   Text="{x:Static p:Resources.SongTitle}"/>
 
         <TextBox Grid.Row="0"
                  Grid.Column="1"
@@ -56,7 +56,7 @@
         <TextBlock Grid.Row="1"
                    Grid.Column="0"
                    VerticalAlignment="Top"
-                   Text="Subtitles" />
+                   Text="{x:Static p:Resources.SubTitles}" />
 
         <TextBox Grid.Row="1"
                  Grid.Column="1"
