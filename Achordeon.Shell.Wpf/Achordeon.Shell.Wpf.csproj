@@ -201,6 +201,13 @@
     <Compile Include="Contents\Main\AboutWindow.xaml.cs">
       <DependentUpon>AboutWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ChordEditor\ChordEditor.xaml.cs">
+      <DependentUpon>ChordEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Fretboard\FretboardControl.cs" />
+    <Compile Include="Controls\Fretboard\FretboardPositionControl.cs" />
+    <Compile Include="Controls\Fretboard\FretboardString.cs" />
+    <Compile Include="Controls\Fretboard\FretMarkerControl.cs" />
     <Compile Include="Controls\LanguageCombo\LanguageCombo.xaml.cs">
       <DependentUpon>LanguageCombo.xaml</DependentUpon>
     </Compile>
@@ -268,6 +275,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Contents\Main\AboutWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ChordEditor\ChordEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

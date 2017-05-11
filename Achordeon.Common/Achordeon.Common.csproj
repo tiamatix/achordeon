@@ -66,6 +66,7 @@
     <Compile Include="Helpers\DummyMessageBoxService.cs" />
     <Compile Include="Helpers\ExceptionFormatter.cs" />
     <Compile Include="Helpers\IMessageBoxService.cs" />
+    <Compile Include="Helpers\IntegerModule.cs" />
     <Compile Include="Helpers\IoCRegistration.cs" />
     <Compile Include="Helpers\Log.cs" />
     <Compile Include="Helpers\StringStream.cs" />

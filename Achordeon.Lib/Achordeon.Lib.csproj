@@ -78,6 +78,17 @@
     <Compile Include="DataModel\Song.cs" />
     <Compile Include="DataModel\SongBook.cs" />
     <Compile Include="DataModel\Tab.cs" />
+    <Compile Include="MusicTheory\ChordShape.cs" />
+    <Compile Include="MusicTheory\ChordShapes.cs" />
+    <Compile Include="MusicTheory\Interval.cs" />
+    <Compile Include="MusicTheory\Intervals.cs" />
+    <Compile Include="MusicTheory\HarmonicMode.cs" />
+    <Compile Include="MusicTheory\HarmonicModes.cs" />
+    <Compile Include="MusicTheory\Note.cs" />
+    <Compile Include="MusicTheory\Notes.cs" />
+    <Compile Include="MusicTheory\SemitoneModule.cs" />
+    <Compile Include="MusicTheory\Tuning.cs" />
+    <Compile Include="MusicTheory\Tunings.cs" />
     <Compile Include="Parser\ParseException.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <DependentUpon>Resources.resx</DependentUpon>
