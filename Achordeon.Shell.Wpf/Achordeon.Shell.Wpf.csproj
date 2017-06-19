@@ -36,8 +36,7 @@
     <OutputPath>..\000_BIN</OutputPath>
     <IntermediateOutputPath>..\001_OBJ</IntermediateOutputPath>
     <BaseIntermediateOutputPath>..\001_OBJ</BaseIntermediateOutputPath>
-    <DefineConstants>
-    </DefineConstants>
+    <DefineConstants>RELEASE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
