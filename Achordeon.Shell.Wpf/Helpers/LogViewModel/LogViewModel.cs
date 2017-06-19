@@ -22,6 +22,7 @@ SOFTWARE.
 !*/
 using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Media;
@@ -60,26 +61,34 @@ namespace Achordeon.Shell.Wpf.Helpers.LogViewModel
 
         public void AddEntry(LogEntry AEntry)
         {
-            AEntry.Index = ++_Index;
-            switch (AEntry.Category)
+            try
             {
-                case LogLevel.Error:
-                    ErrorCount++;
-                    OnPropertyChanged(nameof(ErrorCount));
-                    break;
-                case LogLevel.Warn:
-                    WarningCount++;
-                    OnPropertyChanged(nameof(WarningCount));
-                    break;
+
+                AEntry.Index = ++_Index;
+                switch (AEntry.Category)
+                {
+                    case LogLevel.Error:
+                        ErrorCount++;
+                        OnPropertyChanged(nameof(ErrorCount));
+                        break;
+                    case LogLevel.Warn:
+                        WarningCount++;
+                        OnPropertyChanged(nameof(WarningCount));
+                        break;
+                }
+                LogEntries.Insert(0, AEntry);
+                if (LogEntries.Count > MAX_LOG_CAPACITY)
+                {
+                    for (int i = 0; i < MAX_LOG_CAPACITY * 0.1; i++)
+                        LogEntries.RemoveAt(LogEntries.Count - 1);
+                }
+
             }
-            LogEntries.Insert(0, AEntry);
-            if (LogEntries.Count > MAX_LOG_CAPACITY)
+            catch (Exception e)
             {
-                for (int i = 0; i < MAX_LOG_CAPACITY*0.1; i++)
-                    LogEntries.RemoveAt(LogEntries.Count);
+                Debug.WriteLine(e);
             }
         }
-
 
         public void Clear()
         {
