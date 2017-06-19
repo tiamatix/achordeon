@@ -67,7 +67,7 @@ namespace Achordeon.Shell.Wpf.Contents.ChordProFile
             var Chord = GetChord();
             if (Chord == null)
                 return null;
-            var Gen = new ChordBoxImage(IoC, Chord, 1);
+            var Gen = new ChordBoxImage(IoC, Chord, 1, true);
             using (var TempStream = new MemoryStream())
             {
                 Gen.Save(TempStream);
@@ -86,7 +86,7 @@ namespace Achordeon.Shell.Wpf.Contents.ChordProFile
 
         public string Text { get; }
 
-        public object Content => ChordNameBeautifier.BeautifySharpsAndFlatsOnly(Text);
+        public object Content => ChordNameBeautifier.BeautifySharpsAndFlatsOnly(Text, true);
 
         public object Description
         {
@@ -96,7 +96,7 @@ namespace Achordeon.Shell.Wpf.Contents.ChordProFile
                 if (Chord == null)
                     return Content;
                 var sb = new StringBuilder();
-                sb.AppendLine(ChordNameBeautifier.BeautifySharpsAndFlatsOnly(Text));
+                sb.AppendLine(ChordNameBeautifier.BeautifySharpsAndFlatsOnly(Text, true));
                 sb.AppendLine();
                 sb.Append(Chord.GetFretDisplay(Chord.Fret1));
                 sb.Append("-");

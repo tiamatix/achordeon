@@ -53,8 +53,9 @@ namespace Achordeon.Lib.Tests
             public bool CreateToc { get; set; } = DefaultSongOptions.Default.CreateToc;
             public int TransposeByHalftones { get; set; } = DefaultSongOptions.Default.TransposeByHalftones;
             public int VerticalSpace { get; set; } = DefaultSongOptions.Default.VerticalSpace;
+            public bool UseMusicalSymbols { get; set; } = DefaultSongOptions.Default.UseMusicalSymbols;
 
-           public event PropertyChangedEventHandler PropertyChanged;
+            public event PropertyChangedEventHandler PropertyChanged;
 
             protected virtual void OnPropertyChanged([CallerMemberName] string APropertyName = null)
             {

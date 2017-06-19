@@ -34,6 +34,7 @@
             <RowDefinition Height="5" />
             <RowDefinition Height="40" />
             <RowDefinition Height="5" />
+            <RowDefinition Height="40" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0"
@@ -147,5 +148,19 @@
                   HorizontalAlignment="Left"
                   FocusVisualStyle="{x:Null}"
                   SelectionChanged="PaperFormatComboOnSelectionChanged" />
+
+        <TextBlock Grid.Row="16"
+                   Grid.Column="0"
+                   VerticalAlignment="Center"
+                   Text="{x:Static p:Resources.UseMusicalSymbols}" />
+
+
+        <controls:ToggleSwitch Grid.Row="16"
+                               Grid.Column="1"
+                               HorizontalAlignment="Left"
+                               FocusVisualStyle="{x:Null}"
+                               IsChecked="{Binding Path=Settings.UseMusicalSymbols}"
+                               OffLabel="{x:Static p:Resources.No}"
+                               OnLabel="{x:Static p:Resources.Yes}" />
     </Grid>
 </UserControl>

@@ -904,6 +904,15 @@ namespace Achordeon.Shell.Wpf.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Print musical symbols ähnelt.
+        /// </summary>
+        public static string UseMusicalSymbols {
+            get {
+                return ResourceManager.GetString("UseMusicalSymbols", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Version: ähnelt.
         /// </summary>
         public static string Version {

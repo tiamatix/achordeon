@@ -129,7 +129,7 @@ namespace Achordeon.Rendering.Pdf
                         //If the previous chord needs more (or equal) space than the text
                         //we have to reserve extra space for the chord and one extra blank
                         var PreviousChordName = (ALine.GetPreviousElementOrNullOfType<LineChord>(Text) as LineChord)?.Name ?? string.Empty;
-                        PreviousChordName = ChordNameBeautifier.BeautifySharpsAndFlatsOnly(PreviousChordName);
+                        PreviousChordName = ChordNameBeautifier.BeautifySharpsAndFlatsOnly(PreviousChordName, SongOptions.UseMusicalSymbols);
                         var PreviousChordNameWidthMm = MeasureTextMm(ADocument, AStyle.ChordStyle, ReplaceBreakingSpace(PreviousChordName)).Width;
                         if (PreviousChordNameWidthMm >= TextWidthMm)
                             CurrentXPositionMm += PreviousChordNameWidthMm + MeasureTextMm(ADocument, AStyle.ChordStyle, "_").Width;
@@ -154,7 +154,7 @@ namespace Achordeon.Rendering.Pdf
             {
                 foreach (var Chord in ALine.Runs.OfType<LineChord>())
                 {
-                    var PrettyName = ChordNameBeautifier.BeautifySharpsAndFlatsOnly(Chord.Name);
+                    var PrettyName = ChordNameBeautifier.BeautifySharpsAndFlatsOnly(Chord.Name, SongOptions.UseMusicalSymbols);
 
                     if (AStyle.DrawChorusBorder)
                     {
@@ -409,7 +409,7 @@ namespace Achordeon.Rendering.Pdf
                 if (Chord.Difficulty == Difficulty.Easy && Chord.Origin == ChordOrigin.BuildIn)
                     continue;
 
-                using (var ImageGen = new ChordBoxImage(IoC, Chord, 4))
+                using (var ImageGen = new ChordBoxImage(IoC, Chord, 4, SongOptions.UseMusicalSymbols))
                 {
                     var MigraName = MigraDocFilenameFromByteArray(ImageGen.GetBytes());
                     var img = p.AddImage(MigraName);
@@ -457,7 +457,7 @@ namespace Achordeon.Rendering.Pdf
         private PdfDocumentRenderer RenderToPdf()
         {
             RenderToDocument();
-            var Renderer = new PdfDocumentRenderer(false);
+            var Renderer = new PdfDocumentRenderer(true);
             Renderer.Document = Document;
             Renderer.RenderDocument();
             return Renderer;

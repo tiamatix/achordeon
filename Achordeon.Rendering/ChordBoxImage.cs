@@ -131,10 +131,10 @@ namespace Achordeon.Lib.Lib.Rendering.ChordDiagrams
             CreateImage();
         }
 
-        public ChordBoxImage(Container AIoC, Chord AChord, int ASize)
+        public ChordBoxImage(Container AIoC, Chord AChord, int ASize, bool AUseMUsicalSymbols)
         {
             IoC = AIoC;
-            _chordName = ChordNameBeautifier.BeautifySharpsAndFlatsOnly(AChord.Name.Contains("_") ? AChord.Name : ChordNameBeautifier.BeautifyForChordBoxImage(AChord.Name));
+            _chordName = ChordNameBeautifier.BeautifySharpsAndFlatsOnly(AChord.Name.Contains("_") ? AChord.Name : ChordNameBeautifier.BeautifyForChordBoxImage(AChord.Name, AUseMUsicalSymbols), AUseMUsicalSymbols);
             var bf = AChord.BaseFret - 1;
             _chordPositions[0] = AChord.Fret1 + bf;
             _chordPositions[1] = AChord.Fret2 + bf;

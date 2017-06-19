@@ -20,6 +20,8 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 !*/
+
+using System;
 using System.Linq;
 
 namespace Achordeon.Lib.DataModel
@@ -46,7 +48,7 @@ namespace Achordeon.Lib.DataModel
             return false;
         }
 
-        private static string DoNamePart(string AName)
+        private static string DoNamePart(string AName, bool AUseMUsicalSymbols)
         {
             if (AName.Length == 1)
                 return AName;
@@ -60,8 +62,10 @@ namespace Achordeon.Lib.DataModel
                 switch (AName[1])
                 {
                     case '♭':
-                    case 'b':
+                        return AUseMUsicalSymbols ? AName : "b";
                     case '♯':
+                        return AUseMUsicalSymbols ? AName : "#";
+                    case 'b':
                     case '#':
                     case 'm':
                         return AName;
@@ -121,16 +125,18 @@ namespace Achordeon.Lib.DataModel
             return AName;
         }
 
-        public static string BeautifySharpsAndFlatsOnly(string AChordName)
+        public static string BeautifySharpsAndFlatsOnly(string AChordName, bool AUseMUsicalSymbols)
         {
+            if (!AUseMUsicalSymbols)
+                return AChordName;
             return string.IsNullOrWhiteSpace(AChordName) ? AChordName : AChordName.Replace('b', '♭').Replace('#', '♯');
         }
 
-        public static string BeautifyForChordBoxImage(string AChordName)
+        public static string BeautifyForChordBoxImage(string AChordName, bool AUseMUsicalSymbols)
         {
             //Trivial chord names
             if (!AChordName.Contains("/"))
-                return BeautifySharpsAndFlatsOnly(DoNamePart(AChordName));
+                return BeautifySharpsAndFlatsOnly(DoNamePart(AChordName, AUseMUsicalSymbols), AUseMUsicalSymbols);
 
             var Parts = AChordName.Split(new[] {'/'});
             var res = string.Empty;
@@ -147,7 +153,7 @@ namespace Achordeon.Lib.DataModel
                 res += Parts[i];
 
             }
-            return BeautifySharpsAndFlatsOnly(res);
+            return BeautifySharpsAndFlatsOnly(res, AUseMUsicalSymbols);
         }
     }
 }

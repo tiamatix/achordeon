@@ -338,6 +338,9 @@
   <data name="SortChordGrids" xml:space="preserve">
     <value>Sort chord grids</value>
   </data>
+  <data name="UseMusicalSymbols" xml:space="preserve">
+    <value>Print musical symbols</value>
+  </data>
   <data name="TextFont" xml:space="preserve">
     <value>Text font</value>
   </data>

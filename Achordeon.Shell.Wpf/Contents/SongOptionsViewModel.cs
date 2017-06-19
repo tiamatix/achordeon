@@ -48,6 +48,7 @@ namespace Achordeon.Shell.Wpf.Contents
         private int m_TransposeByHalftones;
         private int m_VerticalSpace;
         private bool m_DrawChordGrids;
+        private bool m_UseMusicalSymbols;
 
         public SongOptionsViewModel(CoreViewModel ACore) : this(ACore, DefaultSongOptions.Default)
         {
@@ -85,6 +86,7 @@ namespace Achordeon.Shell.Wpf.Contents
             TransposeByHalftones = AOtherOptions.TransposeByHalftones;
             VerticalSpace = AOtherOptions.VerticalSpace;
             DrawChordGrids = AOtherOptions.DrawChordGrids;
+            UseMusicalSymbols = AOtherOptions.UseMusicalSymbols;
         }
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -107,6 +109,12 @@ namespace Achordeon.Shell.Wpf.Contents
         public LinkedSongOptionsViewModel AsLinkedOptions()
         {
             return new LinkedSongOptionsViewModel(CoreViewModel, this);
+        }
+
+        public virtual bool UseMusicalSymbols
+        {
+            get { return m_UseMusicalSymbols; }
+            set { SetProperty(ref m_UseMusicalSymbols, value, nameof(UseMusicalSymbols)); }
         }
 
         public CoreViewModel CoreViewModel

@@ -50,6 +50,7 @@ namespace Achordeon.Shell.CmdLine.CommandlineArguments
             }
         }
 
+        public bool UseMusicalSymbols { get; set; } = DefaultSongOptions.DEFAULT_USE_MUSICAL_SYMBOLS;
 
         public bool DrawChordGrids { get; set; } = DefaultSongOptions.DEFAULT_DRAW_CHORD_GRIDS;
 

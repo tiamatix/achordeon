@@ -49,6 +49,7 @@ namespace Achordeon.Lib.SongOptions
         private const string ABBREV_TEXT_FONT = "tf";
         private const string ABBREV_VERTICAL_SPACE = "v";
         private const string ABBREV_TRANSPOSE_BY_HALFTONES = "x";
+        private const string ABBREV_USE_MUSICAL_SYMBOLS = "ms";
         private const string FALSE = "0";
         private const string TRUE = "1";
 
@@ -90,6 +91,7 @@ namespace Achordeon.Lib.SongOptions
             AddOption(Result, ABBREV_CREATE_TOC, AOptions.CreateToc, DefaultSongOptions.CreateToc);
             AddOption(Result, ABBREV_TRANSPOSE_BY_HALFTONES, AOptions.TransposeByHalftones, DefaultSongOptions.TransposeByHalftones);
             AddOption(Result, ABBREV_VERTICAL_SPACE, AOptions.VerticalSpace, DefaultSongOptions.VerticalSpace);
+            AddOption(Result, ABBREV_USE_MUSICAL_SYMBOLS, AOptions.UseMusicalSymbols, DefaultSongOptions.UseMusicalSymbols);
             return Result.ToString();
         }
 
@@ -145,6 +147,9 @@ namespace Achordeon.Lib.SongOptions
                     case ABBREV_CREATE_TOC:
                         AOptions.CreateToc = Value != FALSE;
                         break;
+                    case ABBREV_USE_MUSICAL_SYMBOLS:
+                        AOptions.UseMusicalSymbols = Value != FALSE;
+                        break;
                     case ABBREV_TEXT_SIZE_PT:
                         AOptions.TextSizePt = Convert.ToInt32(Value, CultureInfo.InvariantCulture);
                         break;
@@ -183,8 +188,9 @@ namespace Achordeon.Lib.SongOptions
             AOptions.TransposeByHalftones = AXml.GetI("TransposeByHalftones", DefaultSongOptions.TransposeByHalftones);
             AOptions.VerticalSpace = AXml.GetI("VerticalSpace", DefaultSongOptions.VerticalSpace);
             AOptions.DrawChordGrids = AXml.GetB("DrawChordGrids", DefaultSongOptions.DrawChordGrids);
+            AOptions.UseMusicalSymbols = AXml.GetB("UseMusicalSymbols", DefaultSongOptions.UseMusicalSymbols);
         }
-        
+
 
         public void SaveToXml(ISongOptions AOptions, XmlFile AXml)
         {
@@ -206,6 +212,7 @@ namespace Achordeon.Lib.SongOptions
             XmlSet(AXml, "TransposeByHalftones", AOptions.TransposeByHalftones, DefaultSongOptions.TransposeByHalftones);
             XmlSet(AXml, "VerticalSpace", AOptions.VerticalSpace, DefaultSongOptions.VerticalSpace);
             XmlSet(AXml, "DrawChordGrids", AOptions.DrawChordGrids, DefaultSongOptions.DrawChordGrids);
+            XmlSet(AXml, "UseMusicalSymbols", AOptions.UseMusicalSymbols, DefaultSongOptions.UseMusicalSymbols);
         }
 
 

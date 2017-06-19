@@ -45,5 +45,6 @@ namespace Achordeon.Lib.SongOptions
         bool CreateToc { get; set; }
         int TransposeByHalftones { get; set; }
         int VerticalSpace { get; set; }
+        bool UseMusicalSymbols { get; set; }
     }
 }

@@ -46,6 +46,7 @@ namespace Achordeon.Lib.SongOptions
         public const bool DEFAULT_SINGLE_SPACE = false;
         public const int DEFAULT_TEXT_SIZE_PT = 10;
         public const bool DEFAULT_CREATE_TOC = false;
+        public const bool DEFAULT_USE_MUSICAL_SYMBOLS = false;
         public const int DEFAULT_TRANSPOSE_BY_HALFTONES = 0;
         public const int DEFAULT_VERTICAL_SPACE = 0;
 
@@ -142,6 +143,12 @@ namespace Achordeon.Lib.SongOptions
         public bool CreateToc
         {
             get { return DEFAULT_CREATE_TOC; }
+            set { }
+        }
+
+        public bool UseMusicalSymbols
+        {
+            get { return DEFAULT_USE_MUSICAL_SYMBOLS; }
             set { }
         }
 
