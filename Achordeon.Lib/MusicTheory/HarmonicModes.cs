@@ -37,7 +37,7 @@ namespace Achordeon.Lib.MusicTheory
 
         static HarmonicModes()
         {
-            _Modes.Add(new HarmonicMode("Ionian", new[] {0, 2, 4, 5, 7, 9, 11}));
+            _Modes.Add(new HarmonicMode("Ionian", new[] {0, 2, 4, 5, 7, 9, 11}, true));
             _Modes.Add(new HarmonicMode("Dorian", new[] {0, 2, 3, 5, 7, 9, 10}));
             _Modes.Add(new HarmonicMode("Phrygian", new[] {0, 1, 3, 5, 7, 8, 10}));
             _Modes.Add(new HarmonicMode("Lydian", new[] {0, 2, 4, 6, 7, 9, 11}));
@@ -53,6 +53,10 @@ namespace Achordeon.Lib.MusicTheory
             _Modes.Add(new HarmonicMode("Whole tone", new[] {0, 2, 4, 6, 8, 10}));
             _Modes.Add(new HarmonicMode("Diminished", new[] {0, 1, 3, 4, 6, 7, 9, 10}));
         }
+
+        public HarmonicMode Default => _Modes.First(AMode => AMode.IsDefault);
+
+        public HarmonicMode this[string AName] => GetMode(AName);
 
         public HarmonicMode GetMode(string AName)
         {

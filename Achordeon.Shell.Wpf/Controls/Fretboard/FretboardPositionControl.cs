@@ -20,17 +20,18 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 !*/
+
+using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using ServicesLibrary;
 using System.Linq;
 using Achordeon.Lib.MusicTheory;
 
 namespace Achordeon.Shell.Wpf.Controls.Fretboard
 {
 
-    public class FretboardPositionControl
+    public class FretboardPositionControl : Button
     {
         private enum MuteOrSelectTriState : byte
         {
@@ -39,12 +40,13 @@ namespace Achordeon.Shell.Wpf.Controls.Fretboard
             Unselect = 2
         }
 
-        private readonly Brush m_SelectedBackgroundBrush;
-        private readonly Brush m_UnselectedBackgroundBrush;
-        private readonly Brush m_SelectedForegroundBrush;
-        private readonly Brush m_UnselectedForegroundBrush;
-        private readonly Border m_NoteBody;
-        private readonly Label m_NoteLabel;
+        private Brush m_SelectedBackgroundBrush;
+        private Brush m_UnselectedBackgroundBrush;
+        private Brush m_SelectedForegroundBrush;
+        private Brush m_UnselectedForegroundBrush;
+        private Border m_NoteBody;
+        private Label m_NoteLabel;
+        private readonly double m_Size;
         private readonly FretboardString m_String;
 
         private bool m_IsMuted;
@@ -59,7 +61,7 @@ namespace Achordeon.Shell.Wpf.Controls.Fretboard
         public bool IsKeyNote => CurrentKey.SemitoneIndex == CurrentNote.SemitoneIndex;
         public bool NoteBelongsToMode { get; }
 
-        public FrameworkElement Visual { get; }
+      
 
         public static Color ChangeColorBrightness(Color AColor, float AAdjustment)
         {
@@ -89,19 +91,10 @@ namespace Achordeon.Shell.Wpf.Controls.Fretboard
             return new SolidColorBrush(ChangeColorBrightness(ABrush.Color, AAdjustment));
         }
 
-        public FretboardPositionControl(FretboardString AString, int AFretNumber, Note ACurrentNode, double ASize, bool ANoteBelongsToMode, Note ACurrentRootNote)
+        protected override void OnInitialized(EventArgs AIniArgs)
         {
-            m_String = AString;
-            FretNumber = AFretNumber;
-            NoteBelongsToMode = ANoteBelongsToMode;
-            CurrentKey = ACurrentRootNote;
-            CurrentNote = ACurrentNode;
-            m_IsSelected = false;
-
-            m_SelectedForegroundBrush = Brushes.Black;
-            m_UnselectedForegroundBrush = (NoteBelongsToMode || IsOpenFret ? Brushes.Black : Brushes.LightGray);
-
-            m_NoteLabel = new Label()
+            base.OnInitialized(AIniArgs);
+             m_NoteLabel = new Label()
             {
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center,
@@ -111,40 +104,39 @@ namespace Achordeon.Shell.Wpf.Controls.Fretboard
 
             var ViewBox = new Viewbox() {Child = m_NoteLabel };
             
-            m_SelectedBackgroundBrush = IsOpenFret ? Brushes.DarkSeaGreen : (NoteBelongsToMode ? ChangeColorBrightness(Brushes.Lime, -0.3f) : ChangeColorBrightness(Brushes.LightGreen, 0.3f));
+            m_SelectedBackgroundBrush = IsOpenFret ? Brushes.DarkSeaGreen : (NoteBelongsToMode ? ChangeColorBrightness(Brushes.Lime, -0.2f) : ChangeColorBrightness(Brushes.LightGreen, 0.2f));
             m_UnselectedBackgroundBrush = (NoteBelongsToMode ? Brushes.LightGoldenrodYellow : Brushes.WhiteSmoke);
 
             m_NoteBody = new Border()
             {
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center,
-                Width = ASize - 2,
-                Height = ASize - 2,
-                CornerRadius = new CornerRadius(ASize/2.0),
+                Width = m_Size - 2,
+                Height = m_Size - 2,
+                CornerRadius = new CornerRadius(m_Size/2.0),
                 BorderThickness = new Thickness(IsKeyNote ? 2.0 : 1.0),
-                ToolTip = $"{CurrentNote.Name},  {Intervals.Instance.GetInterval(CurrentSemitonesToKey)}",
+                ToolTip = $"{CurrentNote.Name}: {Intervals.Instance.GetInterval(CurrentSemitonesToKey)}",
                 Child = ViewBox
             };
 
-            var Butt = new Button()
+           
+                FocusVisualStyle = null;
+                Style = null;
+                Background = Brushes.Transparent;
+                BorderBrush = Brushes.Transparent;
+                BorderThickness = new Thickness();
+                Width = m_Size;
+                Height = m_Size;
+            Content = m_NoteBody;       
+            
+
+            IsEnabledChanged += (ASender, AArgs) =>
             {
-                FocusVisualStyle = null,
-                Style = null,
-                Background = Brushes.Transparent,
-                BorderBrush = Brushes.Transparent,
-                BorderThickness = new Thickness(),
-                Width = ASize,
-                Height = ASize,
-                Content = m_NoteBody,       
+                Background = Brushes.Transparent;
+                BorderBrush = Brushes.Transparent;
             };
 
-            Butt.IsEnabledChanged += (ASender, AArgs) =>
-            {
-                Butt.Background = Brushes.Transparent;
-                Butt.BorderBrush = Brushes.Transparent;
-            };
-
-            Butt.Click += (ASender, AArgs) =>
+            Click += (ASender, AArgs) =>
             {
                 if (IsOpenFret)
                 {
@@ -166,15 +158,31 @@ namespace Achordeon.Shell.Wpf.Controls.Fretboard
                     IsSelected = !IsSelected;
             };
 
+            m_SelectedForegroundBrush = Brushes.Black;
+            m_UnselectedForegroundBrush = (NoteBelongsToMode || IsOpenFret ? Brushes.Black : Brushes.LightGray);
+
+           
             IsSelected = false;
             IsMuted = false;
 
-            Visual = Butt;
         }
+
+        public FretboardPositionControl(FretboardString AString, int AFretNumber, Note ACurrentNode, double ASize, bool ANoteBelongsToMode, Note ACurrentRootNote)
+        {
+            m_String = AString;
+            FretNumber = AFretNumber;
+            NoteBelongsToMode = ANoteBelongsToMode;
+            CurrentKey = ACurrentRootNote;
+            CurrentNote = ACurrentNode;
+            m_IsSelected = false;
+            m_Size = ASize;
+        }
+
+
 
         public bool IsSelected
         {
-            get { return m_IsSelected; }
+            get => m_IsSelected;
             set
             {
                 try
@@ -205,7 +213,7 @@ namespace Achordeon.Shell.Wpf.Controls.Fretboard
 
         public bool IsMuted
         {
-            get { return m_IsMuted; }
+            get => m_IsMuted;
             set
             {
                 try
@@ -232,8 +240,10 @@ namespace Achordeon.Shell.Wpf.Controls.Fretboard
 
         private void UpdateColors()
         {
+            if (m_NoteBody == null || m_NoteLabel == null)
+                return;
             m_NoteBody.Background = m_IsMuted ? Brushes.LightCoral : m_IsSelected ? m_SelectedBackgroundBrush : m_UnselectedBackgroundBrush;
-            m_NoteBody.BorderBrush = IsKeyNote ? IsMuted ? Brushes.DarkGray : Brushes.Orange : Brushes.Gray;
+            m_NoteBody.BorderBrush = IsKeyNote ? IsMuted ? Brushes.DarkGray : Brushes.DarkGreen : Brushes.Gray;
             m_NoteLabel.Foreground = m_IsSelected ? m_SelectedForegroundBrush : m_UnselectedForegroundBrush;
             m_NoteLabel.Content = m_IsMuted ? "X" : CurrentNote.Name;
         }

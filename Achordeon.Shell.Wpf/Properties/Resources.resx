@@ -152,6 +152,9 @@
   <data name="HomeTitle" xml:space="preserve">
     <value>Welcome to Achordeon!</value>
   </data>
+  <data name="FretboardTitle" xml:space="preserve">
+    <value>Fretboard</value>
+  </data>
   <data name="MainWindowTitle" xml:space="preserve">
     <value>Achordeon</value>
   </data>
@@ -199,6 +202,9 @@
   </data>
   <data name="OpenSong" xml:space="preserve">
     <value>Open Song</value>
+  </data>
+  <data name="Fretboard" xml:space="preserve">
+    <value>Fretboard</value>
   </data>
   <data name="PasteMenu" xml:space="preserve">
     <value>_Paste</value>
@@ -409,5 +415,8 @@
   </data>
   <data name="NewSongButtonTooltip" xml:space="preserve">
     <value>Let's write another song</value>
+  </data>
+  <data name="OpenFretboardButtonTooltip" xml:space="preserve">
+    <value>Show fretboard</value>
   </data>
 </root>

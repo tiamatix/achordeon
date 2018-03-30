@@ -20,11 +20,20 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 !*/
+
+using System;
+using System.Linq;
+
 namespace Achordeon.Lib.Chords
 {
     public class CommonChordLibrary
     {
         public ChordList Chords { get; } = new ChordList();
+
+        public Chord FindChord(string AName)
+        {
+            return Chords.FirstOrDefault(AChord => StringComparer.OrdinalIgnoreCase.Equals(AChord.Name, AName));
+        }
 
         private void LearnBuildinChords()
         {

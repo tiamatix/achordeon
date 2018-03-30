@@ -188,7 +188,7 @@ namespace Achordeon.Lib.Chords
         private int ConvFret(string AValue)
         {
             if (AValue == "x" || AValue == "X" || AValue == "-")
-                return Chord.UNUSED_FRET;
+                return CommonConstants.UNUSED_FRET;
             return Convert.ToInt32(AValue);
         }
 

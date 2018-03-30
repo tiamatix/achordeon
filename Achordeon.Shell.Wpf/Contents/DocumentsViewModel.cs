@@ -33,6 +33,7 @@ using System.Windows.Data;
 using Achordeon.Common.Helpers;
 using Achordeon.Lib.Properties;
 using Achordeon.Shell.Wpf.Contents.ChordProFile;
+using Achordeon.Shell.Wpf.Contents.Home;
 using DryIoc.Experimental;
 
 namespace Achordeon.Shell.Wpf.Contents
@@ -102,21 +103,29 @@ namespace Achordeon.Shell.Wpf.Contents
             return OpenDocuments.FirstOrDefault(a => a.AssociatedModel?.UniqueKey == AUniqueKey);
         }
 
-        public void AddDocumentView(IDocViewModel ADoc)
+        public void AddDocumentView(IDocViewModel AViewModel)
         {
-            var Key = ADoc.UniqueKey;
+            var Key = AViewModel.UniqueKey;
             if (OpenDocuments.Any(c => c.AssociatedModel?.UniqueKey == Key))
                 throw new DuplicateNameException($"A document with key '{Key}' is already open");
             var NewTab = new DocumentsViewTabItem
             {
-                AssociatedModel = ADoc,                
-                Content = ADoc.GetTabContent()
+                AssociatedModel = AViewModel,                
+                Content = AViewModel.GetTabContent()
             };
             var binding = new Binding(nameof(IDocViewModel.TabHeaderText));
-            binding.Source = ADoc;
+            binding.Source = AViewModel;
             binding.Mode = BindingMode.OneWay;
             NewTab.SetBinding(TabItem.HeaderProperty, binding);
             OpenDocuments.Add(NewTab);
+        }
+
+        public void OpenFretboardView()
+        {
+            var New = new FretboardViewModel(Core);
+            if (GetTabItem(New.UniqueKey) == null)
+                AddDocumentView(New);
+            SelectedTab = GetTabItem(New.UniqueKey);
         }
 
         public void NewChordProFile()
@@ -145,6 +154,7 @@ namespace Achordeon.Shell.Wpf.Contents
                     Content = Reader.ReadToEnd();
                 }
             }
+
             var New = new ChordProFileViewModel(Core, Content, FileEncoding);
             New.HasUnsavedChanges = false;
             New.FileName = AFileName;

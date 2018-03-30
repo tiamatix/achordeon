@@ -28,11 +28,18 @@ namespace Achordeon.Lib.MusicTheory
     [ImmutableObject(true)]
     public class SemitoneModule : IntegerModule
     {
-        public SemitoneModule(int AValue) : base(AValue, 12)
+        public const int MIN_VALUE = 0;
+        public const int MAX_VALUE = 12;
+
+        public static SemitoneModule Min => new SemitoneModule(MIN_VALUE);
+
+        public static SemitoneModule Max => new SemitoneModule(MAX_VALUE);
+
+        public SemitoneModule(int AValue) : base(AValue, MAX_VALUE)
         {
         }
 
-        public SemitoneModule() : base(0, 12)
+        public SemitoneModule() : base(MIN_VALUE, MAX_VALUE)
         {
         }
 
@@ -42,8 +49,6 @@ namespace Achordeon.Lib.MusicTheory
         {
             return new SemitoneModule(Value);
         }
-
-
 
         public static int operator +(SemitoneModule AModule, IntegerModule AFactor)
         {

@@ -94,6 +94,23 @@
                                    Text="{x:Static p:Resources.OpenSong}" />
                     </StackPanel>
                 </Button>
+                
+                <Button Width="150"
+                        Height="50"
+                        Margin="15,5,0,0"
+                        ToolTip="{x:Static p:Resources.OpenFretboardButtonTooltip}"
+                        Command="{Binding OpenFretboardCommand}"
+                        DockPanel.Dock="Top"
+                        FocusVisualStyle="{x:Null}"
+                        Style="{StaticResource SquareButtonStyle}">
+                    <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                        <iconPacks:PackIconModern VerticalAlignment="Center" Kind="Grid" />
+                        <TextBlock Margin="20,0,0,0"
+                                   VerticalAlignment="Center"
+                                   Text="{x:Static p:Resources.Fretboard}" />
+                    </StackPanel>
+                </Button>
+
             </DockPanel>
 
             <DockPanel Grid.Column="1" LastChildFill="True">

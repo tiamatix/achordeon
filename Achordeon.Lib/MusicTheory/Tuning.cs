@@ -32,10 +32,13 @@ namespace Achordeon.Lib.MusicTheory
         public string Name { get; }
         public int NumberOfStrings => m_StringIntervals.Count;
 
+        public bool IsDefault { get; }
+
         private readonly List<Interval> m_StringIntervals = new List<Interval>();
 
-        public Tuning(string AName, IEnumerable<int> AStringTuningIntervals)
+        public Tuning(string AName, IEnumerable<int> AStringTuningIntervals, bool AIsDefault = false)
         {
+            IsDefault = AIsDefault;
             Name = AName;
             foreach (var Interval in AStringTuningIntervals)
                 m_StringIntervals.Add(Intervals.Instance.GetInterval(Interval));

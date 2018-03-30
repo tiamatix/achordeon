@@ -92,7 +92,7 @@ namespace Achordeon
         private static void RegisterAppDomainExceptions()
         {
             AppDomain.CurrentDomain.UnhandledException += HandleUnhandledException;
-            AppDomain.CurrentDomain.FirstChanceException += (s, e) => _Core?.IoC?.Get<Log>()?.Using<Application>().Error(e);
+           // AppDomain.CurrentDomain.FirstChanceException += (s, e) => _Core?.IoC?.Get<Log>()?.Using<Application>().Error(e);
         }
 
         public void Dispose()

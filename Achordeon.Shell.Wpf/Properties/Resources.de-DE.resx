@@ -404,4 +404,13 @@
   <data name="SubTitles" xml:space="preserve">
     <value>Untertitel</value>
   </data>
+  <data name="FretboardTitle" xml:space="preserve">
+    <value>Griffbrett</value>
+  </data>
+  <data name="Fretboard" xml:space="preserve">
+    <value>Griffbrett</value>
+  </data>
+  <data name="OpenFretboardButtonTooltip" xml:space="preserve">
+    <value>Griffbrett anzeigen</value>
+  </data>
 </root>

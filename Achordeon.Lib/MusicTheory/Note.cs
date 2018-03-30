@@ -37,11 +37,9 @@ namespace Achordeon.Lib.MusicTheory
 
         public Note(string AName, int ASemitoneIndex)
         {
-            if (AName == null)
-                throw new NullReferenceException(nameof(AName));
             if (ASemitoneIndex < MIN_INTERVAL || ASemitoneIndex > MAX_INTERVAL)
                 throw new IndexOutOfRangeException(nameof(ASemitoneIndex));
-            Name = AName;
+            Name = AName ?? throw new NullReferenceException(nameof(AName));
             SemitoneIndex = ASemitoneIndex;
         }
 

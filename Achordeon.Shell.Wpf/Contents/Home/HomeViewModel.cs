@@ -37,6 +37,7 @@ namespace Achordeon.Shell.Wpf.Contents.Home
         private CoreViewModel m_CoreViewModel;
         
         private ICommand m_OpenSongCommand;
+        private ICommand m_OpenFretboardCommand;
         private ICommand m_OpenRecentSongCommand;
         private ICommand m_NewSongCommand;
         
@@ -45,6 +46,17 @@ namespace Achordeon.Shell.Wpf.Contents.Home
             CoreViewModel = ACore;
             Dispatcher = Dispatcher.CurrentDispatcher;
            
+            OpenFretboardCommand = new SimpleCommand
+            {
+                CanExecuteDelegate = x => true,
+                ExecuteDelegate = x =>
+                {
+                    Dispatcher.BeginInvoke((Action)(() =>
+                    {
+                        CoreViewModel.DocumentsViewModel.OpenFretboardView();
+                    }));                        
+                }
+            };
 
             NewSongCommand = new SimpleCommand
                 {
@@ -123,6 +135,13 @@ namespace Achordeon.Shell.Wpf.Contents.Home
             get { return m_OpenSongCommand; }
             set { SetProperty(ref m_OpenSongCommand, value, nameof(OpenSongCommand)); }
         }
+
+        public ICommand OpenFretboardCommand
+        {
+            get { return m_OpenFretboardCommand; }
+            set { SetProperty(ref m_OpenFretboardCommand, value, nameof(OpenFretboardCommand)); }
+        }
+
 
         public string TabHeaderText => Resources.HomeButtonTitle;
 

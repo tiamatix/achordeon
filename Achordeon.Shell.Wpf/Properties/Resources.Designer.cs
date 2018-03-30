@@ -41,7 +41,7 @@ namespace Achordeon.Shell.Wpf.Properties {
     // -Klasse über ein Tool wie ResGen oder Visual Studio automatisch generiert.
     // Um einen Member hinzuzufügen oder zu entfernen, bearbeiten Sie die .ResX-Datei und führen dann ResGen
     // mit der /str-Option erneut aus, oder Sie erstellen Ihr VS-Projekt neu.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Resources {
@@ -364,6 +364,24 @@ namespace Achordeon.Shell.Wpf.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Fretboard ähnelt.
+        /// </summary>
+        public static string Fretboard {
+            get {
+                return ResourceManager.GetString("Fretboard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Fretboard ähnelt.
+        /// </summary>
+        public static string FretboardTitle {
+            get {
+                return ResourceManager.GetString("FretboardTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Global Settings ähnelt.
         /// </summary>
         public static string GlobalSettings {
@@ -522,6 +540,15 @@ namespace Achordeon.Shell.Wpf.Properties {
         public static string OpenFileMenu {
             get {
                 return ResourceManager.GetString("OpenFileMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Show fretboard ähnelt.
+        /// </summary>
+        public static string OpenFretboardButtonTooltip {
+            get {
+                return ResourceManager.GetString("OpenFretboardButtonTooltip", resourceCulture);
             }
         }
         

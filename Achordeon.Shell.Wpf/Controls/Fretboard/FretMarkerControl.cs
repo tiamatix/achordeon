@@ -20,28 +20,32 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 !*/
+
+using System;
 using System.Windows;
 using System.Windows.Controls;
 
 namespace Achordeon.Shell.Wpf.Controls.Fretboard
 {
     
-    public class FretMarkerControl
+    public class FretMarkerControl : Viewbox
     {
         public string FretLabel { get; }
 
         public FretMarkerControl(string AFretLabel)
         {
             FretLabel = AFretLabel;
+        }
+
+        protected override void OnInitialized(EventArgs e)
+        {
+            base.OnInitialized(e);
             var Marker = new Label()
             {
                 Content = FretLabel,
                 HorizontalContentAlignment = HorizontalAlignment.Center
             };
-            var Box = new Viewbox() { Child = Marker };          
-            Visual = Box;
+            Child = Marker;          
         }
-
-        public FrameworkElement Visual { get; }
     }
 }

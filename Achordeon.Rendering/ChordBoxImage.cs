@@ -175,7 +175,7 @@ namespace Achordeon.Lib.Lib.Rendering.ChordDiagrams
                 {
                     if (parts[i].ToUpper() == "X")
                     {
-                        _chordPositions[i] = Chord.UNUSED_FRET;
+                        _chordPositions[i] = CommonConstants.UNUSED_FRET;
                     }
                     else
                     {
@@ -361,7 +361,7 @@ namespace Achordeon.Lib.Lib.Rendering.ChordDiagrams
             var bars = new Dictionary<char, Bar>();
             for (int i = 0; i < 5; i++)
             {
-                if (_chordPositions[i] != Chord.UNUSED_FRET && _chordPositions[i] != OPEN && _fingers[i] != NO_FINGER && !bars.ContainsKey(_fingers[i]))
+                if (_chordPositions[i] != CommonConstants.UNUSED_FRET && _chordPositions[i] != OPEN && _fingers[i] != NO_FINGER && !bars.ContainsKey(_fingers[i]))
                 {
                     Bar bar = new Bar {Str = i, Pos = _chordPositions[i], Length = 0, Finger = _fingers[i]};
                     for (int j = i + 1; j < 6; j++)
@@ -432,7 +432,7 @@ namespace Achordeon.Lib.Lib.Rendering.ChordDiagrams
                     }
                     _graphics.DrawEllipse(pen, markerXpos, ypos, _markerWidth, _markerWidth);
                 }
-                else if (absolutePos == Chord.UNUSED_FRET)
+                else if (absolutePos == CommonConstants.UNUSED_FRET)
                 {
                     Pen pen = new Pen(_foregroundBrush, _lineWidth*1.5f);
                     float ypos = _ystart - _fretWidth;

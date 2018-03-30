@@ -25,6 +25,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
 using ServicesLibrary;
 
 namespace Achordeon.Lib.MusicTheory
@@ -42,6 +43,10 @@ namespace Achordeon.Lib.MusicTheory
             foreach (var s in new[] {"C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"})
                 _Notes.Add(new Note(s, i++));
         }
+
+        public Note this[string AName] => GetNote(AName);
+
+        public Note DefaultRootNote => GetNote(SemitoneModule.Min);
 
         public Note GetNote(string AName)
         {

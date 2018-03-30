@@ -24,6 +24,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 
 namespace Achordeon.Lib.MusicTheory
@@ -37,7 +38,7 @@ namespace Achordeon.Lib.MusicTheory
 
         static Tunings()
         {
-            _Tunings.Add(new Tuning("Standard E", new[] {4, 11, 7, 2, 9, 4}));
+            _Tunings.Add(new Tuning("Standard E", new[] {4, 11, 7, 2, 9, 4}, true));
             _Tunings.Add(new Tuning("Standard D#/Eb", new[] {3, 10, 6, 1, 8, 3}));
             _Tunings.Add(new Tuning("Standard D", new[] {2, 9, 5, 0, 7, 2}));
             _Tunings.Add(new Tuning("Drop D", new[] {4, 11, 7, 2, 9, 2}));
@@ -52,13 +53,23 @@ namespace Achordeon.Lib.MusicTheory
             _Tunings.Add(new Tuning("Open G minor", new[] {2, 10, 7, 2, 7, 2}));
             _Tunings.Add(new Tuning("Dobro Open", new[] {2, 11, 7, 2, 11, 7}));
 
-            _Tunings.Add(new Tuning("Standard B", new[] {4, 11, 7, 2, 9, 4, 11}));
+            _Tunings.Add(new Tuning("Standard B", new[] {4, 11, 7, 2, 9, 4, 11}, true));
             _Tunings.Add(new Tuning("Drop A", new[] {4, 11, 7, 2, 9, 4, 9}));
             _Tunings.Add(new Tuning("Standard F#", new[] {4, 11, 7, 2, 9, 4, 11, 6}));
             _Tunings.Add(new Tuning("Drop E", new[] {4, 11, 7, 2, 9, 4, 11, 4}));
         }
 
-        public Tuning GetTuning(string AName, int? ANumberOfStrings)
+        public Tuning GetDefault(int? ANumberOfStrings = 6)
+        {
+            var res = _Tunings.FirstOrDefault(ATuning => (!ANumberOfStrings.HasValue || ATuning.NumberOfStrings == ANumberOfStrings.Value) && ATuning.IsDefault);
+            if (res == null)
+                throw new InvalidDataException($"no default tuning for {ANumberOfStrings} strings defined");
+            return res;
+        }
+
+        public Tuning this[string AName, int? ANumberOfStrings = 6] => GetTuning(AName, ANumberOfStrings);
+
+        public Tuning GetTuning(string AName, int? ANumberOfStrings = 6)
         {
             var res = _Tunings.FirstOrDefault(ATuning => (!ANumberOfStrings.HasValue || ATuning.NumberOfStrings == ANumberOfStrings.Value) && StringComparer.OrdinalIgnoreCase.Equals(ATuning.Name, AName));
             if (res == null)

@@ -35,9 +35,12 @@ namespace Achordeon.Lib.MusicTheory
 
         private readonly List<Interval> m_Intervals = new List<Interval>();
 
-        public HarmonicMode(string AName, IEnumerable<int> AIntervals)
+        public bool IsDefault { get; }
+
+        public HarmonicMode(string AName, IEnumerable<int> AIntervals, bool AIsDefault = false)
         {
             Name = AName;
+            IsDefault = AIsDefault;
             foreach (var Interval in AIntervals)
                 m_Intervals.Add(Intervals.Instance.GetInterval(Interval));
         }

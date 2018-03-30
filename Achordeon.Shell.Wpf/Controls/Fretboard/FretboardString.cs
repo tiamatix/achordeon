@@ -23,6 +23,7 @@ SOFTWARE.
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Achordeon.Lib.Chords;
 
 namespace Achordeon.Shell.Wpf.Controls.Fretboard
 {
@@ -57,7 +58,7 @@ namespace Achordeon.Shell.Wpf.Controls.Fretboard
 
         public bool IsMuted
         {
-            get { return m_Positions.FirstOrDefault()?.IsMuted ?? false; }
+            get => m_Positions.FirstOrDefault()?.IsMuted ?? false;
             set
             {
                 var FirstPos = m_Positions.FirstOrDefault();
@@ -69,18 +70,18 @@ namespace Achordeon.Shell.Wpf.Controls.Fretboard
         public bool IsOpen
         {
             get { return !IsMuted && !m_Positions.Any(APos => APos.IsSelected); }
-            set { SelectedFret = 0; }
+            set => SelectedFret = 0;
         }
 
-        public int? SelectedFret
+        public int SelectedFret
         {
-            get { return m_Positions.FirstOrDefault(APos => APos.IsSelected)?.FretNumber; }
+            get { return m_Positions.FirstOrDefault(APos => APos.IsSelected)?.FretNumber ?? CommonConstants.UNUSED_FRET; }
             set
             {
                 m_Positions.ForEach(APos => APos.IsSelected = false);
-                if (!value.HasValue)
+                if (value == CommonConstants.UNUSED_FRET)
                     return;
-                var Pos = m_Positions.FirstOrDefault(APos => APos.FretNumber == value.Value);
+                var Pos = m_Positions.FirstOrDefault(APos => APos.FretNumber == value);
                 if (Pos != null)
                     Pos.IsSelected = true;
             }

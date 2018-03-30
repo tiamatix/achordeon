@@ -21,6 +21,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 !*/
 using System;
+using System.Collections.Generic;
 using Achordeon.Lib.Properties;
 using Achordeon.Lib.Transposing;
 using DryIoc;
@@ -28,10 +29,13 @@ using DryIoc.Experimental;
 
 namespace Achordeon.Lib.Chords
 {
-    public class Chord
+    public static class CommonConstants
     {
         public const int UNUSED_FRET = -1;
+    }
 
+    public class Chord
+    {
         public Chord(
             string AName,
             int AFret1,
@@ -106,9 +110,25 @@ namespace Achordeon.Lib.Chords
         public ChordOrigin Origin { get; }
         public Difficulty Difficulty { get; }
 
+        public int[] GetAbsoluteFrets(int ANumberOfStrings)
+        {
+            var res = new List<int>()
+            {
+                Fret1 == CommonConstants.UNUSED_FRET ? Fret1 : (BaseFret + Fret1) - 1,
+                Fret2 == CommonConstants.UNUSED_FRET ? Fret2 : (BaseFret + Fret2) - 1,
+                Fret3 == CommonConstants.UNUSED_FRET ? Fret3 : (BaseFret + Fret3) - 1,
+                Fret4 == CommonConstants.UNUSED_FRET ? Fret4 : (BaseFret + Fret4) - 1,
+                Fret5 == CommonConstants.UNUSED_FRET ? Fret5 : (BaseFret + Fret5) - 1,
+                Fret6 == CommonConstants.UNUSED_FRET ? Fret6 : (BaseFret + Fret6) - 1,
+            };
+            while (res.Count < ANumberOfStrings)
+                res.Add(CommonConstants.UNUSED_FRET);
+            return res.ToArray();
+        }
+
         public string GetFretDisplay(int AFret)
         {
-            return AFret == UNUSED_FRET ? "-" : AFret.ToString();
+            return AFret == CommonConstants.UNUSED_FRET ? "-" : AFret.ToString();
         }
 
         public override string ToString()

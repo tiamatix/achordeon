@@ -54,32 +54,32 @@ namespace Achordeon.Shell.Wpf.Contents.Main
 
         public Dispatcher Dispatcher
         {
-            get { return m_Dispatcher; }
-            set { SetProperty(ref m_Dispatcher, value, nameof(Dispatcher)); }
+            get => m_Dispatcher;
+            set => SetProperty(ref m_Dispatcher, value, nameof(Dispatcher));
         }
 
         public CoreViewModel Core
         {
-            get { return m_Core; }
-            set { SetProperty(ref m_Core, value, nameof(Core)); }
+            get => m_Core;
+            set => SetProperty(ref m_Core, value, nameof(Core));
         }
 
         public string ProjectUrl
         {
-            get { return m_ProjectUrl; }
-            set { SetProperty(ref m_ProjectUrl, value, nameof(ProjectUrl)); }
+            get => m_ProjectUrl;
+            set => SetProperty(ref m_ProjectUrl, value, nameof(ProjectUrl));
         }
 
         public string LicenseUrl
         {
-            get { return m_LicenseUrl; }
-            set { SetProperty(ref m_LicenseUrl, value, nameof(LicenseUrl)); }
+            get => m_LicenseUrl;
+            set => SetProperty(ref m_LicenseUrl, value, nameof(LicenseUrl));
         }
 
         public string ReleaseNotesUrl
         {
-            get { return m_ReleaseNotesUrl; }
-            set { SetProperty(ref m_ReleaseNotesUrl, value, nameof(ReleaseNotesUrl)); }
+            get => m_ReleaseNotesUrl;
+            set => SetProperty(ref m_ReleaseNotesUrl, value, nameof(ReleaseNotesUrl));
         }
 
 
