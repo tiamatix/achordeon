@@ -2,6 +2,8 @@
 
 Achordeon is basically a chord editor, organizer and notation tool.
 
+![Image](https://github.com/tiamatix/achordeon/blob/master/006_DOC/screen4.PNG)
+
 It was designed to replace [Chordii](http://www.vromans.org/johan/projects/Chordii/) and therefore uses the ChordPro file format.
 
 Many song writers use text editor to do the writing, and this works quite well.
@@ -38,6 +40,12 @@ To edit a song you have to....
 ### Additional features
 
 Achordeon can transpose your songs on the fly, render lyrics only, can also render ASCII files you can process with other editors and can import ASCII files from other programs and convert them to the ChordPro format.
+![Image](https://github.com/tiamatix/achordeon/blob/master/006_DOC/screen5.PNG)
+
+![Image](https://github.com/tiamatix/achordeon/blob/master/006_DOC/screen9.PNG)
+
+Achordeon lets you find the chords on the fret board and will even tell you what notes you are playing:
+![Image](https://github.com/tiamatix/achordeon/blob/master/006_DOC/screen3.PNG)
 
 ### Installation
 Achordeon uses a Click-Once-like installer based on Squirrel: just [download](https://github.com/tiamatix/achordeon/releases) and run Achordeon. 
